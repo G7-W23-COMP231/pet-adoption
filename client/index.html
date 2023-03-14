@@ -1,11 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
+  <div className='register__container'>
+    <link rel="stylesheet" href="index.css">
+      <div className='left'></div>
+      <form onSubmit={handleSubmit} className='register__container-form'>
+        <h2>REGISTRATION FORM</h2>
+        <table>
+          <thead>
+            <tr>
+        <span>Sign up with your email and password</span>
+           </tr>
+           </thead>
+           <tr>
+        <div>
+          <input
+            type='text'
+            name='shelterName'
+            placeholder='Shelter Name'
+            onChange={handleChange}
+            required
+          />
+        </div></tr>
+        <div><tr>
+          <select name='location' onChange={handleChange}>
+            <option value='ABCD'>ABCD</option>
+            <option value='EFGH'>EFGH</option>
+            <option value='IJKL'>IJKL</option>
+            <option value='MNOP'>MNOP</option>
+          </select>
+        </tr></div>
+        <div><tr>
+          <input
+            type='email'
+            name='email'
+            placeholder='Email'
+            onChange={handleChange}
+            required
+          />
+        </tr></div>
+
+        <div><tr>
+          <input
+            type='password'
+            name='password'
+            placeholder='password'
+            onChange={handleChange}
+            required
+          />
+        </tr></div>
+
+        <div><tr>
+          <input
+            type='password'
+            name='confirmPassword'
+            placeholder='confirm password'
+            onChange={handleChange}
+            required
+          />
+        </tr></div>
+      </table>
+<div>
+       <button>Sign Up</button>
+      </form>
+    </div>
+ 
+  
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
