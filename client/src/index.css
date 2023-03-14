@@ -13,6 +13,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
