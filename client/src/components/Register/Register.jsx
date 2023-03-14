@@ -10,18 +10,17 @@ const defaultFormField = {
 };
 
 const Register = () => {
-  const [formField, setformField] = useState(defaultFormField);
-  console.log(formField);
+  const [formField, setFormField] = useState(defaultFormField);
 
   const { password, confirmPassword } = formField;
 
   const resetFormFields = () => {
-    setformField(defaultFormField);
+    setFormField(defaultFormField);
   };
 
   const handleChange = event => {
     const { value, name } = event.target;
-    setformField({ ...formField, [name]: value });
+    setFormField({ ...formField, [name]: value });
   };
 
   const handleSubmit = event => {
@@ -53,7 +52,7 @@ const Register = () => {
           <input
             type='text'
             name='shelterName'
-            placeholder='shelter Name'
+            placeholder='shelter name'
             onChange={handleChange}
             required
           />
