@@ -1,0 +1,24 @@
+{
+  "name": "pet-adoption",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G7-W23-COMP231/pet-adoption.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/G7-W23-COMP231/pet-adoption/issues"
+  },
+  "homepage": "https://github.com/G7-W23-COMP231/pet-adoption#readme",
+  "dependencies": {
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.1"
+  }
+}
