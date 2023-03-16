@@ -36,10 +36,13 @@ const Register = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: formField }),
+      body: JSON.stringify(formField),
     })
       .then(res => res.json())
-      .then(data => alert(data));
+      .then(data => alert(data))
+      .catch(err => {
+        alert('Something went wrong', err);
+      });
   };
 
   return (
