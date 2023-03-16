@@ -10,5 +10,10 @@ const animalSchema = new Schema({
   location: String,
   phoneNumber: Number,
   petId: Number,
-});
-const User = mongoose.model('User', animalSchema);
+},{
+  //Threepat- for update condition
+  collection: "animalshelter",
+  timestamps: true
+}
+);
+module.exports = mongoose.model('animalshelter', animalSchema);
