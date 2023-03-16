@@ -31,6 +31,11 @@ const Login = () => {
             id='password'
           />
         </div>
+        <div className="d-flex justify-content-center">
+            <button type="button" className="btn btn-primary btn-lg" >Login</button></div>
+            <div className="d-flex justify-content-center">
+            <button type="button" className="btn btn-primary btn-lg">Signup</button>
+    </div>
       </form>
     </div>
   );
