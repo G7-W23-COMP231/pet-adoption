@@ -31,18 +31,21 @@ const Register = () => {
       return;
     }
 
-    try {
-      // code for validation
-      console.log('Signed up');
-      alert(`signed up`);
-      resetFormFields();
-    } catch (error) {}
+    fetch('http://localhost:8000/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data: formField }),
+    })
+      .then(res => res.json())
+      .then(data => alert(data));
   };
 
   return (
     <div className='register__container'>
       <div className='left'></div>
-      <form onSubmit={handleSubmit} className='register__container-form'>
+      <form className='register__container-form'>
         <div className='register__containter-form_title'>
           <h2>I don't have an account</h2>
           <span>Sign up with your email and password</span>
@@ -95,7 +98,9 @@ const Register = () => {
           />
         </div>
 
-        <button className='btn__signup'>Sign Up</button>
+        <button className='btn__signup' onClick={handleSubmit}>
+          Sign Up
+        </button>
       </form>
     </div>
   );
