@@ -10,6 +10,8 @@ const animalSchema = new Schema({
   location: String,
   phoneNumber: Number,
   petId: Number,
+  //Threepat - Add email from data
+  email: String,
 },{
   //Threepat- for update condition
   collection: "animalshelter",
