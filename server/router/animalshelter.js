@@ -17,7 +17,9 @@ router.get('/info', async (req, res) => {
 
 //Threepat- create post request to send info to MongoDB
 router.post('/info', async (req, res) => {
-  const { userName, password, animalShleterName, location, phoneNumber, petId } = req.body;
+
+  const { userName, password, animalShelterName, location, phoneNumber } = req.body;
+
 
   try {
     const animal = new Animal({ 
@@ -26,7 +28,6 @@ router.post('/info', async (req, res) => {
         AnimalShelterName, 
         location, 
         phoneNumber, 
-        petId,
         //threepat - Add email to AnimalShelter 
         email
        });
