@@ -6,10 +6,9 @@ const animalSchema = new Schema({
   // Define the properties of your animalschema here
   userName: String,
   password: String,
-  animalShleterName: String,
+  animalShelterName: String,
   location: String,
   phoneNumber: Number,
-  petId: Number,
 },{
   //Threepat- for update condition
   collection: "animalshelter",
@@ -17,3 +16,4 @@ const animalSchema = new Schema({
 }
 );
 module.exports = mongoose.model('animalshelter', animalSchema);
+

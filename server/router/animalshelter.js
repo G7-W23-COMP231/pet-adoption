@@ -14,16 +14,19 @@ router.get('/info', async (req, res) => {
 });
 
 router.post('/info', async (req, res) => {
-  const { userName, password, animalShleterName, location, phoneNumber, petId } = req.body;
+
+  const { userName, password, animalShelterName, location, phoneNumber } = req.body;
+
 
   try {
     const animal = new Animal({ 
         userName, 
         password, 
-        animalShleterName, 
+        animalShelterName, 
         location, 
         phoneNumber, 
-        petId });
+         });
+   
     await animal.save();
     res.json(animal);
   } catch (err) {
