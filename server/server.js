@@ -18,9 +18,7 @@ app.get('/', (req, res) => {
 
 app.post('/register', async (req, res) => {
   try {
-    const data = req.body;
-
-    const { email, location, password, shelterName } = data;
+    const { email, location, password, shelterName } = req.body;
 
     await Shelter.create({
       email,
@@ -29,9 +27,9 @@ app.post('/register', async (req, res) => {
       shelterName,
     });
 
-    res.status(200).json('reg');
+    res.status(200).json('registered');
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    res.status(500).json(err.message);
   }
 });
 
