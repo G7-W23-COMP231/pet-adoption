@@ -25,7 +25,7 @@ router.post('/info', async (req, res) => {
     const animal = new Animal({ 
         userName, 
         password,
-        AnimalShelterName, 
+        animalShelterName, 
         location, 
         phoneNumber, 
         //threepat - Add email to AnimalShelter 
