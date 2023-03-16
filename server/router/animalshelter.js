@@ -14,7 +14,9 @@ router.get('/info', async (req, res) => {
 });
 
 router.post('/info', async (req, res) => {
+
   const { userName, password, animalShelterName, location, phoneNumber } = req.body;
+
 
   try {
     const animal = new Animal({ 
@@ -24,6 +26,7 @@ router.post('/info', async (req, res) => {
         location, 
         phoneNumber, 
          });
+   
     await animal.save();
     res.json(animal);
   } catch (err) {

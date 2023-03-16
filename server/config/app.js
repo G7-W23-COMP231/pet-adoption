@@ -1,12 +1,9 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
+const animalShelterRouter = require('../router/animalshelter');
 
-
-
+var app = express();
 
 // database setup
 let mongoose = require('mongoose');
@@ -22,24 +19,24 @@ mongoDB.once('open', () => {
     console.log('Connected to MongoDB...');
 });
 
-var app = express();
+const PORT = process.env.PORT || 5000;
 
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({extended: true})); // default false, updated by STANLEY
+// allow to access the request body using req.body in routes.
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../node_modules')));
-//setup express session
+
+//Threepat Kiatkamol - Create pets.js file to control the request
+app.use('/animalshelter', animalShelterRouter);
 
 
 
-//create a user model instance for the passport user configuration
-let userModel = require('../models/animalshelter');
-let User = userModel.User;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 
+  app.get('/', (req, res) => {
+    res.send('Welcome to my homepage!');
+  });
 
 module.exports = app;
