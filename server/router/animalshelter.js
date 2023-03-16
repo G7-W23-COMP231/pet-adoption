@@ -23,7 +23,7 @@ router.post('/info', async (req, res) => {
     const animal = new Animal({ 
         userName, 
         password,
-        animalShleterName, 
+        AnimalShelterName, 
         location, 
         phoneNumber, 
         petId,

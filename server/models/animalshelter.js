@@ -6,7 +6,7 @@ const animalSchema = new Schema({
   // Define the properties of your animalschema here
   userName: String,
   password: String,
-  animalShleterName: String,
+  AnimalShelterName:String,
   location: String,
   phoneNumber: Number,
   petId: Number,
