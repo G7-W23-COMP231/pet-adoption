@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import {
+  HiOutlineMail,
+  HiOutlineLockClosed,
+  HiLockClosed,
+} from 'react-icons/hi';
+import './Login.css';
 
 const defaultFormField = {
   email: '',
   password: '',
 };
+
 const Login = () => {
   const [formField, setFormField] = useState(defaultFormField);
 
@@ -11,32 +18,47 @@ const Login = () => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
   };
-  console.log(formField);
 
   return (
-    <div className=''>
-      <form className=''>
-        <h2>Log in</h2>
-
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input type='email' name='email' id='email' onChange={handleChange} />
+    <div className='login__container'>
+      <div className='login__container-right'>
+        <div className='text__container'>
+          <h2>Welcome back!</h2>
+          <p>Open your heart and home to a furry friend - Adopt now!</p>
         </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            onChange={handleChange}
-            name='password'
-            id='password'
-          />
-        </div>
-        <div className="d-flex justify-content-center">
-            <button type="button" className="btn btn-primary btn-lg" >Login</button></div>
-            <div className="d-flex justify-content-center">
-            <button type="button" className="btn btn-primary btn-lg">Signup</button>
-    </div>
-      </form>
+        <form className='login__container-form'>
+          <div className='input__container'>
+            <HiOutlineMail className='email__icon' />
+            <input
+              className='login__input'
+              type='email'
+              name='email'
+              id='email'
+              placeholder='email'
+              onChange={handleChange}
+            />
+          </div>
+          <div className='input__container'>
+            <HiLockClosed className='email__icon' />
+            <input
+              className='login__input'
+              type='password'
+              onChange={handleChange}
+              name='password'
+              id='password'
+              placeholder='password'
+            />
+          </div>
+          <div className='btn__container'>
+            <button type='button' className='login__btn btn_login btn-lg'>
+              Login
+            </button>
+            <button type='button' className='login__btn btn_signup btn-lg'>
+              Signup
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
