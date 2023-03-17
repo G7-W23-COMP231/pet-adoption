@@ -8,6 +8,7 @@ function App() {
   return (
     <div>
       <Register />
+      <div style={{ height: '100vh', backgroundColor: 'red' }}></div>
       <Login />
     </div>
   );

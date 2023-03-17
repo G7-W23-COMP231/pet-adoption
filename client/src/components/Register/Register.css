@@ -69,3 +69,9 @@
 .btn__signup:focus {
   border-bottom: 1px solid #646cff;
 }
+
+@media (max-width: 54em) {
+  .register__container-form {
+    padding: 2.4rem;
+  }
+}
