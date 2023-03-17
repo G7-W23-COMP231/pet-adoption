@@ -39,7 +39,7 @@ const Register = () => {
       body: JSON.stringify(formField),
     })
       .then(res => res.json())
-      .then(data => alert('Registered'))
+      .then(data => alert('Registered Succesfully'))
       .catch(err => alert('Something went wrong', err));
   };
 
