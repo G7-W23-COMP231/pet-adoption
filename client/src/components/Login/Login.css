@@ -1,48 +1,47 @@
 .login__container {
+  display: flex;
+  flex-direction: column;
+
   background-color: #fcfcfc;
   height: 100vh;
-
+  /* make it center */
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  gap: 1.6rem;
+}
+
+.wave {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 .text__container {
   text-align: center;
+  font-size: 1.6rem;
 }
 
 .text__container h2 {
   font-size: 2.4rem;
 }
 
-.login__container-right {
-  font-size: 0.8rem;
-  padding: 0 6rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-  padding: 0 14rem;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: url('../../assets/wave.svg');
-  background-repeat: no-repeat;
-  background-position: bottom;
-}
-
-.login__container-right span {
-  font-size: 0.6rem;
+.text__container p {
+  font-size: 0.7rem;
 }
 
 .login__container-form {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-
+  gap: 1.4rem;
   padding: 3.2rem;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  z-index: 2;
 }
 
 .input__container {
