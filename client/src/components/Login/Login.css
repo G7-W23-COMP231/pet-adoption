@@ -52,6 +52,8 @@
 
 .login__input {
   padding: 0.6rem 2.4rem;
+  background-color: #fff;
+  border: 1px solid #666;
   outline: none;
 }
 
@@ -63,8 +65,17 @@
 }
 
 .login__btn {
-  padding: 0.4rem 0.2rem;
+  padding: 0.2rem;
   width: 5rem;
+}
+
+.login__btn-signup {
+  font-size: 1rem;
+  width: 4rem;
+}
+
+.login__btn-signup:hover {
+  border-bottom: 2px solid currentColor;
 }
 
 .email__icon {
