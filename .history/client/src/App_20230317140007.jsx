@@ -8,26 +8,13 @@ import PetDetails from './components/ShelterPages/PetDetails';
 
 function App() {
 
-  {/* dummy routing to test authentication */}
-  return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Login/>}/>
-        <Route exact path="/register"  element={<Register/>} />
-        <Route exact path="/petdetails"  element={<PetDetails/>} />
-      </Routes>
-    </Router>
-  );
-
-
-  {/* 
   return (
     <div>
       <Register />
       <div style={{ height: '100vh', backgroundColor: '#273036' }}></div>
       <Login />
     </div>
-  );*/}
+  );
 }
 
 export default App;

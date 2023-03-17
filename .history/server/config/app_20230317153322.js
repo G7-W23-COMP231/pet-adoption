@@ -6,6 +6,8 @@ var cors = require('cors');
 const authRouter = require('../router/auth');
 const animalShelterRouter = require('../router/animalshelter');
 
+const cors = require('cors');
+
 var app = express();
 
 // database setup

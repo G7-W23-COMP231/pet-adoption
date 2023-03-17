@@ -8,13 +8,11 @@ import PetDetails from './components/ShelterPages/PetDetails';
 
 function App() {
 
-  {/* dummy routing to test authentication */}
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Login/>}/>
-        <Route exact path="/register"  element={<Register/>} />
-        <Route exact path="/petdetails"  element={<PetDetails/>} />
+    <Router> 
+      <Routes> 
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/findPost" element={<FindPost />} />
       </Routes>
     </Router>
   );
