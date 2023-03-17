@@ -8,7 +8,7 @@ import PetDetails from './components/ShelterPages/PetDetails';
 
 function App() {
 
-  {/* dummy routing to test authentication */}
+  {/* dummy routing to test authentication */
   return (
     <Router>
       <Routes>
