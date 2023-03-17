@@ -24,7 +24,7 @@ const Login = () => {
       <div className='login__container-right'>
         <div className='text__container'>
           <h2>Welcome back!</h2>
-          <span>Open your heart and home to a furry friend - Adopt now!</span>
+          <p>Open your heart and home to a furry friend - Adopt now!</p>
         </div>
         <form className='login__container-form'>
           <div className='input__container'>
@@ -34,6 +34,7 @@ const Login = () => {
               type='email'
               name='email'
               id='email'
+              placeholder='email'
               onChange={handleChange}
             />
           </div>
@@ -45,6 +46,7 @@ const Login = () => {
               onChange={handleChange}
               name='password'
               id='password'
+              placeholder='password'
             />
           </div>
           <div className='btn__container'>
