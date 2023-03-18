@@ -33,19 +33,13 @@ const Login = () => {
       body: JSON.stringify(formField), 
     }) 
     .then(res => res.json()) 
-    .then(data => {
-      if (data.message == "Access Granted") {
-        window.location.href = "/showpets";
-      } else {
-        alert(data.message);
-      }
-    })  
+    .then(data => alert(JSON.stringify(data))) 
     .catch(err => alert("Access Denied")); 
 
     /*
     .then(res => res.json()) 
-    .then(data => alert(JSON.stringify(data))) 
-    .catch(err => alert("Access Denied"));  
+    .then(data => console.log(data)) 
+    .catch(err => console.error(err)); 
     */
   };
 

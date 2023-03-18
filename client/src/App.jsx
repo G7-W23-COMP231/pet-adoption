@@ -4,9 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
-import ShowPets from './components/ShelterPages/ShowPets';
-import AddPet from './components/ShelterPages/AddPet';
-
+import PetDetails from './components/ShelterPages/PetDetails';
 
 function App() {
 
@@ -16,8 +14,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Login/>}/>
         <Route exact path="/register"  element={<Register/>} />
-        <Route exact path="/showpets"  element={<ShowPets/>} />
-        <Route exact path="/addpet"  element={<AddPet/>} />
+        <Route exact path="/petdetails"  element={<PetDetails/>} />
       </Routes>
     </Router>
   );
