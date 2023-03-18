@@ -35,7 +35,7 @@ const Login = () => {
     .then(res => res.json()) 
     .then(data => {
       if (data.message == "Access Granted") {
-        window.location.href = "/showpets";
+        window.location.href = "/petdetails";
       } else {
         alert(data.message);
       }
