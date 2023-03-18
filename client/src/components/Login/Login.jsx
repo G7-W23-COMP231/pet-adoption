@@ -4,6 +4,7 @@ import {
   HiOutlineLockClosed,
   HiLockClosed,
 } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import wave from '../../assets/wave.svg';
 import './Login.css';
 
@@ -26,20 +27,20 @@ const Login = () => {
 
   const handleLogin = event => {
     event.preventDefault();
-    
-    fetch("http://localhost:5000/auth/login", {
-      method: 'POST', 
-      headers: { 'Content-Type': 'application/json' }, 
-      body: JSON.stringify(formField), 
-    }) 
-    .then(res => res.json()) 
-    .then(data => alert(JSON.stringify(data))) 
-    .catch(err => alert("Access Denied")); 
+
+    fetch('http://localhost:5000/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formField),
+    })
+      .then(res => res.json())
+      .then(data => alert(JSON.stringify(data)))
+      .catch(err => alert('Access Denied'));
 
     /*
-    .then(res => res.json()) 
-    .then(data => console.log(data)) 
-    .catch(err => console.error(err)); 
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
     */
   };
 
@@ -73,12 +74,16 @@ const Login = () => {
           />
         </div>
         <div className='btn__container'>
-          <button type='button' className='login__btn btn_login btn-lg' onClick={handleLogin}>
+          <button
+            type='button'
+            className='login__btn login__btn-login btn-lg'
+            onClick={handleLogin}
+          >
             Login
           </button>
-          <button type='button' className='login__btn btn_signup btn-lg'>
+          <Link to='/register' className='login__btn login__btn-signup  btn-lg'>
             Signup
-          </button>
+          </Link>
         </div>
       </form>
       <img className='wave' src={wave} alt='wave' />
