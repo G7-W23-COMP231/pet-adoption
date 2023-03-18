@@ -31,7 +31,7 @@ const Register = () => {
       return;
     }
 
-    fetch('http://localhost:8000/register', {
+    fetch('http://localhost:5000/animalshelter/info', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const Register = () => {
       body: JSON.stringify(formField),
     })
       .then(res => res.json())
-      .then(data => alert(data))
+      .then(data => alert('Registered Succesfully'))
       .catch(err => alert('Something went wrong', err));
   };
 

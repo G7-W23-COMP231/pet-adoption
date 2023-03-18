@@ -1,0 +1,86 @@
+.login__container {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #fcfcfc;
+  height: 100vh;
+  /* make it center */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  gap: 1.6rem;
+}
+
+.wave {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.text__container {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.text__container h2 {
+  font-size: 2.4rem;
+}
+
+.text__container p {
+  font-size: 0.7rem;
+}
+
+.login__container-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  gap: 1.4rem;
+  padding: 3.2rem;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  z-index: 2;
+}
+
+.input__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.login__input {
+  padding: 0.6rem 2.4rem;
+  background-color: #fff;
+  border: 1px solid #666;
+  outline: none;
+}
+
+.btn__container {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.login__btn {
+  padding: 0.2rem;
+  width: 5rem;
+}
+
+.login__btn-signup {
+  font-size: 1rem;
+  width: 4rem;
+}
+
+.login__btn-signup:hover {
+  border-bottom: 2px solid currentColor;
+}
+
+.email__icon {
+  position: absolute;
+  font-size: 24px;
+  top: 6px;
+  left: 4px;
+}
