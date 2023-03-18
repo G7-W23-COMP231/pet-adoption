@@ -6,7 +6,7 @@ const defaultFormField = {
   email: '',
   location: 'ABCD',
   password: '',
-  shelterName: '',
+  animalShelterName: '',
 };
 
 const Register = () => {
@@ -55,7 +55,7 @@ const Register = () => {
         <div>
           <input
             type='text'
-            name='shelterName'
+            name='animalShelterName'
             placeholder='shelter name'
             onChange={handleChange}
             required
