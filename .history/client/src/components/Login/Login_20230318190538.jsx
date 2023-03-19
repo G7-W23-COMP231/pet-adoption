@@ -4,7 +4,6 @@ import {
   HiOutlineLockClosed,
   HiLockClosed,
 } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
 import wave from '../../assets/wave.svg';
 import './Login.css';
 
@@ -36,7 +35,7 @@ const Login = () => {
     .then(res => res.json()) 
     .then(data => {
       if (data.message == "Access Granted") {
-        window.location.href = "/showpets";
+        window.location.href = "/petdetails";
       } else {
         alert(data.message);
       }
@@ -44,9 +43,9 @@ const Login = () => {
     .catch(err => alert("Access Denied")); 
 
     /*
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err));
+    .then(res => res.json()) 
+    .then(data => console.log(data)) 
+    .catch(err => console.error(err)); 
     */
   };
 
@@ -80,16 +79,12 @@ const Login = () => {
           />
         </div>
         <div className='btn__container'>
-          <button
-            type='button'
-            className='login__btn login__btn-login btn-lg'
-            onClick={handleLogin}
-          >
+          <button type='button' className='login__btn btn_login btn-lg' onClick={handleLogin}>
             Login
           </button>
-          <Link to='/register' className='login__btn login__btn-signup  btn-lg'>
+          <button type='button' className='login__btn btn_signup btn-lg'>
             Signup
-          </Link>
+          </button>
         </div>
       </form>
       <img className='wave' src={wave} alt='wave' />
