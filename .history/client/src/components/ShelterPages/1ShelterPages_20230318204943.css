@@ -1,0 +1,78 @@
+.shelter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .left {
+    height: 100vh;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+      url('../../assets/registerDog.webp');
+    background-size: cover;
+  }
+  
+  .shelter__container-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    gap: 0.6rem;
+  }
+  
+  .shelter__container-form_title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .shelter__container-form h2 {
+    font-size: 1.6rem;
+  }
+  
+  .shelter__container-form input,
+  .shelter__container-form select {
+    border: none;
+    border-bottom: 1px solid #666;
+  }
+  
+  .shelter__container-form input,
+  .shelter__container-form select,
+  .btn__signup {
+    width: 24rem;
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    outline: none;
+    transition: all 600ms;
+  }
+  
+  .shelter__containter-form_title span {
+    font-size: 0.8rem;
+  }
+  
+  .btn__signup {
+    background-color: #333;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 3px;
+    margin-top: 0.8rem;
+    border: 1px solid transparent;
+    transition: all 100ms;
+  }
+  
+  .btn__signup:hover {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid currentColor;
+  }
+  
+  .shelter__container-form input:focus,
+  .shelter__container-form select:focus,
+  .btn__signup:focus {
+    border-bottom: 1px solid #646cff;
+  }
+  
+  @media (max-width: 54em) {
+    .shelter__container-form {
+      padding: 2.4rem;
+    }
+  }
+  
