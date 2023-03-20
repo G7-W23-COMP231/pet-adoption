@@ -22,7 +22,7 @@ const defaultFormField = {
   specialNeeds: '',
   medHistory: '',
   behaveIssue: '',
-  vaccRecord: ''
+  vaccRecord: '',
 };
 
 const AddPet = () => {
@@ -41,7 +41,7 @@ const AddPet = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-   /* if (password !== confirmPassword) {
+    /* if (password !== confirmPassword) {
       alert('Password do not match');
       return;
     }
@@ -110,46 +110,60 @@ const AddPet = () => {
         </div>
 
         <div>
-        <label>Good for first time pet owner?</label><br></br>
-        <label>
-          <input type="radio" name="gwithFirstPetOwner" value="1"/>
-          Yes
-        </label><br></br>
-        <label>
-          <input type="radio" name="gwithFirstPetOwner" value="2"/>
-          No
-        </label><br></br>
-        <label>
-          <input type="radio" name="gwithFirstPetOwner" value="3"/>
-          Somewhat
-        </label><br></br>
+          <label>Good for first time pet owner?</label>
+          <br></br>
+          <label>
+            <input type='radio' name='gwithFirstPetOwner' value='1' />
+            Yes
+          </label>
+          <br></br>
+          <label>
+            <input type='radio' name='gwithFirstPetOwner' value='2' />
+            No
+          </label>
+          <br></br>
+          <label>
+            <input type='radio' name='gwithFirstPetOwner' value='3' />
+            Somewhat
+          </label>
+          <br></br>
         </div>
 
         <div>
-        <label>Can get along with other pets?</label><br></br>
-        <label>
-          <input type="radio" name="canGetAlongWithOtherPets" value="1"/>
-          Yes
-        </label><br></br>
-        <label>
-          <input type="radio" name="canGetAlongWithOtherPets" value="2"/>
-          No
-        </label><br></br>
-        <label>
-          <input type="radio" name="canGetAlongWithOtherPets" value="3"/>
-          Somewhat
-        </label><br></br>
+          <label>Can get along with other pets?</label>
+          <br></br>
+          <label>
+            <input type='radio' name='canGetAlongWithOtherPets' value='1' />
+            Yes
+          </label>
+          <br></br>
+          <label>
+            <input type='radio' name='canGetAlongWithOtherPets' value='2' />
+            No
+          </label>
+          <br></br>
+          <label>
+            <input type='radio' name='canGetAlongWithOtherPets' value='3' />
+            Somewhat
+          </label>
+          <br></br>
         </div>
 
         <div>
-        <label>Can get along with humans whose ages are (click all that apply):</label><br></br>
-          <input type="checkbox" name="canGetWithHumanAge" value="1"/> Children under 8 years old<br></br>
-          <input type="checkbox" name="canGetWithHumanAge" value="2"/> Children over 8 years old<br></br>
-          <input type="checkbox" name="canGetWithHumanAge" value="3"/> Elderly<br></br>
+          <label>
+            Can get along with humans whose ages are (click all that apply):
+          </label>
+          <br></br>
+          <input type='checkbox' name='canGetWithHumanAge' value='1' /> Children
+          under 8 years old<br></br>
+          <input type='checkbox' name='canGetWithHumanAge' value='2' /> Children
+          over 8 years old<br></br>
+          <input type='checkbox' name='canGetWithHumanAge' value='3' /> Elderly
+          <br></br>
         </div>
 
         <div>
-        <label>Indoor or Outdoor pet?</label>
+          <label>Indoor or Outdoor pet?</label>
           <select name='indoorOutdoor' onChange={handleChange}>
             <option value='1'>Indoor or Outdoor pet?</option>
             <option value='2'>Outdoor pet</option>
@@ -177,19 +191,23 @@ const AddPet = () => {
         </div>
 
         <div>
-        <label>Is this pet a service animal?</label><br></br>
-        <label>
-          <input type="radio" name="serviceAnimal" value="1"/>
-          Yes
-        </label><br></br>
-        <label>
-          <input type="radio" name="serviceAnimal" value="2"/>
-          No
-        </label><br></br>
-        <label>
-          <input type="radio" name="serviceAnimal" value="3"/>
-          Somewhat
-        </label><br></br>
+          <label>Is this pet a service animal?</label>
+          <br></br>
+          <label>
+            <input type='radio' name='serviceAnimal' value='1' />
+            Yes
+          </label>
+          <br></br>
+          <label>
+            <input type='radio' name='serviceAnimal' value='2' />
+            No
+          </label>
+          <br></br>
+          <label>
+            <input type='radio' name='serviceAnimal' value='3' />
+            Somewhat
+          </label>
+          <br></br>
         </div>
 
         <div>
@@ -229,15 +247,18 @@ const AddPet = () => {
         </div>
 
         <div>
-        <label>Does this pet have special needs (behavioral/mental)?</label><br></br>
-        <label>
-          <input type="radio" name="specialNeeds" value="1"/>
-          Yes
-        </label><br></br>
-        <label>
-          <input type="radio" name="specialNeeds" value="2"/>
-          No
-        </label><br></br>
+          <label>Does this pet have special needs (behavioral/mental)?</label>
+          <br></br>
+          <label>
+            <input type='radio' name='specialNeeds' value='1' />
+            Yes
+          </label>
+          <br></br>
+          <label>
+            <input type='radio' name='specialNeeds' value='2' />
+            No
+          </label>
+          <br></br>
         </div>
 
         <div>
@@ -246,7 +267,8 @@ const AddPet = () => {
             type='textarea'
             name='medHistory'
             onChange={handleChange}
-            rows="4" cols="50"
+            rows='4'
+            cols='50'
           />
         </div>
 
@@ -256,7 +278,8 @@ const AddPet = () => {
             type='textarea'
             name='behaveIssue'
             onChange={handleChange}
-            rows="4" cols="50"
+            rows='4'
+            cols='50'
           />
         </div>
 
@@ -266,7 +289,8 @@ const AddPet = () => {
             type='textarea'
             name='vaccRecord'
             onChange={handleChange}
-            rows="4" cols="50"
+            rows='4'
+            cols='50'
           />
         </div>
 
