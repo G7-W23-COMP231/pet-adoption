@@ -1,36 +1,33 @@
 import React, { useState } from 'react';
-import './1ShelterPages.css';
 
-const defaultFormField = {
-  petPhoto: '',
-  petName: '',
-  petCategory: '',
-  ShelterID: '',
-  Age: '',
-  gwithFirstPetOwner: '',
-  canGetAlongWithOtherPets: '',
-  canGetWithHumanAge: '',
-  indoorOutdoor: '',
-  petOusideHours: '',
-  petWithOwnerAllTime: '',
-  petStay: '',
-  serviceAnimal: '',
-  enthusiasticPet: '',
-  playfulPet: '',
-  laidbackPet: '',
-  trainablePet: '',
-  specialNeeds: '',
-  medHistory: '',
-  behaveIssue: '',
-  vaccRecord: '',
-};
+import {
+  Button,
+  ButtonGroup,
+  FormControl,
+  Container,
+  Grid,
+  GridItem,
+} from '@chakra-ui/react';
+
+import { CheckBoxInput, FormInput } from '../Inputs';
+import {
+  SelectionFormGroup,
+  RadioInputGroup,
+  TextAreaInputGroup,
+} from '../InputGroups';
+
+import {
+  addPetDefaultField,
+  selectOptions,
+  radioOptions,
+  textAreaOptions,
+} from '../../utils';
 
 const AddPet = () => {
-  const [formField, setFormField] = useState(defaultFormField);
-  //const { password, confirmPassword } = formField;
+  const [formField, setFormField] = useState(addPetDefaultField);
 
   const resetFormFields = () => {
-    setFormField(defaultFormField);
+    setFormField(addPetDefaultField);
   };
 
   const handleChange = event => {
@@ -40,6 +37,7 @@ const AddPet = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    console.log(formField);
 
     /* if (password !== confirmPassword) {
       alert('Password do not match');
@@ -59,246 +57,120 @@ const AddPet = () => {
   };
 
   return (
-    <div className='shelter__container'>
-      <form className='shelter__container-form'>
-        <div className='shelter__container-form_title'>
-          <h2>Welcome</h2>
-          <span>Please enter your pet details</span>
-        </div>
+    <Container
+      maxW='1200px'
+      style={{
+        padding: '6rem',
+        fontSize: '.8rem',
+        // borderRadius: '1rem',
+        // background: '#fafafa',
+        // boxShadow: '2px 2px 10px #fefdfd, -20px -20px 60px #ffffff',
+        // margin: '3rem auto',
+      }}
+    >
+      <div
+        style={{
+          textAlign: 'center',
+          marginBottom: '5rem',
+          fontSize: '2rem',
+        }}
+      >
+        <h2 style={{ fontWeight: 'bold' }}>Welcome</h2>
+        <span style={{ fontSize: '1rem' }}>Please enter your pet details</span>
+      </div>
+      <FormControl onSubmit={handleSubmit}>
+        <FormInput
+          type='text'
+          placeHolder='Pet name'
+          label='Pet name'
+          onChange={handleChange}
+          name={'petName'}
+          style={{ fontSize: '.7rem' }}
+        />
 
-        <div>
-          <label>Pet Photo</label>
-          <input
-            type='text'
-            name='petPhoto'
-            placeholder='<paste link to pet photo here>'
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <FormInput
+          type='file'
+          label='Pet Photo'
+          style={{ fontSize: '.7rem' }}
+        />
 
-        <div>
-          <label>Pet Name</label>
-          <input
-            type='text'
-            name='petName'
-            placeholder='Pet Name'
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={10}>
+          {/* Items in first column */}
+          <GridItem colSpan={1}>
+            <SelectionFormGroup
+              selectOptions={selectOptions.slice(0, 3)}
+              onChange={handleChange}
+            />
+          </GridItem>
 
-        <div>
-          <label>Pet Category</label>
-          <select name='petCategory' onChange={handleChange}>
-            <option value='1'>Canine (dogs)</option>
-            <option value='2'>Feline (cats)</option>
-            <option value='3'>Others</option>
-          </select>
-        </div>
+          {/* Items in second column */}
+          <GridItem colSpan={1}>
+            <SelectionFormGroup
+              selectOptions={selectOptions.slice(3, 6)}
+              onChange={handleChange}
+            />
+          </GridItem>
 
-        <div>
-          <label>Age</label>
-          <select name='age' onChange={handleChange}>
-            <option value='1'>0 to 3 months</option>
-            <option value='2'>4 months to 6 months</option>
-            <option value='3'>7 months to 1 year old</option>
-            <option value='4'>1 year old to 2 years old</option>
-            <option value='5'>3 years old to 4 years old</option>
-            <option value='6'>4 years old and above</option>
-          </select>
-        </div>
+          {/* Items in third column */}
+          <GridItem colSpan={1}>
+            <SelectionFormGroup
+              selectOptions={selectOptions.slice(6)}
+              onChange={handleChange}
+            />
+          </GridItem>
+        </Grid>
 
-        <div>
-          <label>Good for first time pet owner?</label>
-          <br></br>
-          <label>
-            <input type='radio' name='gwithFirstPetOwner' value='1' />
-            Yes
-          </label>
-          <br></br>
-          <label>
-            <input type='radio' name='gwithFirstPetOwner' value='2' />
-            No
-          </label>
-          <br></br>
-          <label>
-            <input type='radio' name='gwithFirstPetOwner' value='3' />
-            Somewhat
-          </label>
-          <br></br>
-        </div>
+        <Grid
+          templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+          gap={8}
+          style={{ marginTop: '2rem' }}
+        >
+          <GridItem colSpan={1}>
+            <RadioInputGroup
+              radioOptions={radioOptions}
+              onChange={handleChange}
+            />
 
-        <div>
-          <label>Can get along with other pets?</label>
-          <br></br>
-          <label>
-            <input type='radio' name='canGetAlongWithOtherPets' value='1' />
-            Yes
-          </label>
-          <br></br>
-          <label>
-            <input type='radio' name='canGetAlongWithOtherPets' value='2' />
-            No
-          </label>
-          <br></br>
-          <label>
-            <input type='radio' name='canGetAlongWithOtherPets' value='3' />
-            Somewhat
-          </label>
-          <br></br>
-        </div>
+            <CheckBoxInput
+              name='canGetWithHumanAge'
+              label={
+                'Can get along with humans whose ages are (click all that apply):'
+              }
+              choices={{
+                first: 'Under 8 years old',
+                second: 'Over 8 years old',
+                third: 'Elderly',
+              }}
+              style={{
+                marginLeft: '3rem',
+                marginTop: '1rem',
+                fontSize: '.8rem',
+              }}
+              onChange={handleChange}
+            />
+          </GridItem>
 
-        <div>
-          <label>
-            Can get along with humans whose ages are (click all that apply):
-          </label>
-          <br></br>
-          <input type='checkbox' name='canGetWithHumanAge' value='1' /> Children
-          under 8 years old<br></br>
-          <input type='checkbox' name='canGetWithHumanAge' value='2' /> Children
-          over 8 years old<br></br>
-          <input type='checkbox' name='canGetWithHumanAge' value='3' /> Elderly
-          <br></br>
-        </div>
-
-        <div>
-          <label>Indoor or Outdoor pet?</label>
-          <select name='indoorOutdoor' onChange={handleChange}>
-            <option value='1'>Indoor or Outdoor pet?</option>
-            <option value='2'>Outdoor pet</option>
-          </select>
-        </div>
-
-        <div>
-          <label>This pet needs to stay outdoors for how many hours?</label>
-          <select name='petOusideHours' onChange={handleChange}>
-            <option value='1'>0 to 30 minutes</option>
-            <option value='2'>30 minutes to 1 hour</option>
-            <option value='3'>1 hour to 2 hours</option>
-            <option value='4'>2 hours or more</option>
-          </select>
-        </div>
-
-        <div>
-          <label>When the owner is not at home, where will the pet be?</label>
-          <select name='petStay' onChange={handleChange}>
-            <option value='1'>the garage</option>
-            <option value='2'>in the yard</option>
-            <option value='3'>loose in the house</option>
-            <option value='4'>confined to one room in the house</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Is this pet a service animal?</label>
-          <br></br>
-          <label>
-            <input type='radio' name='serviceAnimal' value='1' />
-            Yes
-          </label>
-          <br></br>
-          <label>
-            <input type='radio' name='serviceAnimal' value='2' />
-            No
-          </label>
-          <br></br>
-          <label>
-            <input type='radio' name='serviceAnimal' value='3' />
-            Somewhat
-          </label>
-          <br></br>
-        </div>
-
-        <div>
-          <label>Is this an enthusiastic pet?</label>
-          <select name='enthusiasticPet' onChange={handleChange}>
-            <option value='1'>Not at all</option>
-            <option value='2'>Very enthusiastic</option>
-            <option value='3'>Somewhat</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Is this a playful pet?</label>
-          <select name='playfulPet' onChange={handleChange}>
-            <option value='1'>Not at all</option>
-            <option value='2'>Very playful</option>
-            <option value='3'>Somewhat</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Is this a laidback pet?</label>
-          <select name='laidbackPet' onChange={handleChange}>
-            <option value='1'>Not at all</option>
-            <option value='2'>Very laidback</option>
-            <option value='3'>Somewhat</option>
-          </select>
-        </div>
-
-        <div>
-          <label>How easy is it to train this pet?</label>
-          <select name='trainablePet' onChange={handleChange}>
-            <option value='1'>Very easy to train</option>
-            <option value='2'>Some challenge is encountered</option>
-            <option value='3'>Very challenging to train</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Does this pet have special needs (behavioral/mental)?</label>
-          <br></br>
-          <label>
-            <input type='radio' name='specialNeeds' value='1' />
-            Yes
-          </label>
-          <br></br>
-          <label>
-            <input type='radio' name='specialNeeds' value='2' />
-            No
-          </label>
-          <br></br>
-        </div>
-
-        <div>
-          <label>Medical History</label>
-          <input
-            type='textarea'
-            name='medHistory'
-            onChange={handleChange}
-            rows='4'
-            cols='50'
-          />
-        </div>
-
-        <div>
-          <label>Any behavioural issues?</label>
-          <input
-            type='textarea'
-            name='behaveIssue'
-            onChange={handleChange}
-            rows='4'
-            cols='50'
-          />
-        </div>
-
-        <div>
-          <label>vaccination records (if any)</label>
-          <input
-            type='textarea'
-            name='vaccRecord'
-            onChange={handleChange}
-            rows='4'
-            cols='50'
-          />
-        </div>
-
-        <button className='btn__signup' onClick={handleSubmit}>
-          Save
-        </button>
-      </form>
-    </div>
+          <GridItem
+            colSpan={1}
+            paddingLeft={{ base: '0rem', md: '3.6rem' }}
+            style={{ base: '3' }}
+          >
+            <TextAreaInputGroup
+              textAreaOptions={textAreaOptions}
+              onChange={handleChange}
+            />
+          </GridItem>
+        </Grid>
+        <ButtonGroup>
+          <Button colorScheme='teal' variant='solid' width='8rem' type='submit'>
+            Save
+          </Button>
+          <Button width='6rem' onClick={resetFormFields} type='reset'>
+            Cancel
+          </Button>
+        </ButtonGroup>
+      </FormControl>
+    </Container>
   );
 };
 
