@@ -62,6 +62,10 @@ const AddPet = () => {
       style={{
         padding: '6rem',
         fontSize: '.8rem',
+        // borderRadius: '1rem',
+        // background: '#fafafa',
+        // boxShadow: '2px 2px 10px #fefdfd, -20px -20px 60px #ffffff',
+        // margin: '3rem auto',
       }}
     >
       <div
