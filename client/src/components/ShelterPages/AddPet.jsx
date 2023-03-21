@@ -39,12 +39,7 @@ const AddPet = () => {
     event.preventDefault();
     console.log(formField);
 
-    /* if (password !== confirmPassword) {
-      alert('Password do not match');
-      return;
-    }
-
-    fetch('http://localhost:5000/animalshelter/info', {
+    fetch('http://localhost:5000/pet/addpet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,8 +47,8 @@ const AddPet = () => {
       body: JSON.stringify(formField),
     })
       .then(res => res.json())
-      .then(data => alert('Registered Succesfully'))
-      .catch(err => alert('Something went wrong', err));*/
+      .then(data => alert('Added Succesfully'))
+      .catch(err => alert('Something went wrong', err));
   };
 
   return (
@@ -162,7 +157,7 @@ const AddPet = () => {
           </GridItem>
         </Grid>
         <ButtonGroup>
-          <Button colorScheme='teal' variant='solid' width='8rem' type='submit'>
+          <Button colorScheme='teal' variant='solid' width='8rem' type='submit' onClick={handleSubmit}>
             Save
           </Button>
           <Button width='6rem' onClick={resetFormFields} type='reset'>

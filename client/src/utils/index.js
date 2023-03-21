@@ -116,7 +116,7 @@ export const selectOptions = [
 // property that needs for all text are in AddPet Component
 export const textAreaOptions = [
   {
-    name: 'medhistory',
+    name: 'medHistory',
     label: 'Medical History',
   },
   {
