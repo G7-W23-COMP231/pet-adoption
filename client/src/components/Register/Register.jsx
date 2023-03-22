@@ -1,6 +1,22 @@
 import React, { useState } from 'react';
 import './Register.css';
 
+import {
+  Box,
+  FormControl,
+  Select,
+  Grid,
+  Container,
+  Center,
+  Button,
+  Stack,
+  Heading,
+  Flex,
+  ButtonGroup,
+  Spacer,
+} from '@chakra-ui/react';
+import { FormInput } from '../Inputs';
+
 const defaultFormField = {
   confirmPassword: '',
   email: '',
@@ -44,66 +60,102 @@ const Register = () => {
   };
 
   return (
-    <div className='register__container'>
-      <div className='left'></div>
-      <form className='register__container-form'>
-        <div className='register__containter-form_title'>
-          <h2>I don't have an account</h2>
-          <span>Sign up with your email and password</span>
-        </div>
+    <Grid templateColumns={{ sm: '1fr', md: '1fr 1fr' }}>
+      <Box
+        display={{ base: 'none', md: 'block' }}
+        className='left'
+        filter='grayscale(60%)'
+      ></Box>
+      <Center padding={{ sm: '6rem 2rem', md: '0 0' }} bg='#F9FBFF'>
+        <Container>
+          <FormControl p={10}>
+            <Box mb={8} textAlign='center' color='teal.700'>
+              <Heading as='h2' fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}>
+                I don't have an account
+              </Heading>
+              <Box
+                as='span'
+                fontSize='xs'
+                fontWeight='medium'
+                letterSpacing={0.5}
+              >
+                Sign up with your email and password
+              </Box>
+            </Box>
 
-        <div>
-          <input
-            type='text'
-            name='shelterName'
-            placeholder='shelter name'
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <select name='location' onChange={handleChange}>
-            <option value='ABCD'>ABCD</option>
-            <option value='EFGH'>EFGH</option>
-            <option value='IJKL'>IJKL</option>
-            <option value='MNOP'>MNOP</option>
-          </select>
-        </div>
-        <div>
-          <input
-            type='email'
-            name='email'
-            placeholder='email'
-            onChange={handleChange}
-            required
-          />
-        </div>
+            <Flex mb={5} gap={2}>
+              <FormInput
+                type='text'
+                name='shelterName'
+                placeholder='shelter name'
+                onChange={handleChange}
+                required
+                value={formField.shelterName}
+              />
 
-        <div>
-          <input
-            type='password'
-            name='password'
-            placeholder='password'
-            onChange={handleChange}
-            required
-          />
-        </div>
+              <FormInput
+                type='email'
+                name='email'
+                placeholder='email'
+                onChange={handleChange}
+                required
+                value={formField.email}
+              />
+            </Flex>
+            <Stack>
+              <Box>
+                <Select
+                  name='location'
+                  onChange={handleChange}
+                  focusBorderColor='teal.400'
+                  value={formField.location}
+                >
+                  <option value=''>Location</option>
+                  <option value='ABCD'>ABCD</option>
+                  <option value='EFGH'>EFGH</option>
+                  <option value='IJKL'>IJKL</option>
+                  <option value='MNOP'>MNOP</option>
+                </Select>
+              </Box>
 
-        <div>
-          <input
-            type='password'
-            name='confirmPassword'
-            placeholder='confirm password'
-            onChange={handleChange}
-            required
-          />
-        </div>
+              <Flex gap={2}>
+                <FormInput
+                  type='password'
+                  name='password'
+                  placeholder='password'
+                  onChange={handleChange}
+                  required
+                  value={formField.password}
+                />
 
-        <button className='btn__signup' onClick={handleSubmit}>
-          Sign Up
-        </button>
-      </form>
-    </div>
+                <FormInput
+                  type='password'
+                  name='confirmPassword'
+                  placeholder='confirm password'
+                  onChange={handleChange}
+                  required
+                  value={formField.confirmPassword}
+                />
+              </Flex>
+            </Stack>
+            <Flex gap={4} mt={8}>
+              <Button width='100%' colorScheme='teal' onClick={handleSubmit}>
+                Sign Up
+              </Button>
+
+              <Button
+                width='50%'
+                variant='outline'
+                colorScheme='teal'
+                onClick={resetFormFields}
+              >
+                Cancel
+              </Button>
+            </Flex>
+          </FormControl>
+        </Container>
+      </Center>
+    </Grid>
   );
 };
 
