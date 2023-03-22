@@ -71,6 +71,7 @@ const Login = () => {
         color='#444'
         // border='1px'
         p={10}
+        m={{ base: 10, md: 0 }}
         borderRadius={10}
         boxShadow='md'
         bg='#F9FBFF'
@@ -92,6 +93,7 @@ const Login = () => {
                 children={<EmailIcon color='gray.300' />}
               />
               <Input
+                focusBorderColor='teal.400'
                 type='email'
                 name='email'
                 id='email'
@@ -107,6 +109,7 @@ const Login = () => {
                 children={<LockIcon color='gray.300' />}
               />
               <Input
+                focusBorderColor='teal.400'
                 type='password'
                 name='password'
                 id='password'

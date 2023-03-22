@@ -17,7 +17,7 @@ const RadioInput = ({ label, name, onChange }) => {
       >
         {label}
       </FormLabel>
-      <RadioGroup style={{ marginLeft: '3rem' }}>
+      <RadioGroup style={{ marginLeft: '3rem' }} colorScheme='teal'>
         <Flex>
           <Radio name={name} onChange={onChange} value='1'>
             {yes}
