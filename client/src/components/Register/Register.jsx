@@ -11,6 +11,9 @@ import {
   Button,
   Stack,
   Heading,
+  Flex,
+  ButtonGroup,
+  Spacer,
 } from '@chakra-ui/react';
 import { FormInput } from '../Inputs';
 
@@ -58,40 +61,55 @@ const Register = () => {
 
   return (
     <Grid templateColumns={{ sm: '1fr', md: '1fr 1fr' }}>
-      <Box display={{ base: 'none', md: 'block' }} className='left'></Box>
+      <Box
+        display={{ base: 'none', md: 'block' }}
+        className='left'
+        filter='grayscale(60%)'
+      ></Box>
       <Center padding={{ sm: '6rem 2rem', md: '0 0' }} bg='#F9FBFF'>
         <Container>
           <FormControl p={10}>
-            <Stack gap={2}>
-              <Box>
-                <Heading as='h2'>I don't have an account</Heading>
-                <span>Sign up with your email and password</span>
+            <Box mb={8} textAlign='center' color='teal.700'>
+              <Heading as='h2' fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}>
+                I don't have an account
+              </Heading>
+              <Box
+                as='span'
+                fontSize='xs'
+                fontWeight='medium'
+                letterSpacing={0.5}
+              >
+                Sign up with your email and password
               </Box>
+            </Box>
 
+            <Flex mb={5} gap={2}>
+              <FormInput
+                type='text'
+                name='shelterName'
+                placeholder='shelter name'
+                onChange={handleChange}
+                required
+                value={formField.shelterName}
+              />
+
+              <FormInput
+                type='email'
+                name='email'
+                placeholder='email'
+                onChange={handleChange}
+                required
+                value={formField.email}
+              />
+            </Flex>
+            <Stack>
               <Box>
-                <FormInput
-                  type='text'
-                  name='shelterName'
-                  placeholder='shelter name'
+                <Select
+                  name='location'
                   onChange={handleChange}
-                  outline='flushed'
-                  required
-                />
-              </Box>
-
-              <Box>
-                <FormInput
-                  type='email'
-                  name='email'
-                  placeholder='email'
-                  onChange={handleChange}
-                  required
-                  outline='flushed'
-                />
-              </Box>
-
-              <Box>
-                <Select name='location' onChange={handleChange}>
+                  focusBorderColor='teal.400'
+                  value={formField.location}
+                >
                   <option value=''>Location</option>
                   <option value='ABCD'>ABCD</option>
                   <option value='EFGH'>EFGH</option>
@@ -100,30 +118,40 @@ const Register = () => {
                 </Select>
               </Box>
 
-              <Box>
+              <Flex gap={2}>
                 <FormInput
                   type='password'
                   name='password'
                   placeholder='password'
                   onChange={handleChange}
                   required
+                  value={formField.password}
                 />
-              </Box>
-              <Box>
+
                 <FormInput
                   type='password'
                   name='confirmPassword'
                   placeholder='confirm password'
                   onChange={handleChange}
                   required
+                  value={formField.confirmPassword}
                 />
-              </Box>
-              <Box>
-                <Button width='100%' colorScheme='teal' onClick={handleSubmit}>
-                  Sign Up
-                </Button>
-              </Box>
+              </Flex>
             </Stack>
+            <Flex gap={4} mt={8}>
+              <Button width='100%' colorScheme='teal' onClick={handleSubmit}>
+                Sign Up
+              </Button>
+
+              <Button
+                width='50%'
+                variant='outline'
+                colorScheme='teal'
+                onClick={resetFormFields}
+              >
+                Cancel
+              </Button>
+            </Flex>
           </FormControl>
         </Container>
       </Center>

@@ -4,7 +4,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #666;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,6 +18,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  color: #444;
 }
 
 a:link,

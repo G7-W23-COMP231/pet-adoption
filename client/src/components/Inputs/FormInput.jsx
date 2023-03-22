@@ -8,6 +8,7 @@ const FormInput = ({
   name,
   outline = 'outline',
   style,
+  value,
 }) => {
   return (
     <div>
@@ -22,6 +23,8 @@ const FormInput = ({
         required
         placeholder={placeholder}
         name={name}
+        focusBorderColor='teal.400'
+        value={value}
       />
     </div>
   );
