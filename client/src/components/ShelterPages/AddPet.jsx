@@ -7,6 +7,7 @@ import {
   Container,
   Grid,
   GridItem,
+  Box,
 } from '@chakra-ui/react';
 
 import { CheckBoxInput, FormInput } from '../Inputs';
@@ -52,18 +53,8 @@ const AddPet = () => {
   };
 
   return (
-    <Container
-      maxW='1200px'
-      style={{
-        padding: '6rem',
-        fontSize: '.8rem',
-        // borderRadius: '1rem',
-        // background: '#fafafa',
-        // boxShadow: '2px 2px 10px #fefdfd, -20px -20px 60px #ffffff',
-        // margin: '3rem auto',
-      }}
-    >
-      <div
+    <Container maxW='100%' p={10} bg='#fdfdfd'>
+      <Box
         style={{
           textAlign: 'center',
           marginBottom: '5rem',
@@ -72,53 +63,67 @@ const AddPet = () => {
       >
         <h2 style={{ fontWeight: 'bold' }}>Welcome</h2>
         <span style={{ fontSize: '1rem' }}>Please enter your pet details</span>
-      </div>
+      </Box>
       <FormControl onSubmit={handleSubmit}>
-        <FormInput
-          type='text'
-          placeHolder='Pet name'
-          label='Pet name'
-          onChange={handleChange}
-          name={'petName'}
-          style={{ fontSize: '.7rem' }}
-        />
-
-        <FormInput
-          type='file'
-          label='Pet Photo'
-          style={{ fontSize: '.7rem' }}
-        />
-
-        <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={10}>
-          {/* Items in first column */}
-          <GridItem colSpan={1}>
-            <SelectionFormGroup
-              selectOptions={selectOptions.slice(0, 3)}
+        <Box boxShadow='md' p={6} borderRadius={8} bg='#fcfcfc' mb={5}>
+          <Box mb={6}>
+            <FormInput
+              type='text'
+              placeHolder='Pet name'
+              label='Pet name'
               onChange={handleChange}
+              name={'petName'}
+              style={{ fontSize: '.7rem' }}
             />
-          </GridItem>
+          </Box>
+          <Box mb={6}>
+            <FormInput
+              type='file'
+              label='Pet Photo'
+              style={{ fontSize: '.7rem' }}
+              outline='none'
+            />
+          </Box>
 
-          {/* Items in second column */}
-          <GridItem colSpan={1}>
-            <SelectionFormGroup
-              selectOptions={selectOptions.slice(3, 6)}
-              onChange={handleChange}
-            />
-          </GridItem>
+          <Grid
+            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            gap={10}
+          >
+            {/* Items in first column */}
+            <GridItem colSpan={1}>
+              <SelectionFormGroup
+                selectOptions={selectOptions.slice(0, 3)}
+                onChange={handleChange}
+              />
+            </GridItem>
 
-          {/* Items in third column */}
-          <GridItem colSpan={1}>
-            <SelectionFormGroup
-              selectOptions={selectOptions.slice(6)}
-              onChange={handleChange}
-            />
-          </GridItem>
-        </Grid>
+            {/* Items in second column */}
+            <GridItem colSpan={1}>
+              <SelectionFormGroup
+                selectOptions={selectOptions.slice(3, 6)}
+                onChange={handleChange}
+              />
+            </GridItem>
+
+            {/* Items in third column */}
+            <GridItem colSpan={1}>
+              <SelectionFormGroup
+                selectOptions={selectOptions.slice(6)}
+                onChange={handleChange}
+              />
+            </GridItem>
+          </Grid>
+        </Box>
 
         <Grid
           templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
           gap={8}
           style={{ marginTop: '2rem' }}
+          boxShadow='md'
+          p={6}
+          borderRadius={8}
+          bg='#fcfcfc'
+          mb={5}
         >
           <GridItem colSpan={1}>
             <RadioInputGroup
@@ -157,10 +162,21 @@ const AddPet = () => {
           </GridItem>
         </Grid>
         <ButtonGroup>
-          <Button colorScheme='teal' variant='solid' width='8rem' type='submit' onClick={handleSubmit}>
+          <Button
+            colorScheme='teal'
+            variant='solid'
+            width='8rem'
+            type='submit'
+            onClick={handleSubmit}
+          >
             Save
           </Button>
-          <Button width='6rem' onClick={resetFormFields} type='reset'>
+          <Button
+            variant='outline'
+            width='6rem'
+            onClick={resetFormFields}
+            type='reset'
+          >
             Cancel
           </Button>
         </ButtonGroup>
