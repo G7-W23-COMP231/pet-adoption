@@ -24,7 +24,6 @@
 a:link,
 a:visited {
   font-weight: 500;
-  color: #666;
   text-decoration: none;
   border-bottom: 2px solid transparent;
 
@@ -33,18 +32,11 @@ a:visited {
 
 a:hover,
 a:active {
-  color: blue;
+  color: dodgerblue;
 }
 
 body {
   overflow-x: hidden;
-}
-
-button {
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
 }
 
 /* @media (prefers-color-scheme: light) {
