@@ -73,6 +73,7 @@ const Login = () => {
         p={10}
         borderRadius={10}
         boxShadow='xl'
+        bg='#F9FBFF'
       >
         <Box mb={7} textAlign='center'>
           <Heading as='h2' mb={2}>
