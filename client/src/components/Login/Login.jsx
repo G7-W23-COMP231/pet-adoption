@@ -60,7 +60,7 @@ const Login = () => {
 
   return (
     <Center
-      height='100vh'
+      height='calc(100vh - 60px)'
       backgroundImage={wave}
       bgPosition='bottom'
       bgRepeat='no-repeat'
