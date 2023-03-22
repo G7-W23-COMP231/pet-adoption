@@ -72,7 +72,7 @@ const Login = () => {
         // border='1px'
         p={10}
         borderRadius={10}
-        boxShadow='xl'
+        boxShadow='md'
         bg='#F9FBFF'
       >
         <Box mb={7} textAlign='center'>
@@ -122,7 +122,7 @@ const Login = () => {
           </Box>
           <Text fontSize={12} textAlign='center'>
             Don't you have an account?{' '}
-            <Box as='span' ml={1} letterSpacing={0.5}>
+            <Box as='span' ml={1} letterSpacing={0.5} color='teal'>
               <Link to='/register'>Signup</Link>
             </Box>
           </Text>
