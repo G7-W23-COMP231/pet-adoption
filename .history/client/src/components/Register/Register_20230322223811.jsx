@@ -90,7 +90,7 @@ const Register = () => {
                 placeholder='shelter name'
                 onChange={handleChange}
                 required
-                value={formField.animalShelterName}
+                value={formField.shelterName}
               />
 
               <FormInput
