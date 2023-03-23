@@ -16,7 +16,7 @@ router.post('/login', async (req, res, err) => {
     console.log(shelterUser[0].email);
     console.log(shelterUser[0].password);
     console.log(shelterUser);
-
+    
     //if ((shelterUser[0].email == email) && (shelterUser[0].password == password))
     if ((shelterUser[0].email == email) && (bcrypt.compare(shelterUser[0].password, password)))
     {
