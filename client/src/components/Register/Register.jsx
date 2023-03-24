@@ -86,7 +86,7 @@ const Register = () => {
             <Flex mb={5} gap={2}>
               <FormInput
                 type='text'
-                name='shelterName'
+                name='animalShelterName'
                 placeholder='shelter name'
                 onChange={handleChange}
                 required

@@ -1,5 +1,6 @@
 // Default value of form field in AddPet component
 export const addPetDefaultField = {
+  file: '',
   petPhoto: '',
   petName: '',
   petCategory: '',
