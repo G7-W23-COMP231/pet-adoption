@@ -1,6 +1,8 @@
 const express = require('express');
 const Pet = require('../models/pet');
 const router = express.Router();
+const homeController = require("../controllers/home");
+const uploadController = require("../controllers/upload");
 
 router.post('/addpet', async (req, res) => {
   const {
@@ -26,6 +28,7 @@ router.post('/addpet', async (req, res) => {
     medHistory,
     behaveIssue,
     vaccRecord,
+    //file,
   } = req.body;
 
   try {
@@ -52,6 +55,7 @@ router.post('/addpet', async (req, res) => {
       medHistory,
       behaveIssue,
       vaccRecord,
+      //file,
     });
     await pet.save();
     res.json(pet);
