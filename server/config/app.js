@@ -8,6 +8,9 @@ const animalShelterRouter = require('../router/animalshelter');
 const petRouter = require('../router/addpet');
 var app = express();
 
+const homeController = require("../controllers/home");
+const uploadController = require("../controllers/upload");
+
 // database setup
 let mongoose = require('mongoose');
 let DB = require('./db');

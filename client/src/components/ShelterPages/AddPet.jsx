@@ -80,6 +80,9 @@ const AddPet = () => {
             <FormInput
               type='file'
               label='Pet Photo'
+              name='petPhoto'
+              id="file"
+              onChange={handleChange}
               style={{ fontSize: '.7rem' }}
               outline='none'
             />
