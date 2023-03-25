@@ -6,15 +6,17 @@ import {
   FormControl,
   Select,
   Grid,
-  Container,
   Center,
   Button,
   Stack,
   Heading,
   Flex,
-  ButtonGroup,
-  Spacer,
+  Show,
+  GridItem,
 } from '@chakra-ui/react';
+
+import DogImage from '../DogImage';
+
 import { FormInput } from '../Inputs';
 
 const defaultFormField = {
@@ -22,7 +24,7 @@ const defaultFormField = {
   email: '',
   location: 'ABCD',
   password: '',
-  shelterName: '',
+  animalShelterName: '',
 };
 
 const Register = () => {
@@ -61,50 +63,56 @@ const Register = () => {
 
   return (
     <Grid templateColumns={{ sm: '1fr', md: '1fr 1fr' }}>
-      <Box
-        display={{ base: 'none', md: 'block' }}
-        className='left'
-        filter='grayscale(60%)'
-      ></Box>
-      <Center padding={{ sm: '6rem 2rem', md: '0 0' }} bg='#F9FBFF'>
-        <Container>
-          <FormControl p={10}>
-            <Box mb={8} textAlign='center' color='teal.700'>
-              <Heading as='h2' fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}>
+      <Show above='md'>
+        <GridItem>
+          <DogImage />
+        </GridItem>
+      </Show>
+
+      <GridItem>
+        <Center height={'calc(100vh - 60px)'}>
+          <FormControl px={6} maxW='300px'>
+            <Box as='header' mb={8} textAlign='center'>
+              <Heading as='h2' fontSize={{ base: 'sm', md: 'xl' }}>
                 I don't have an account
               </Heading>
-              <Box
-                as='span'
-                fontSize='xs'
-                fontWeight='medium'
-                letterSpacing={0.5}
-              >
+              <Box as='span' fontSize='xs'>
                 Sign up with your email and password
               </Box>
             </Box>
+            <Grid
+              templateAreas={{
+                base: `'first' 'second' 'third' 'fourth'`,
+                md: `'first second' 'third third' 'fourth fourth'`,
+              }}
+              gap={2}
+            >
+              <GridItem area='first'>
+                <FormInput
+                  fontSize={'xs'}
+                  type='text'
+                  name='animalShelterName'
+                  placeholder='shelter name'
+                  onChange={handleChange}
+                  required
+                  value={formField.animalShelterName}
+                />
+              </GridItem>
+              <GridItem area='second'>
+                <FormInput
+                  fontSize={'xs'}
+                  type='email'
+                  name='email'
+                  placeholder='email'
+                  onChange={handleChange}
+                  required
+                  value={formField.email}
+                />
+              </GridItem>
 
-            <Flex mb={5} gap={2}>
-              <FormInput
-                type='text'
-                name='animalShelterName'
-                placeholder='shelter name'
-                onChange={handleChange}
-                required
-                value={formField.animalShelterName}
-              />
-
-              <FormInput
-                type='email'
-                name='email'
-                placeholder='email'
-                onChange={handleChange}
-                required
-                value={formField.email}
-              />
-            </Flex>
-            <Stack>
-              <Box>
+              <GridItem area='third'>
                 <Select
+                  fontSize={'xs'}
                   name='location'
                   onChange={handleChange}
                   focusBorderColor='teal.400'
@@ -116,34 +124,43 @@ const Register = () => {
                   <option value='IJKL'>IJKL</option>
                   <option value='MNOP'>MNOP</option>
                 </Select>
-              </Box>
+              </GridItem>
 
-              <Flex gap={2}>
-                <FormInput
-                  type='password'
-                  name='password'
-                  placeholder='password'
-                  onChange={handleChange}
-                  required
-                  value={formField.password}
-                />
+              <GridItem area='fourth'>
+                <Flex gap={2}>
+                  <FormInput
+                    fontSize={'xs'}
+                    type='password'
+                    name='password'
+                    placeholder='password'
+                    onChange={handleChange}
+                    required
+                    value={formField.password}
+                  />
 
-                <FormInput
-                  type='password'
-                  name='confirmPassword'
-                  placeholder='confirm password'
-                  onChange={handleChange}
-                  required
-                  value={formField.confirmPassword}
-                />
-              </Flex>
-            </Stack>
-            <Flex gap={4} mt={8}>
-              <Button width='100%' colorScheme='teal' onClick={handleSubmit}>
+                  <FormInput
+                    fontSize={'xs'}
+                    type='password'
+                    name='confirmPassword'
+                    placeholder='confirm password'
+                    onChange={handleChange}
+                    required
+                    value={formField.confirmPassword}
+                  />
+                </Flex>
+              </GridItem>
+            </Grid>
+            <Flex gap={4} mt={4}>
+              <Button
+                fontSize={'xs'}
+                width='100%'
+                colorScheme='teal'
+                onClick={handleSubmit}
+              >
                 Sign Up
               </Button>
-
               <Button
+                fontSize={'xs'}
                 width='50%'
                 variant='outline'
                 colorScheme='teal'
@@ -153,8 +170,8 @@ const Register = () => {
               </Button>
             </Flex>
           </FormControl>
-        </Container>
-      </Center>
+        </Center>
+      </GridItem>
     </Grid>
   );
 };

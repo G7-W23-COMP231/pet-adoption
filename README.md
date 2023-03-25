@@ -1,4 +1,4 @@
-# Centennial Collge Capstone Project:
+# Centennial College Capstone Project:
 
 ## Pet Adoption Website
 

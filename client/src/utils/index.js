@@ -69,7 +69,7 @@ export const selectOptions = [
     options: ['Indoor or outdoor', 'Outdoor pet'],
   },
   {
-    label: 'This pet needs to stay outdoors for how many hours?',
+    label: 'Needs to stay outdoors for how many hours?',
     name: 'petOutsideHours',
     options: [
       '0 to 30 minutes',
@@ -79,7 +79,7 @@ export const selectOptions = [
     ],
   },
   {
-    label: 'When the owner is not at home, where will the pet be?',
+    label: 'If owner is not at home, where will the pet be?',
     name: 'petStay',
     options: [
       'the garage',

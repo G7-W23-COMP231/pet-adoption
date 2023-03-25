@@ -5,9 +5,7 @@ const SelectInput = ({ label, name, options, onChange }) => {
   if (!Array.isArray(options)) return <h1>Something went wrong</h1>;
   return (
     <div style={{ marginBottom: '2rem' }}>
-      <FormLabel htmlFor={name} style={{ fontSize: '.7rem' }}>
-        {label}
-      </FormLabel>
+      <FormLabel htmlFor={name}>{label}</FormLabel>
       <Select id={name} name={name} onChange={onChange}>
         {options.length <= 0 ? (
           <h1>Something went wrong</h1>
