@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -20,7 +20,11 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
 body {
+  font-size: 1.6rem;
   color: #444;
 }
 
@@ -40,7 +44,7 @@ a:active {
 
 body {
   overflow-x: hidden;
-}
+} */
 
 /* @media (prefers-color-scheme: light) {
   :root {

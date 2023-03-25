@@ -1,20 +1,18 @@
 import { Input, FormLabel } from '@chakra-ui/react';
 
 const FormInput = ({
+  fontSize,
   label,
   type,
   onChange,
   placeholder,
   name,
   outline = 'outline',
-  style,
   value,
 }) => {
   return (
     <div>
-      <FormLabel htmlFor={name} style={style}>
-        {label}
-      </FormLabel>
+      <FormLabel htmlFor={name}>{label}</FormLabel>
       <Input
         variant={outline}
         id={name}
@@ -24,6 +22,7 @@ const FormInput = ({
         placeholder={placeholder}
         name={name}
         focusBorderColor='teal.400'
+        fontSize={fontSize}
         value={value}
       />
     </div>

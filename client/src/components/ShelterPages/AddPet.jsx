@@ -53,7 +53,7 @@ const AddPet = () => {
   };
 
   return (
-    <Container maxW='100%' p={10} bg='#fdfdfd'>
+    <Container maxW='100%' p={10} bg='#f1f1f1'>
       <Box
         style={{
           textAlign: 'center',
@@ -64,8 +64,16 @@ const AddPet = () => {
         <h2 style={{ fontWeight: 'bold' }}>Welcome</h2>
         <span style={{ fontSize: '1rem' }}>Please enter your pet details</span>
       </Box>
-      <FormControl onSubmit={handleSubmit}>
-        <Box boxShadow='md' p={6} borderRadius={8} bg='#fcfcfc' mb={5}>
+      <FormControl onSubmit={handleSubmit} fontSize='1.2rem'>
+        <Box
+          boxShadow='md'
+          maxW={'7xl'}
+          mx='auto'
+          p={16}
+          borderRadius={8}
+          bg='#fcfcfc'
+          mb={5}
+        >
           <Box mb={6}>
             <FormInput
               type='text'
@@ -73,7 +81,6 @@ const AddPet = () => {
               label='Pet name'
               onChange={handleChange}
               name={'petName'}
-              style={{ fontSize: '.7rem' }}
             />
           </Box>
           <Box mb={6}>
@@ -81,7 +88,7 @@ const AddPet = () => {
               type='file'
               label='Pet Photo'
               name='petPhoto'
-              id="file"
+              id='file'
               onChange={handleChange}
               style={{ fontSize: '.7rem' }}
               outline='none'
@@ -119,11 +126,13 @@ const AddPet = () => {
         </Box>
 
         <Grid
+          maxW='7xl'
+          mx='auto'
           templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
           gap={8}
           style={{ marginTop: '2rem' }}
           boxShadow='md'
-          p={6}
+          p={16}
           borderRadius={8}
           bg='#fcfcfc'
           mb={5}
@@ -150,6 +159,7 @@ const AddPet = () => {
                 fontSize: '.8rem',
               }}
               onChange={handleChange}
+              color='teal'
             />
           </GridItem>
 
@@ -164,25 +174,27 @@ const AddPet = () => {
             />
           </GridItem>
         </Grid>
-        <ButtonGroup>
-          <Button
-            colorScheme='teal'
-            variant='solid'
-            width='8rem'
-            type='submit'
-            onClick={handleSubmit}
-          >
-            Save
-          </Button>
-          <Button
-            variant='outline'
-            width='6rem'
-            onClick={resetFormFields}
-            type='reset'
-          >
-            Cancel
-          </Button>
-        </ButtonGroup>
+        <Box maxW='7xl' mx='auto'>
+          <ButtonGroup>
+            <Button
+              colorScheme='teal'
+              variant='solid'
+              width='8rem'
+              type='submit'
+              onClick={handleSubmit}
+            >
+              Save
+            </Button>
+            <Button
+              variant='outline'
+              width='6rem'
+              onClick={resetFormFields}
+              type='reset'
+            >
+              Cancel
+            </Button>
+          </ButtonGroup>
+        </Box>
       </FormControl>
     </Container>
   );

@@ -10,11 +10,7 @@ const RadioInput = ({ label, name, onChange }) => {
   const { yes, no, somewhat } = choices;
   return (
     <div style={{ marginBottom: '1rem' }}>
-      <FormLabel
-        as='legend'
-        htmlFor={name}
-        style={{ marginBottom: '.4rem', fontSize: '.8rem' }}
-      >
+      <FormLabel as='legend' htmlFor={name} style={{ marginBottom: '.4rem' }}>
         {label}
       </FormLabel>
       <RadioGroup style={{ marginLeft: '3rem' }} colorScheme='teal'>

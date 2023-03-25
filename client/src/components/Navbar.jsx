@@ -91,13 +91,11 @@ export const Navbar = () => {
           </Link>
           <Link to='/register'>
             <Button
-              as={'a'}
               display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
               bg={'teal.400'}
-              href={'/register'}
               _hover={{
                 bg: 'teal.300',
                 color: 'white',
@@ -117,12 +115,12 @@ export const Navbar = () => {
 };
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200');
+  const linkColor = useColorModeValue('blue.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack direction={'row'} spacing={20}>
       {NAV_ITEMS.map(navItem => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -130,7 +128,6 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 to={navItem.href ?? '#'}
-                fontSize={'sm'}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Container,
-  Center,
   Box,
   FormControl,
   Button,
@@ -9,10 +7,11 @@ import {
   Text,
   InputGroup,
   InputLeftElement,
+  Center,
   Input,
 } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
-import FormInput from '../Inputs/FormInput';
+
 import { Link } from 'react-router-dom';
 import wave from '../../assets/wave.svg';
 
@@ -30,8 +29,6 @@ const Login = () => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
   };
-
-  console.log(formField);
 
   const handleLogin = event => {
     event.preventDefault();
@@ -60,39 +57,40 @@ const Login = () => {
 
   return (
     <Center
+      minWidth='100vw'
       height='calc(100vh - 60px)'
       backgroundImage={wave}
       bgPosition='bottom'
       bgRepeat='no-repeat'
       bgColor='#fafafa'
     >
-      <Container
-        maxW='sm'
-        color='#444'
-        // border='1px'
-        p={10}
-        m={{ base: 10, md: 0 }}
+      <Box
+        py={6}
+        px={8}
         borderRadius={10}
         boxShadow='md'
         bg='#F9FBFF'
+        maxW='xs'
+        mx={{ base: '1rem', sm: '0' }}
       >
-        <Box mb={7} textAlign='center'>
-          <Heading as='h2' mb={2}>
+        <Box mb={6} textAlign='center'>
+          <Heading as='h2' mb={2} fontSize='2xl'>
             Welcome back!
           </Heading>
-          <Text fontSize='xs' color='#777'>
+          <Text fontSize='.6rem'>
             Open your heart and home to a furry friend - Adopt now!
           </Text>
         </Box>
 
         <FormControl>
-          <Box mb={4}>
+          <Box mb={2}>
             <InputGroup>
               <InputLeftElement
                 pointerEvents='none'
                 children={<EmailIcon color='gray.300' />}
               />
               <Input
+                fontSize='sm'
                 focusBorderColor='teal.400'
                 type='email'
                 name='email'
@@ -109,6 +107,7 @@ const Login = () => {
                 children={<LockIcon color='gray.300' />}
               />
               <Input
+                fontSize='sm'
                 focusBorderColor='teal.400'
                 type='password'
                 name='password'
@@ -119,18 +118,23 @@ const Login = () => {
             </InputGroup>
           </Box>
           <Box mb={3}>
-            <Button colorScheme='teal' width='100%' onClick={handleLogin}>
+            <Button
+              fontSize='sm'
+              colorScheme='teal'
+              width='100%'
+              onClick={handleLogin}
+            >
               Login
             </Button>
           </Box>
-          <Text fontSize={12} textAlign='center'>
+          <Text fontSize='xs' textAlign='center'>
             Don't you have an account?{' '}
             <Box as='span' ml={1} letterSpacing={0.5} color='teal'>
               <Link to='/register'>Signup</Link>
             </Box>
           </Text>
         </FormControl>
-      </Container>
+      </Box>
     </Center>
   );
 };
