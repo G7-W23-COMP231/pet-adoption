@@ -7,7 +7,7 @@ import Login from './components/Login/Login';
 import ShowPets from './components/ShelterPages/ShowPets';
 import AddPet from './components/ShelterPages/AddPet';
 import Navbar from './components/Navbar';
-
+import Pet from './components/Pet';
 function App() {
   {
     /* dummy routing to test authentication */
@@ -24,6 +24,7 @@ function App() {
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/showpets' element={<ShowPets />} />
         <Route exact path='/addpet' element={<AddPet />} />
+        <Route exact path='/pets' element={<Pet />} />
       </Routes>
     </>
   );
