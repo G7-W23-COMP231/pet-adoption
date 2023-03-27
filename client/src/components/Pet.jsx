@@ -1,39 +1,39 @@
 import { petsData } from '../utils/pets';
-import { Link, Box, Image, FormLabel } from '@chakra-ui/react';
+import {
+  Link,
+  Image,
+  FormLabel,
+  Card,
+  CardBody,
+  Heading,
+  HStack,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 
-const Pet = () => {
+const Pet = ({ pet }) => {
   // I will work on the fetching as soon as it is available
   return (
-    <Box
-    boxShadow='md'
-    maxW={'7xl'}
-    mx='auto'
-    p={16}
-    borderRadius={8}
-    bg='#fcfcfc'
-    mb={5}
-  >
-      {petsData.map(pet => (
-        <div key={pet.id}>
-          <Box width='100px' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-          <Link href='/signin' >
-          <img
-            src={pet.image}
-            alt={pet.description}
-            height='100px'
-            width='100px'
-          />
-          </Link>
-          </Box>
-          
-          <FormLabel>
-          <p>Name: {pet.name}</p>
-          <p>Age: {pet.age} years old</p><br></br>
-          </FormLabel>
-          
-        </div>
-      ))}
-    </Box>
+    <Card
+      width={{ base: '100%' }}
+      borderRadius='lg'
+      overflow='hidden'
+      fontSize='sm'
+    >
+      <Link href='/signin'>
+        <Image src={pet.image} alt={pet?.description} />
+      </Link>
+      <CardBody>
+        <Heading fontSize='lg' mb={2}>
+          {pet.name}
+        </Heading>
+
+        <VStack alignItems='flex-start'>
+          <Text>Name: {pet?.name}</Text>
+          <Text>Age: {pet?.age} years old</Text>
+        </VStack>
+      </CardBody>
+    </Card>
   );
 };
 

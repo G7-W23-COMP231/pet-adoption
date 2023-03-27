@@ -2,12 +2,12 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
+import Register from './components/Register';
+import Login from './components/Login';
 import ShowPets from './components/ShelterPages/ShowPets';
 import AddPet from './components/ShelterPages/AddPet';
 import Navbar from './components/Navbar';
-import Pet from './components/Pet';
+import Pets from './components/Pets';
 function App() {
   {
     /* dummy routing to test authentication */
@@ -24,7 +24,7 @@ function App() {
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/showpets' element={<ShowPets />} />
         <Route exact path='/addpet' element={<AddPet />} />
-        <Route exact path='/pets' element={<Pet />} />
+        <Route exact path='/pets' element={<Pets />} />
       </Routes>
     </>
   );
