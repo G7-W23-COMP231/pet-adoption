@@ -13,7 +13,7 @@ import {
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 
 import { Link } from 'react-router-dom';
-import wave from '../../assets/wave.svg';
+import wave from '../assets/wave.svg';
 
 const defaultFormField = {
   email: '',

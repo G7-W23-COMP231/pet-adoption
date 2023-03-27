@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Register.css';
 
 import {
   Box,
@@ -15,9 +14,9 @@ import {
   GridItem,
 } from '@chakra-ui/react';
 
-import DogImage from '../DogImage';
+import DogImage from './DogImage';
 
-import { FormInput } from '../Inputs';
+import { FormInput } from './Inputs';
 
 const defaultFormField = {
   confirmPassword: '',
