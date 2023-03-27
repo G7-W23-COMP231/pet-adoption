@@ -5,8 +5,11 @@ var cors = require('cors');
 
 const authRouter = require('../router/auth');
 const animalShelterRouter = require('../router/animalshelter');
-
+const petRouter = require('../router/addpet');
 var app = express();
+
+const homeController = require("../controllers/home");
+const uploadController = require("../controllers/upload");
 
 // database setup
 let mongoose = require('mongoose');
@@ -35,8 +38,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //authentication do not move
 app.use('/auth', authRouter);
 
-//Threepat Kiatkamol - Create pets.js file to control the request
 app.use('/animalshelter', animalShelterRouter);
+app.use('/pet', petRouter);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -1,0 +1,163 @@
+export const petsData = [
+    {
+      id: 1,
+      name: 'Max',
+      breed: 'Labrador Retriever',
+      age: 2,
+      gender: 'Male',
+      adoptable: true,
+      adoptionFee: 300,
+      location: 'San Francisco, CA',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675861622/incyzwdokfoaje9truer.png',
+      description:
+        'Max is a friendly and playful Labrador Retriever. He loves to play fetch and go for walks. He is good with children and other dogs.',
+    },
+    {
+      id: 2,
+      name: 'Bella',
+      breed: 'Siamese',
+      age: 1,
+      gender: 'Female',
+      adoptable: false,
+      adoptionFee: 150,
+      location: 'Los Angeles, CA',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675859394/tlrbeg59kleshgyasrbd.png',
+      description: 'Bella is a sweet and loving dog',
+    },
+    {
+      id: 3,
+      name: 'Charlie',
+      breed: 'Rabbit',
+      age: 0.5,
+      gender: 'Male',
+      adoptable: true,
+      adoptionFee: 75,
+      location: 'New York, NY',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675861848/va17mjw4lls5owmb4rw3.png',
+      description:
+        'Charlie is a smart and energetic Poodle. He loves to play and learn new tricks. He is good with children and other dogs.',
+    },
+    {
+      id: 4,
+      name: 'Lucy',
+      breed: 'Parakeet',
+      age: 3,
+      gender: 'Female',
+      adoptable: true,
+      adoptionFee: 50,
+      location: 'Chicago, IL',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675861965/ubjd7viwijvhqzde7htt.png',
+      description:
+        'Lucy is a loyal and protective German Shepherd. She loves to go for walks and play in the yard. She is good with children and other dogs.',
+    },
+    {
+      id: 5,
+      name: 'Rocky',
+      breed: 'Bulldog',
+      age: 4,
+      gender: 'Male',
+      adoptable: true,
+      adoptionFee: 250,
+      location: 'Seattle, WA',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675862071/yhtqnveadyequa0d1bbp.png',
+      description: 'Rocky is a friendly and playful Bulldog. He loves to play',
+    },
+    {
+      id: 6,
+      name: 'Sophie',
+      breed: 'Persian',
+      age: 5,
+      gender: 'Female',
+      adoptable: false,
+      adoptionFee: 200,
+      location: 'Dallas, TX',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675862159/jh7o9d6yjsxtpws8jvzq.png',
+      description: 'Sophie is so fluffy and jolly cat',
+    },
+    {
+      id: 7,
+      name: 'Buddy',
+      breed: 'Golden Retriever',
+      age: 3,
+      gender: 'Male',
+      adoptable: true,
+      adoptionFee: 400,
+      location: 'Miami, FL',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675862317/cx6aavf69fzwjtbgtoli.png',
+      description:
+        'Buddy is a happy and energetic Beagle. He loves to run and play in the yard. He is good with children and other dogs.',
+    },
+    {
+      id: 8,
+      name: 'Molly',
+      breed: 'Calico',
+      age: 2,
+      gender: 'Female',
+      adoptable: true,
+      adoptionFee: 100,
+      location: 'Houston, TX',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675862342/lbumwcqb2cyg0ibipdgj.png',
+      description: 'Molly is a good companion',
+    },
+    {
+      id: 9,
+      name: 'Rocky',
+      breed: 'Beagle',
+      age: 1,
+      gender: 'Male',
+      adoptable: true,
+      adoptionFee: 200,
+      location: 'Philadelphia, PA',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675862434/shjj7gmoumfmrm5qd6w.png',
+      description: 'Rocky is a jolly and playful dog',
+    },
+    {
+      id: 10,
+      name: 'Daisy',
+      breed: 'German Shepherd',
+      age: 4,
+      gender: 'Female',
+      adoptable: false,
+      adoptionFee: 500,
+      location: 'Phoenix, AZ',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675862531/urdhkdqrtmmufye2npiz.png',
+      description:
+        'Daisy is a sweet and gentle Golden Retriever. She loves to cuddle and play. She is good with children and other dogs.',
+    },
+    {
+      id: 11,
+      name: 'Toby',
+      breed: 'Chihuahua',
+      age: 3,
+      gender: 'Male',
+      adoptable: true,
+      adoptionFee: 150,
+      location: 'San Antonio, TX',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675863361/etqdvzzfrbau71hafet4.png',
+      description: 'Toby is sweet and clingy chihuahua',
+    },
+    {
+      id: 12,
+      name: 'Riley',
+      breed: 'Dalmatian',
+      age: 12,
+      gender: 'Male',
+      adoptable: false,
+      adoptionFee: 150,
+      location: 'San Antonio, TX',
+      image:
+        'http://res.cloudinary.com/dmkpagj7j/image/upload/v1675863435/e44hos3p2tdgmpiyqh3f.png',
+      description: 'Riley is a playful and clumsy dalmatian',
+    },
+  ];

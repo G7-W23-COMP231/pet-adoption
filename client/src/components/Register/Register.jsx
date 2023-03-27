@@ -1,12 +1,30 @@
 import React, { useState } from 'react';
 import './Register.css';
 
+import {
+  Box,
+  FormControl,
+  Select,
+  Grid,
+  Center,
+  Button,
+  Stack,
+  Heading,
+  Flex,
+  Show,
+  GridItem,
+} from '@chakra-ui/react';
+
+import DogImage from '../DogImage';
+
+import { FormInput } from '../Inputs';
+
 const defaultFormField = {
   confirmPassword: '',
   email: '',
   location: 'ABCD',
   password: '',
-  shelterName: '',
+  animalShelterName: '',
 };
 
 const Register = () => {
@@ -44,66 +62,117 @@ const Register = () => {
   };
 
   return (
-    <div className='register__container'>
-      <div className='left'></div>
-      <form className='register__container-form'>
-        <div className='register__containter-form_title'>
-          <h2>I don't have an account</h2>
-          <span>Sign up with your email and password</span>
-        </div>
+    <Grid templateColumns={{ sm: '1fr', md: '1fr 1fr' }}>
+      <Show above='md'>
+        <GridItem>
+          <DogImage />
+        </GridItem>
+      </Show>
 
-        <div>
-          <input
-            type='text'
-            name='shelterName'
-            placeholder='shelter name'
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <select name='location' onChange={handleChange}>
-            <option value='ABCD'>ABCD</option>
-            <option value='EFGH'>EFGH</option>
-            <option value='IJKL'>IJKL</option>
-            <option value='MNOP'>MNOP</option>
-          </select>
-        </div>
-        <div>
-          <input
-            type='email'
-            name='email'
-            placeholder='email'
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <GridItem>
+        <Center height={'calc(100vh - 60px)'}>
+          <FormControl px={6} maxW='300px'>
+            <Box as='header' mb={8} textAlign='center'>
+              <Heading as='h2' fontSize={{ base: 'sm', md: 'xl' }}>
+                I don't have an account
+              </Heading>
+              <Box as='span' fontSize='xs'>
+                Sign up with your email and password
+              </Box>
+            </Box>
+            <Grid
+              templateAreas={{
+                base: `'first' 'second' 'third' 'fourth'`,
+                md: `'first second' 'third third' 'fourth fourth'`,
+              }}
+              gap={2}
+            >
+              <GridItem area='first'>
+                <FormInput
+                  fontSize={'xs'}
+                  type='text'
+                  name='animalShelterName'
+                  placeholder='shelter name'
+                  onChange={handleChange}
+                  required
+                  value={formField.animalShelterName}
+                />
+              </GridItem>
+              <GridItem area='second'>
+                <FormInput
+                  fontSize={'xs'}
+                  type='email'
+                  name='email'
+                  placeholder='email'
+                  onChange={handleChange}
+                  required
+                  value={formField.email}
+                />
+              </GridItem>
 
-        <div>
-          <input
-            type='password'
-            name='password'
-            placeholder='password'
-            onChange={handleChange}
-            required
-          />
-        </div>
+              <GridItem area='third'>
+                <Select
+                  fontSize={'xs'}
+                  name='location'
+                  onChange={handleChange}
+                  focusBorderColor='teal.400'
+                  value={formField.location}
+                >
+                  <option value=''>Location</option>
+                  <option value='ABCD'>ABCD</option>
+                  <option value='EFGH'>EFGH</option>
+                  <option value='IJKL'>IJKL</option>
+                  <option value='MNOP'>MNOP</option>
+                </Select>
+              </GridItem>
 
-        <div>
-          <input
-            type='password'
-            name='confirmPassword'
-            placeholder='confirm password'
-            onChange={handleChange}
-            required
-          />
-        </div>
+              <GridItem area='fourth'>
+                <Flex gap={2}>
+                  <FormInput
+                    fontSize={'xs'}
+                    type='password'
+                    name='password'
+                    placeholder='password'
+                    onChange={handleChange}
+                    required
+                    value={formField.password}
+                  />
 
-        <button className='btn__signup' onClick={handleSubmit}>
-          Sign Up
-        </button>
-      </form>
-    </div>
+                  <FormInput
+                    fontSize={'xs'}
+                    type='password'
+                    name='confirmPassword'
+                    placeholder='confirm password'
+                    onChange={handleChange}
+                    required
+                    value={formField.confirmPassword}
+                  />
+                </Flex>
+              </GridItem>
+            </Grid>
+            <Flex gap={4} mt={4}>
+              <Button
+                fontSize={'xs'}
+                width='100%'
+                colorScheme='teal'
+                onClick={handleSubmit}
+              >
+                Sign Up
+              </Button>
+              <Button
+                fontSize={'xs'}
+                width='50%'
+                variant='outline'
+                colorScheme='teal'
+                onClick={resetFormFields}
+              >
+                Cancel
+              </Button>
+            </Flex>
+          </FormControl>
+        </Center>
+      </GridItem>
+    </Grid>
   );
 };
 

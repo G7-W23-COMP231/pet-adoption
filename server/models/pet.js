@@ -25,6 +25,8 @@ const petSchema = new Schema({
   medHistory : String,
   behaveIssue : String,
   vaccRecord : String,
+  //file : Buffer,
+
 
 },{
   collection: "pet",

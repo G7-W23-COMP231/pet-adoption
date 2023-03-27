@@ -1,10 +1,9 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #666;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,10 +20,17 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  color: #444;
+}
+
 a:link,
 a:visited {
   font-weight: 500;
-  color: #666;
   text-decoration: none;
   border-bottom: 2px solid transparent;
 
@@ -33,19 +39,12 @@ a:visited {
 
 a:hover,
 a:active {
-  color: blue;
+  color: dodgerblue;
 }
 
 body {
   overflow-x: hidden;
-}
-
-button {
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
+} */
 
 /* @media (prefers-color-scheme: light) {
   :root {
