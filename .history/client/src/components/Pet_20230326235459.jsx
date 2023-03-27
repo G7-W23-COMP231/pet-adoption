@@ -1,5 +1,5 @@
 import { petsData } from '../utils/pets';
-import { Link, Box, Image, FormLabel } from '@chakra-ui/react';
+import { Box, Image, FormLabel } from '@chakra-ui/react';
 
 const Pet = () => {
   // I will work on the fetching as soon as it is available
@@ -16,14 +16,12 @@ const Pet = () => {
       {petsData.map(pet => (
         <div key={pet.id}>
           <Box width='100px' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-          <Link href='/signin' >
           <img
             src={pet.image}
             alt={pet.description}
             height='100px'
             width='100px'
           />
-          </Link>
           </Box>
           
           <FormLabel>
