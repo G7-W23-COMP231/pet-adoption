@@ -11,7 +11,7 @@ function ShowPets() {
         <li>Pet 3</li>
       </ul>
 
-      <a href="/addpet">
+      <a href="/">
         <button>Add a Pet!</button>
       </a>
     </div>

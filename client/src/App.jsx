@@ -4,12 +4,12 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Register from './components/Register';
 import Login from './components/Login';
-import ShowPets from './components/ShelterPages/ShowPets';
 import AddPet from './components/ShelterPages/AddPet';
 import Navbar from './components/Navbar';
-import Pets from './components/Pets';
 import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister';
+import ShowPets from './components/Pets';
+
 function App() {
   {
     /* dummy routing to test authentication */
@@ -26,7 +26,6 @@ function App() {
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/showpets' element={<ShowPets />} />
         <Route exact path='/addpet' element={<AddPet />} />
-        <Route exact path='/pets' element={<Pets />} />
         <Route exact path='/UserLogin' element={<UserLogin />} />
         <Route exact path='/UserRegister' element={<UserRegister />} />
       </Routes>
