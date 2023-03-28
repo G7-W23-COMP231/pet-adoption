@@ -66,8 +66,7 @@ router.post("/login", async (req, res, next) => {
         const token = jwt.sign({ sub: user._id }, JWT_SECRET);
         res.cookie("jwt", token, { httpOnly: true, secure: true });
 
-        //return res.redirect("/");
-        return res.status(200).json({ message: "Success" });
+        return res.redirect("/");
       });
     } catch (error) {
       return next(error);

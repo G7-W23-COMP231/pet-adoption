@@ -48,8 +48,7 @@ const Register = () => {
       return;
     }
 
-    //fetch('http://localhost:5000/animalshelter/info', {
-    fetch('http://localhost:5000/animalshelter/register', {  
+    fetch('http://localhost:5000/animalshelter/info', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
