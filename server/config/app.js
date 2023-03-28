@@ -4,14 +4,13 @@ const path = require("path");
 const cors = require("cors");
 const ownerRouter = require("../router/owner");
 const animalShelterRouter = require("../router/animalshelter");
-const petRouter = require("../router/addpet");
+const petRouter = require("../router/pets");
 const passportConfig = require("./passport");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
 const app = express();
 
-const homeController = require("../controllers/home");
 const uploadController = require("../controllers/upload");
 
 // database setup
@@ -46,7 +45,7 @@ app.use(passport.initialize());
 //model routes
 app.use("/owner", ownerRouter);
 app.use("/animalshelter", animalShelterRouter);
-app.use("/pet", petRouter);
+app.use("/pets", petRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

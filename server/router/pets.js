@@ -1,7 +1,6 @@
 const express = require('express');
 const Pet = require('../models/pet');
 const router = express.Router();
-const homeController = require("../controllers/home");
 const uploadController = require("../controllers/upload");
 
 router.post('/addpet', async (req, res) => {
@@ -28,7 +27,6 @@ router.post('/addpet', async (req, res) => {
     medHistory,
     behaveIssue,
     vaccRecord,
-    //file,
   } = req.body;
 
   try {
@@ -55,7 +53,6 @@ router.post('/addpet', async (req, res) => {
       medHistory,
       behaveIssue,
       vaccRecord,
-      //file,
     });
     await pet.save();
     res.json(pet);
@@ -64,5 +61,16 @@ router.post('/addpet', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+router.get('/showpets', async (req, res) => {
+  try {
+      const data = await Pet.find();
+      res.json(data);
+      console.log(data);
+  }
+  catch (error) {
+      res.status(500).json({ message: error.message })
+  }
+})
 
 module.exports = router;
