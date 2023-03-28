@@ -8,6 +8,8 @@ import ShowPets from './components/ShelterPages/ShowPets';
 import AddPet from './components/ShelterPages/AddPet';
 import Navbar from './components/Navbar';
 import Pets from './components/Pets';
+import UserLogin from './components/UserLogin';
+import UserRegister from './components/UserRegister';
 function App() {
   {
     /* dummy routing to test authentication */
@@ -25,6 +27,8 @@ function App() {
         <Route exact path='/showpets' element={<ShowPets />} />
         <Route exact path='/addpet' element={<AddPet />} />
         <Route exact path='/pets' element={<Pets />} />
+        <Route exact path='/UserLogin' element={<UserLogin />} />
+        <Route exact path='/UserRegister' element={<UserRegister />} />
       </Routes>
     </>
   );
