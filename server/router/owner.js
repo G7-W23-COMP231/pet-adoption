@@ -3,13 +3,15 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const router = express.Router();
-
+const configurePassport = require("../config/passportowner");
 const JWT_SECRET = "your-secret-key";
+// Configure Passport
+configurePassport(passport);
 
 const Owner = require("../models/owner");
 
 // Register a new user
-router.post("/register", async (req, res) => {
+router.post("/userregister", async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
 
@@ -42,7 +44,7 @@ router.post("/register", async (req, res) => {
 
 // Login existing user
 router.post(
-  "/login",
+  "/userlogin",
   passport.authenticate("local", { session: false }),
   (req, res) => {
     const token = jwt.sign({ sub: req.user._id }, JWT_SECRET);

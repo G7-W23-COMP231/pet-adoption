@@ -6,6 +6,7 @@ const ownerRouter = require("../router/owner");
 const animalShelterRouter = require("../router/animalshelter");
 const petRouter = require("../router/pets");
 const passportConfig = require("./passport");
+const passportConfigowner = require("./passportowner");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
@@ -40,6 +41,7 @@ app.use(bodyParser.json());
 
 //initialize passportjs
 passportConfig(passport);
+passportConfigowner(passport);
 app.use(passport.initialize());
 
 //model routes
