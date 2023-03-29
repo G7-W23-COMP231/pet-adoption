@@ -3,15 +3,19 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const router = express.Router();
+const configurePassport = require("../config/passport");
+const Owner = require("../models/owner");
 
 const JWT_SECRET = "your-secret-key";
 
-const Owner = require("../models/owner");
+// Configure Passport
+configurePassport(passport);
 
 // Register a new user
-router.post("/register", async (req, res) => {
+router.post("/userregister", async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Check if user already exists
     const existingUser = await Owner.findOne({ email });
@@ -26,12 +30,11 @@ router.post("/register", async (req, res) => {
       firstName,
       lastName,
       email,
-      password: await bcrypt.hash(password, 10),
+      password: hashedPassword,
     });
 
     // Save the new user object to the database
     await user.save();
-
     const token = jwt.sign({ sub: user._id }, JWT_SECRET);
     return res.json({ token });
   } catch (error) {
@@ -41,22 +44,35 @@ router.post("/register", async (req, res) => {
 });
 
 // Login existing user
-router.post(
-  "/login",
-  passport.authenticate("local", { session: false }),
-  (req, res) => {
-    const token = jwt.sign({ sub: req.user._id }, JWT_SECRET);
-    res.json({ token });
-  }
-);
+router.post("/userlogin", async (req, res, next) => {
+  passport.authenticate("local", async (err, user) => {
+    try {
+      if (err || !user) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
 
-// Get user profile
-router.get(
-  "/profile",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json(req.user);
-  }
-);
+      req.login(user, { session: false }, async (error) => {
+        if (error) return next(error);
+
+        const token = jwt.sign({ sub: user._id }, JWT_SECRET);
+        res.cookie("jwt", token, { httpOnly: true, secure: true });
+
+        //return res.redirect("/");
+        return res.status(200).json({ message: "Success" });
+      });
+    } catch (error) {
+      return next(error);
+    }
+  })(req, res, next);
+
+  // Get user profile
+  router.get(
+    "/profile",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+      res.json(req.user);
+    }
+  );
+});
 
 module.exports = router;
