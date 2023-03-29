@@ -14,7 +14,20 @@ configurePassport(passport);
 // Register a new user
 router.post("/userregister", async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      phoneNumber,
+      city,
+      country,
+      province,
+      street,
+      age,
+      existingPetOwner,
+      favorites,
+    } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Check if user already exists
@@ -31,6 +44,14 @@ router.post("/userregister", async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
+      phoneNumber,
+      country,
+      city,
+      province,
+      street,
+      age,
+      existingPetOwner,
+      favorites,
     });
 
     // Save the new user object to the database
@@ -45,7 +66,7 @@ router.post("/userregister", async (req, res) => {
 
 // Login existing user
 router.post("/userlogin", async (req, res, next) => {
-  passport.authenticate("local", async (err, user) => {
+  passport.authenticate("petownerlocal", async (err, user) => {
     try {
       if (err || !user) {
         return res.status(401).json({ message: "Unauthorized" });
@@ -64,15 +85,15 @@ router.post("/userlogin", async (req, res, next) => {
       return next(error);
     }
   })(req, res, next);
-
-  // Get user profile
-  router.get(
-    "/profile",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-      res.json(req.user);
-    }
-  );
 });
+
+// Get user profile
+router.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json(req.user);
+  }
+);
 
 module.exports = router;

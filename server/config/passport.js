@@ -56,7 +56,7 @@ const shelterjwtStrategy = new JwtStrategy(
   }
 );
 
-const petlocal = new LocalStrategy(
+const petownerlocal = new LocalStrategy(
   {
     usernameField: "email",
     passwordField: "password",
@@ -82,7 +82,7 @@ const petlocal = new LocalStrategy(
   }
 );
 
-const petjwtStrategy = new JwtStrategy(
+const petownerjwtStrategy = new JwtStrategy(
   {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: JWT_SECRET,
@@ -103,8 +103,8 @@ const petjwtStrategy = new JwtStrategy(
 );
 
 module.exports = function (passport) {
-  passport.use(shelterlocal);
-  passport.use(petlocal);
+  passport.use("shelterlocal", shelterlocal);
+  passport.use("petownerlocal", petownerlocal);
   passport.use(shelterjwtStrategy);
-  passport.use(petjwtStrategy);
+  passport.use(petownerjwtStrategy);
 };
