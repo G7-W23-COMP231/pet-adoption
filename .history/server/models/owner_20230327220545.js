@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const ownerSchema = new Schema({
+const animalSchema = new Schema({
   // Define the properties of your animalschema here
 firstName : String,
 lastName : String,
@@ -15,7 +15,6 @@ street : String,
 age : Number,
 existingPetOwner : Number,
 favorites : Array,
-password : String
 },{
   
   collection: "owner",

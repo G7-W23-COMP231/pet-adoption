@@ -54,7 +54,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res, next) => {
-  passport.authenticate("shelterlocal", async (err, user) => {
+  passport.authenticate("local", async (err, user) => {
     try {
       if (err || !user) {
         return res.status(401).json({ message: "Unauthorized" });
@@ -67,21 +67,21 @@ router.post("/login", async (req, res, next) => {
         res.cookie("jwt", token, { httpOnly: true, secure: true });
 
         //return res.redirect("/");
-        return res.status(200).json({ message: "Access Granted" });
+        return res.status(200).json({ message: "Success" });
       });
     } catch (error) {
       return next(error);
     }
   })(req, res, next);
-});
 
-//get shelter profile
-router.get(
-  "/profile",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json(req.user);
-  }
-);
+  //app.get(
+  router.get(  
+    "/profile",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+      res.json(req.user);
+    }
+  );
+});
 
 module.exports = router;
