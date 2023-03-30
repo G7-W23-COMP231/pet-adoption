@@ -1,52 +1,53 @@
-import React from 'react';
-import {
-  MDBContainer,
-  MDBInput,
-  MDBCheckbox,
-  MDBBtn,
-  MDBIcon
-}
-from 'mdb-react-ui-kit';
+import React, { useState } from 'react';
 
+import LoginContainer from './LoginContainer';
+import LoginForm from './LoginForm';
+
+const defaultFormField = {
+  email: '',
+  password: '',
+};
+
+// Login for potential pet owner
 function UserLogin() {
+  const [formField, setFormField] = useState(defaultFormField);
+  console.log(formField);
+
+  // It will update the state for every input change
+  const handleChange = event => {
+    const { value, name } = event.target;
+    setFormField({ ...formField, [name]: value });
+  };
+
+  const handleLogin = event => {
+    event.preventDefault();
+
+    //fetch('http://localhost:5000/auth/login', {
+    fetch('http://localhost:5000/animalshelter/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formField),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message == 'Access Granted') {
+          window.location.href = '/showpets';
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(err => alert('Access Denied'));
+
+    /*
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
+    */
+  };
   return (
-    <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-
-      <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
-      <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
-
-      <div className="d-flex justify-content-between mx-3 mb-4">
-        <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-        <a href="!#">Forgot password?</a>
-      </div>
-
-      <MDBBtn className="mb-4">Sign in</MDBBtn>
-
-      <div className="text-center">
-        <p>Not a member? <a href="#!">Register</a></p>
-        <p>or sign up with:</p>
-
-        <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='facebook-f' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='twitter' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='google' size="sm"/>
-          </MDBBtn>
-
-          <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-            <MDBIcon fab icon='github' size="sm"/>
-          </MDBBtn>
-
-        </div>
-      </div>
-
-    </MDBContainer>
+    <LoginContainer type='userLogin'>
+      <LoginForm handleChange={handleChange} handleLogin={handleLogin} />
+    </LoginContainer>
   );
 }
 
