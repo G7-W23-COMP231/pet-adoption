@@ -1,106 +1,262 @@
-import React from 'react';
-import{
-    MDBBtn,
-    MDBContainer,
-    MDBRow,
-    MDBCol,
-    MDBCard,
-    MDBCardBody,
-    MDBInput,
-    MDBRadio
-}
-from 'mdb-react-ui-kit';
+import React, { useState } from 'react';
 
-function UserRegister() {
+import {
+  Button,
+  ButtonGroup,
+  FormControl,
+  Container,
+  Grid,
+  GridItem,
+  Box,
+} from '@chakra-ui/react';
+
+import { CheckBoxInput, FormInput } from './Inputs';
+import {
+  SelectionFormGroup,
+  RadioInputGroup,
+  TextAreaInputGroup,
+} from './InputGroups';
+
+//import { SelectionFormGroup, RadioInputGroup, TextAreaInputGroup } from './InputGroups';
+
+import {
+  addOwnerDefaultField,
+  selectOptions,
+  radioOptions,
+  radioUserReg,
+  textAreaOptions,
+} from '../utils';
+
+const AddOwner = () => {
+  const [formField, setFormField] = useState(addOwnerDefaultField);
+
+  const resetFormFields = () => {
+    setFormField(addOwnerDefaultField);
+  };
+
+  const handleChange = event => {
+    const { value, name } = event.target;
+    setFormField({ ...formField, [name]: value });
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log(formField);
+
+    fetch('http://localhost:5000/owner/addowner', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formField),
+    })
+      .then(res => res.json())
+      .then(data => alert('Added Succesfully'))
+      .catch(err => alert('Something went wrong', err));
+  };
+
   return (
-    <MDBContainer fluid>
+    
+    <Container maxW='100%' p={10} bg='#f1f1f1'>
+      <Box
+        style={{
+          textAlign: 'center',
+          marginBottom: '5rem',
+          fontSize: '2rem',
+        }}
+      >
+        <h2 style={{ fontWeight: 'bold' }}>Welcome</h2>
+        <span style={{ fontSize: '1rem' }}>Please enter your owner details</span>
+      </Box>
+      <FormControl onSubmit={handleSubmit} fontSize='1.2rem'>
+        <Box
+          boxShadow='md'
+          maxW={'7xl'}
+          mx='auto'
+          p={16}
+          borderRadius={8}
+          bg='#fcfcfc'
+          mb={5}
+        >
+          <Grid
+            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            gap={10}
+          >
+            <GridItem colSpan={1}>
 
-      <MDBRow className='justify-content-center align-items-center m-5'>
+              <Box mb={6}>
+                <FormInput
+                  type='text'
+                  placeHolder='Owner name'
+                  label='First name'
+                  onChange={handleChange}
+                  name={'firstName'}
+                />
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box mb={6}>
+                <FormInput
+                  type='text'
+                  placeHolder='Owner name'
+                  label='Last Name'
+                  onChange={handleChange}
+                  name={'lastName'}
+                />
+              </Box>
+            </GridItem>
+          </Grid>
+          <Grid
+            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            gap={10}
+          >
+            <GridItem colSpan={1}>
+            <Box mb={6}>
+                <FormInput
+                  type='text'
+                  placeHolder='Country'
+                  label='Country'
+                  onChange={handleChange}
+                  name={'country'}
+                />
+              </Box>
+              
+              </GridItem>
+              <GridItem colSpan={1}>
+              <Box mb={6}>
+              <RadioInputGroup
+              radioOptions={radioUserReg}
+              onChange={handleChange}
+            />
+            </Box>
+            </GridItem>
+          </Grid>
+          <Grid
+            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            gap={10}
+          >
+            <GridItem colSpan={1}>
+              <Box mb={6}>
+                <FormInput
+                  type='text'
+                  placeHolder='Street'
+                  label='Street'
+                  onChange={handleChange}
+                  name={'street'}
+                />
+              </Box>
+            </GridItem>
+           <GridItem>
+              <Box mb={6}>
+                <FormInput
+                  type='text'
+                  placeHolder='City'
+                  label='City'
+                  onChange={handleChange}
+                  name={'city'}
+                />
+              </Box>
+            </GridItem>
+          </Grid>
+          <Grid
+            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            gap={10}
+          >
+            <GridItem>
+              <Box mb={6}>
+                <FormInput
+                  type='text'
+                  placeHolder='Province'
+                  label='Province'
+                  onChange={handleChange}
+                  name={'province'}
+                />
+              </Box>
+              </GridItem>
+            </Grid>
+          
+            <Grid
+            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            gap={10} >
+            <GridItem colSpan={1}>
+              <Box mb={6}>
+                <FormInput
+                  type='text'
+                  placeHolder='Email Address'
+                  label='Email Address'
+                  onChange={handleChange}
+                  name={'email'}
+                  isRequired = {true}
+                />
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box mb={6}>
+                <FormInput
+                  type='text'
+                  placeHolder='Phone Number'
+                  label='Phone Number'
+                  onChange={handleChange}
+                  name={'phoneNumber'}
+                />
+              </Box>
+              </GridItem>
+              
+          </Grid>
+          <Grid
+            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            gap={10}
+          >
+            <GridItem colSpan={1}>
+                <Box mb={6}>
+                <FormInput
+                  type='password'
+                  placeHolder='Password'
+                  label='Password'
+                  onChange={handleChange}
+                  name={'Password'}
+                />
+              </Box>
+            </GridItem>
+            <GridItem colSpan={1}>
+              <Box mb={6}>
+                <FormInput
+                  type='password'
+                  placeHolder='Confirm Password'
+                  label='Confirm Password'
+                  onChange={handleChange}
+                  name={'confirmPassword'}
+                />
+              </Box>
+            </GridItem>
+          </Grid>
+          
+        </Box>
 
-        <MDBCard>
-          <MDBCardBody className='px-4'>
-
-            <h3 className="fw-bold mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-
-            <MDBRow>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='First Name' size='lg' id='form1' type='text'/>
-              </MDBCol>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='Last Name' size='lg' id='form2' type='text'/>
-              </MDBCol>
-
-            </MDBRow>
-            <MDBRow>
-
-              <MDBCol md='6'>
-              <MDBInput wrapperClass='mb-4' label='New Password' size='lg' id='form1' type='password'/>
-            </MDBCol>
-
-             <MDBCol md='6'>
-             <MDBInput wrapperClass='mb-4' label='Confirm Password' size='lg' id='form2' type='password'/>
-             </MDBCol>
-
-            </MDBRow>
-            <MDBRow>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='Country' size='lg' id='form3' type='text'/>
-              </MDBCol>
-
-              <MDBCol md='6' className='mb-4'>
-                <h6 className="fw-bold">Existing Pet Owner </h6>
-                <MDBRadio name='inlineRadio' id='inlineRadio1' value='option1' label='Yes' inline />
-                <MDBRadio name='inlineRadio' id='inlineRadio2' value='option2' label='Not' inline />
-               
-              </MDBCol>
-
-             </MDBRow>
-             <MDBRow>
-
-             <MDBCol md='6'>
-             <MDBInput wrapperClass='mb-4' label='Province' size='lg' id='form3' type='text'/>
-             </MDBCol>
-
-             <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='City' size='lg' id='form3' type='text'/>
-              </MDBCol>
-              </MDBRow>
-              <MDBRow>
-
-             <MDBCol md='6'>
-             <MDBInput wrapperClass='mb-4' label='Street' size='lg' id='form3' type='text'/>
-             </MDBCol>
-
-              <MDBCol md='6'>
-              <MDBInput wrapperClass='mb-4' label='Age' size='lg' id='form3' type='text'/>
-                   </MDBCol>
-
-            </MDBRow>
-
-            <MDBRow>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='Email' size='lg' id='form4' type='email'/>
-              </MDBCol>
-
-              <MDBCol md='6'>
-                <MDBInput wrapperClass='mb-4' label='Phone Number' size='lg' id='form5' type='rel'/>
-              </MDBCol>
-
-            </MDBRow>
-
-            
-            <MDBBtn className='mb-4' size='lg'>Submit</MDBBtn>
-
-          </MDBCardBody>
-        </MDBCard>
-
-      </MDBRow>
-    </MDBContainer>
+        <Box maxW='7xl' mx='auto'>
+          <ButtonGroup>
+            <Button
+              colorScheme='teal'
+              variant='solid'
+              width='8rem'
+              type='submit'
+              onClick={handleSubmit}
+            >
+              Save
+            </Button>
+            <Button
+              variant='outline'
+              width='6rem'
+              onClick={resetFormFields}
+              type='reset'
+            >
+              Cancel
+            </Button>
+          </ButtonGroup>
+        </Box>
+      </FormControl>
+    </Container>
   );
-}
+};
 
-export default UserRegister;
+export default AddOwner;

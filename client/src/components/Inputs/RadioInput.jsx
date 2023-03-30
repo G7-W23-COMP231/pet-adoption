@@ -6,7 +6,8 @@ const choices = {
   somewhat: 'Somewhat',
 };
 
-const RadioInput = ({ label, name, onChange }) => {
+
+export function RadioInput  ({ label, name, onChange }) {
   const { yes, no, somewhat } = choices;
   return (
     <div style={{ marginBottom: '1rem' }}>
@@ -23,14 +24,14 @@ const RadioInput = ({ label, name, onChange }) => {
             {no}
           </Radio>
           <Spacer />
-
           <Radio name={name} onChange={onChange} value='3'>
             {somewhat}
           </Radio>
+
+
         </Flex>
       </RadioGroup>
     </div>
   );
 };
-
 export default RadioInput;
