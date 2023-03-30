@@ -24,6 +24,20 @@ export const addPetDefaultField = {
   vaccRecord: '',
 };
 
+export const addOwnerDefaultField = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  phoneNumber: '',
+  city: '',
+  country: '',
+  province: '',
+  street:'',
+  age: '',
+  favorites: '',
+};
+
 // property that needs for all radio buttons in form AddPet component
 export const radioOptions = [
   {
@@ -44,6 +58,12 @@ export const radioOptions = [
   },
 ];
 
+export const radioUserReg = [
+  {
+    label: 'Existing Pet Owner?',
+    name: 'existingPetOwner',
+  },
+];
 // property that needs for all dropdown input in AddPet component
 export const selectOptions = [
   {
@@ -127,123 +147,5 @@ export const textAreaOptions = [
   {
     name: 'vaccRecord',
     label: 'Vaccination records (if any)',
-  },
-];
-
-//-- Pet Owner (PO) Survey Match Forms
-// Default value of form field in AddPet component
-export const petOwnerSurveyDefaultField = {
-  ageBracket: '',
-  existingPetOwner: '',
-  okWithOtherPet: '',
-  petGoodWith: '',
-  indoorOutdoor: '',
-  hoursOutside: '',
-  petArea: '',
-  servicePet: '',
-  enthusiasticPet: '',
-  playfulPet: '',
-  laidBackPet: '',
-  willingToTrainPet: '',
-  specialNeeds: '',
-};
-
-export const radioOptionsPO = [
-  {
-    label: 'Are you an existing pet owner?',
-    name: 'existingPetOwner',
-  },
-  {
-    label: 'Does your new pet need to get along with other pets?',
-    name: 'okWithOtherPet',
-  },
-  {
-    label: 'Do you want an outdoor pet?', //answer to Yes/No question for radio options
-    name: 'indoorOutdoor',
-  },
-  {
-    label: 'Are you willing to get a service animal?',
-    name: 'servicePet',
-  },
-  {
-    label: 'Are you willing to adopt a pet with special needs (medical or behavioral)?',
-    name: 'specialNeeds',
-  },
-];
-
-export const selectOptionsPO = [
-  {
-    label: 'How old are you?',
-    name: 'ageBracket',
-    options: [
-      '18-25 years old', 
-      '26 to 33 years old', 
-      '33 to 40 years old', 
-      '40 to 50 years old', 
-      '50 years old and above' 
-    ],
-  },
-  {
-    label: 'Your new pet needs to be good with:',
-    name: 'petGoodWith',
-    options: [
-      'Children UNDER 8 years old',
-      'Children OVER 8 years old',
-      'Elderly',
-    ],
-  },
-  {
-    label: 'How many hours will your new pet spend outside per day?',
-    name: 'hoursOutside',
-    options: [
-      '0 to 30 minutes', 
-      '30 minutes to 1 hour', 
-      '1 hour to 2 hours', 
-      '2 hours or more'
-    ],
-  },
-  {
-    label: 'Needs to stay outdoors for how many hours?',
-    name: 'petOutsideHours',
-    options: [
-      '0 to 30 minutes',
-      '30 minutes to 1 hour',
-      ' 1 hour to 2 hours',
-      '2 hours or more',
-    ],
-  },
-  {
-    label: 'When I am not at home, my new pet will stay at:',
-    name: 'petArea',
-    options: [
-      'the garage',
-      'in the yard',
-      'loose in the house',
-      'confined to one room in the house',
-    ],
-  },
-  {
-    label: 'Do you want an enthusiastic pet?',
-    name: 'enthusiasticPet',
-    options: ['Not at all', 'Very enthusiastic', 'Somewhat'],
-  },
-  {
-    label: 'Do you want a playful pet?',
-    name: 'playfulPet',
-    options: ['Not at all', 'Very enthusiastic', 'Somewhat'],
-  },
-  {
-    label: 'Do you want a laidback pet?',
-    name: 'laidbackPet',
-    options: ['Not at all', 'Very enthusiastic', 'Somewhat'],
-  },
-  {
-    label: 'What kind of pet do you like when it comes to training?',
-    name: 'trainablePet',
-    options: [
-      'No training',
-      'Some training',
-      'A lot of training',
-    ],
   },
 ];
