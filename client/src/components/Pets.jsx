@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 //import { PetsGrid, SearchBar } from './';
 //import { petsData } from '../utils/pets';
@@ -9,37 +9,35 @@ const Pets = () => {
   // Just for now, since data fetching is not yet done
   // TODO: Needs to work on
   useEffect(() => {
-    fetch("http://localhost:5000/pets/showpets", {
-      method: "GET",
-     })
-     .then((res) => { 
-      return res.json()
+    fetch('http://localhost:5000/pets/showpets', {
+      method: 'GET',
     })
-    .then((data) => { 
-      setItems(data) 
-    })
-   
-  }, [])
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setItems(data);
+      });
+  }, []);
 
   // Implement later
   const onSearchChange = event => {};
 
   return (
-    <table style={{width: 500, border: 1}}>
+    <table style={{ width: 500, border: 1 }}>
       <tbody>
-      <tr>
-        <th>Name</th>
-        <th>Age</th>
-      </tr>
-      {data.map((i)=> {
-        return(
-          <tr>
-            <td>{i.petName}</td>
-            <td>{i.age}</td>
-            
-          </tr>
-        )
-      })}
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+        {data.map(i => {
+          return (
+            <tr key={i._id}>
+              <td>{i.petName}</td>
+              <td>{i.age}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
