@@ -12,7 +12,8 @@ const JWT_SECRET = "your-secret-key";
 configurePassport(passport);
 
 // Register a new user
-router.post("/userregister", async (req, res) => {
+router.post("/addowner", async (req, res) => {
+  
   try {
     const {
       firstName,

@@ -24,6 +24,20 @@ export const addPetDefaultField = {
   vaccRecord: '',
 };
 
+export const addOwnerDefaultField = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  phoneNumber: '',
+  city: '',
+  country: '',
+  province: '',
+  street:'',
+  age: '',
+  favorites: '',
+};
+
 // property that needs for all radio buttons in form AddPet component
 export const radioOptions = [
   {
@@ -44,6 +58,12 @@ export const radioOptions = [
   },
 ];
 
+export const radioUserReg = [
+  {
+    label: 'Existing Pet Owner?',
+    name: 'existingPetOwner',
+  },
+];
 // property that needs for all dropdown input in AddPet component
 export const selectOptions = [
   {
