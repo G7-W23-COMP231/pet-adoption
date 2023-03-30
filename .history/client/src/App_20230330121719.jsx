@@ -9,7 +9,6 @@ import Navbar from './components/Navbar';
 import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister';
 import ShowPets from './components/Pets';
-import PetOwnerSurvey from './components/Survey/PetOwnerSurvey';
 
 function App() {
   {
