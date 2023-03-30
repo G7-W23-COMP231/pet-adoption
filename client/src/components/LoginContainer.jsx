@@ -37,7 +37,7 @@ const LoginContainer = ({ children, type }) => {
           left={-5}
           bg='#f7f7f7'
         >
-          {type === 'userLogin' ? (
+          {type === 'user' ? (
             <BiUser fontSize={30} />
           ) : (
             <BiHomeAlt2 fontSize={30} />

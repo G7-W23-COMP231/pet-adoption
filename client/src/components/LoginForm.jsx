@@ -13,7 +13,7 @@ import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 
 import { Link } from 'react-router-dom';
 
-const LoginForm = ({ handleChange, handleLogin }) => {
+const LoginForm = ({ handleChange, handleLogin, type }) => {
   return (
     <FormControl position='relative'>
       <Box mb={2}>
@@ -63,7 +63,9 @@ const LoginForm = ({ handleChange, handleLogin }) => {
       <Text fontSize='xs' textAlign='center'>
         Don't you have an account?{' '}
         <Box as='span' ml={1} letterSpacing={0.5} color='teal'>
-          <Link to='/register'>Signup</Link>
+          <Link to={type === 'user' ? '/UserRegister' : '/register'}>
+            Signup
+          </Link>
         </Box>
       </Text>
     </FormControl>

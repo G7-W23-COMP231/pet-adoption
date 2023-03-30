@@ -45,8 +45,12 @@ function UserLogin() {
     */
   };
   return (
-    <LoginContainer type='userLogin'>
-      <LoginForm handleChange={handleChange} handleLogin={handleLogin} />
+    <LoginContainer type='user'>
+      <LoginForm
+        handleChange={handleChange}
+        handleLogin={handleLogin}
+        type='user'
+      />
     </LoginContainer>
   );
 }
