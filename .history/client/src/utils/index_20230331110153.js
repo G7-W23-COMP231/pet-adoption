@@ -223,6 +223,19 @@ export const selectOptionsPO = [
     ],
   },
   {
+    label: 'When I am at home, I want my pet to be by my side?',
+    name: '',
+    options: [
+      'All of the time',
+      'Some of the time',
+      'Little of the time',
+      '2 hours or more',
+    ],
+  },
+
+
+
+  {
     label: 'When I am not at home, my new pet will stay at:',
     name: 'petArea',
     options: [
