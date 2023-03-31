@@ -23,12 +23,12 @@ function App() {
 
       <Routes>
         <Route exact path='/' element={<h1>Homepage</h1>} />
-        <Route exact path='/signin' element={<Login />} />
-        <Route exact path='/register' element={<Register />} />
+        <Route exact path='/shelter/login' element={<Login />} />
+        <Route exact path='/shelter/register' element={<Register />} />
         <Route exact path='/showpets' element={<ShowPets />} />
         <Route exact path='/addpet' element={<AddPet />} />
-        <Route exact path='/UserLogin' element={<UserLogin />} />
-        <Route exact path='/UserRegister' element={<UserRegister />} />
+        <Route exact path='/user/login' element={<UserLogin />} />
+        <Route exact path='/user/register' element={<UserRegister />} />
         <Route exact path='/petownersurvey' element={<PetOwnerSurvey />} />
       </Routes>
     </>
