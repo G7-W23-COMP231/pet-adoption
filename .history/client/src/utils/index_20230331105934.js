@@ -248,7 +248,7 @@ export const selectOptionsPO = [
     options: ['Not at all', 'Very enthusiastic', 'Somewhat'],
   },
   {
-    label: 'Are you willing to train your pet?',
+    label: 'What kind of pet do you like when it comes to training?',
     name: 'trainablePet',
     options: [
       'No training',

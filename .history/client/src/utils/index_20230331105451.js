@@ -213,7 +213,17 @@ export const selectOptionsPO = [
     ],
   },
   {
-    label: 'How many hours will your pet spend outside per day?',
+    label: 'How many hours will your new pet spend outside per day?',
+    name: 'hoursOutside',
+    options: [
+      '0 to 30 minutes', 
+      '30 minutes to 1 hour', 
+      '1 hour to 2 hours', 
+      '2 hours or more'
+    ],
+  },
+  {
+    label: 'You can bring your pet outdoors for how many hours?',
     name: 'petOutsideHours',
     options: [
       '0 to 30 minutes',
@@ -248,7 +258,7 @@ export const selectOptionsPO = [
     options: ['Not at all', 'Very enthusiastic', 'Somewhat'],
   },
   {
-    label: 'Are you willing to train your pet?',
+    label: 'What kind of pet do you like when it comes to training?',
     name: 'trainablePet',
     options: [
       'No training',
