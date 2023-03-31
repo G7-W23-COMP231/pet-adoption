@@ -75,7 +75,7 @@ export const Navbar = () => {
           spacing={6}
         >
           <Link
-            to='/signin'
+            to='/user/login'
             style={{ display: 'flex', justifyContent: 'center' }}
           >
             <Button
@@ -89,7 +89,7 @@ export const Navbar = () => {
               Sign In
             </Button>
           </Link>
-          <Link to='/register'>
+          <Link to='/user/register'>
             <Button
               display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
@@ -303,6 +303,23 @@ const NAV_ITEMS = [
   {
     label: `FAQ's`,
     href: '/faqs',
+  },
+
+  {
+    label: 'Shelter',
+    href: '/shelter',
+    children: [
+      {
+        label: 'Login as a shelter',
+        subLabel: 'We have several breeds of dogs',
+        href: '/shelter/login',
+      },
+      {
+        label: 'Register your shelter now',
+        subLabel: 'Register now',
+        href: '/shelter/register',
+      },
+    ],
   },
 ];
 
