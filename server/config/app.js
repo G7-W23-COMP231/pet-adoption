@@ -5,6 +5,7 @@ const cors = require("cors");
 const ownerRouter = require("../router/owner");
 const animalShelterRouter = require("../router/animalshelter");
 const petRouter = require("../router/pets");
+const surveyRouter = require("../router/survey");
 const passportConfig = require("./passport");
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -46,6 +47,7 @@ app.use(passport.initialize());
 app.use("/owner", ownerRouter);
 app.use("/animalshelter", animalShelterRouter);
 app.use("/pets", petRouter);
+app.use("/survey", surveyRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -13,7 +13,6 @@ configurePassport(passport);
 
 // Register a new user
 router.post("/addowner", async (req, res) => {
-  
   try {
     const {
       firstName,

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import LoginContainer from './LoginContainer';
-import LoginForm from './LoginForm';
+import LoginContainer from "./LoginContainer";
+import LoginForm from "./LoginForm";
 
 const defaultFormField = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 };
 
 // Login for potential pet owner
@@ -14,29 +14,29 @@ function UserLogin() {
   console.log(formField);
 
   // It will update the state for every input change
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
   };
 
-  const handleLogin = event => {
+  const handleLogin = (event) => {
     event.preventDefault();
 
     //fetch('http://localhost:5000/auth/login', {
-    fetch('http://localhost:5000/animalshelter/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("http://localhost:5000/owner/userlogin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formField),
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.message == 'Access Granted') {
-          window.location.href = '/showpets';
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message == "Access Granted") {
+          window.location.href = "/showpets";
         } else {
           alert(data.message);
         }
       })
-      .catch(err => alert('Access Denied'));
+      .catch((err) => alert("Access Denied"));
 
     /*
     .then(res => res.json())
@@ -45,11 +45,11 @@ function UserLogin() {
     */
   };
   return (
-    <LoginContainer type='user'>
+    <LoginContainer type="user">
       <LoginForm
         handleChange={handleChange}
         handleLogin={handleLogin}
-        type='user'
+        type="user"
       />
     </LoginContainer>
   );

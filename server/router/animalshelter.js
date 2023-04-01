@@ -15,7 +15,7 @@ configurePassport(passport);
 router.get("/info", async (req, res) => {
   try {
     const shelteruser = await shelterUser.find();
-    res.json(animals);
+    res.json(shelteruser);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
@@ -64,10 +64,14 @@ router.post("/login", async (req, res, next) => {
         if (error) return next(error);
 
         const token = jwt.sign({ sub: user._id }, JWT_SECRET);
-        res.cookie("jwt", token, { httpOnly: true, secure: true });
+        console.log(token);
+        //res.cookie("jwt", token, { httpOnly: true, secure: true });
+        //return res.status(200).json({ token });
+        res
+          .set("Authorization", `Bearer ${token}`)
+          .json({ message: "Login successful", token });
 
-        //return res.redirect("/");
-        return res.status(200).json({ message: "Access Granted" });
+        //return res.status(200).json({ message: "Access Granted" });
       });
     } catch (error) {
       return next(error);
