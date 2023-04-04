@@ -27,13 +27,14 @@ const PetOwnerSurvey = () => {
   };
 
   const handleSubmit = (event) => {
+    const token = localStorage.getItem("token");
     event.preventDefault();
-
     console.log(formField);
 
     fetch("http://localhost:5000/survey/ownersurvey", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formField),

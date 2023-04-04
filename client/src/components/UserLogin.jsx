@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import LoginContainer from "./LoginContainer";
 import LoginForm from "./LoginForm";
@@ -12,6 +13,7 @@ const defaultFormField = {
 function UserLogin() {
   const [formField, setFormField] = useState(defaultFormField);
   console.log(formField);
+  const navigate = useNavigate();
 
   // It will update the state for every input change
   const handleChange = (event) => {
@@ -30,8 +32,9 @@ function UserLogin() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.message == "Access Granted") {
-          window.location.href = "/showpets";
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          navigate("/showpets");
         } else {
           alert(data.message);
         }
@@ -45,11 +48,11 @@ function UserLogin() {
     */
   };
   return (
-    <LoginContainer type="user">
+    <LoginContainer>
       <LoginForm
         handleChange={handleChange}
         handleLogin={handleLogin}
-        type="user"
+        type={"user"}
       />
     </LoginContainer>
   );

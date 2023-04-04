@@ -4,9 +4,10 @@ const router = express.Router();
 const passport = require("passport");
 const uploadController = require("../controllers/upload");
 
+//add pet api
 router.post(
   "/addpet",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("shelterjwtStrategy", { session: false }),
   async (req, res) => {
     const {
       petId,
@@ -38,7 +39,7 @@ router.post(
         petId,
         petName,
         petCategory,
-        shelterId,
+        shelterId: req.user._id,
         age,
         gwithFirstPetOwner,
         canGetAlongWithOtherPets,
@@ -68,22 +69,36 @@ router.post(
   }
 );
 
+//show pet api
 router.get(
   "/showpets",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("shelterjwtStrategy", { session: false }),
   async (req, res) => {
     try {
-      const data = await Pet.find();
+      const data = await Pet.find(); //add { shelterId: req.user._id } inside find to query based on shelterId
       res.set(
         "Authorization",
         `Bearer ${req.headers.authorization.split(" ")[1]}`
       );
       res.json(data);
-      //console.log(data);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 );
+
+// Get all pets
+router.get("/pets", async (req, res) => {
+  try {
+    const pets = await Pet.find().populate(
+      "animalShelter",
+      "animalShelterName"
+    );
+    res.json(pets);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
 
 module.exports = router;

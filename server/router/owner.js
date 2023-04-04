@@ -11,7 +11,17 @@ const JWT_SECRET = "your-secret-key";
 // Configure Passport
 configurePassport(passport);
 
-// Register a new user
+router.get("/info", async (req, res) => {
+  try {
+    const owner = await Owner.find();
+    res.json(owner);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// Register a new pet owner
 router.post("/addowner", async (req, res) => {
   try {
     const {
@@ -38,7 +48,7 @@ router.post("/addowner", async (req, res) => {
         .json({ message: "User with this email already exists" });
     }
 
-    // Create new user object
+    // Create new pet owner object
     const user = new Owner({
       firstName,
       lastName,
@@ -76,10 +86,11 @@ router.post("/userlogin", async (req, res, next) => {
         if (error) return next(error);
 
         const token = jwt.sign({ sub: user._id }, JWT_SECRET);
-        res.cookie("jwt", token, { httpOnly: true, secure: true });
-
-        //return res.redirect("/");
-        return res.status(200).json({ message: "Success" });
+        console.log(token);
+        //res.cookie("jwt", token, { httpOnly: true, secure: true });
+        res
+          .set("Authorization", `Bearer ${token}`)
+          .json({ message: "Login successful", token });
       });
     } catch (error) {
       return next(error);
@@ -90,10 +101,17 @@ router.post("/userlogin", async (req, res, next) => {
 // Get user profile
 router.get(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("petownerjwtStrategy", { session: false }),
   (req, res) => {
     res.json(req.user);
   }
 );
+
+router.post("/logout", (req, res) => {
+  req.logout(); // if using sessions
+  // or
+  // req.user = null; // if using tokens
+  res.json({ message: "Successfully logged out." });
+});
 
 module.exports = router;

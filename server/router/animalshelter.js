@@ -25,7 +25,7 @@ router.get("/info", async (req, res) => {
 //Threepat- create post request to send info to MongoDB
 router.post("/register", async (req, res) => {
   try {
-    const { password, animalShelterName, location, phoneNumber, email } =
+    const { password, animalShelterName, location, phoneNumber, email, pets } =
       req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -42,10 +42,11 @@ router.post("/register", async (req, res) => {
       animalShelterName,
       location,
       phoneNumber,
+      pets,
     });
     await shelteruser.save();
     const token = jwt.sign({ sub: shelteruser._id }, JWT_SECRET);
-    console.log(JWT_SECRET);
+    console.log(token);
     return res.json({ token });
   } catch (err) {
     console.error(err);
@@ -64,7 +65,7 @@ router.post("/login", async (req, res, next) => {
         if (error) return next(error);
 
         const token = jwt.sign({ sub: user._id }, JWT_SECRET);
-        console.log(token);
+        //console.log(token);
         //res.cookie("jwt", token, { httpOnly: true, secure: true });
         //return res.status(200).json({ token });
         res
@@ -82,10 +83,21 @@ router.post("/login", async (req, res, next) => {
 //get shelter profile
 router.get(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("shelterjwtStrategy", { session: false }),
   (req, res) => {
+    res.set(
+      "Authorization",
+      `Bearer ${req.headers.authorization.split(" ")[1]}`
+    );
     res.json(req.user);
   }
 );
+
+router.post("/logout", (req, res) => {
+  req.logout(); // if using sessions
+  // or
+  // req.user = null; // if using tokens
+  res.json({ message: "Successfully logged out." });
+});
 
 module.exports = router;

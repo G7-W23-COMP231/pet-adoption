@@ -105,6 +105,6 @@ const petownerjwtStrategy = new JwtStrategy(
 module.exports = function (passport) {
   passport.use("shelterlocal", shelterlocal);
   passport.use("petownerlocal", petownerlocal);
-  passport.use(shelterjwtStrategy);
-  passport.use(petownerjwtStrategy);
+  passport.use("shelterjwtStrategy", shelterjwtStrategy);
+  passport.use("petownerjwtStrategy", petownerjwtStrategy);
 };

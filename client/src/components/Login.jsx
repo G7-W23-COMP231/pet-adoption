@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import LoginContainer from "./LoginContainer";
 import LoginForm from "./LoginForm";
@@ -11,6 +12,8 @@ const defaultFormField = {
 // Shelter LOGIN
 const Login = () => {
   const [formField, setFormField] = useState(defaultFormField);
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
   // It will update the state for every input change
   const handleChange = (event) => {
@@ -31,19 +34,31 @@ const Login = () => {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
-          window.location.href = "/showpets";
+          //getUserInfo();
+          navigate("/showpets");
         } else {
           alert(data.message);
         }
       })
       .catch((err) => alert("Access Denied"));
-
-    /*
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err));
-    */
   };
+
+  // const getUserInfo = () => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     fetch("http://localhost:5000/animalshelter/profile", {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((userData) => {
+  //         setUser(userData);
+  //         console.log(setUser);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // };
 
   return (
     <LoginContainer>
@@ -51,6 +66,7 @@ const Login = () => {
         handleChange={handleChange}
         handleLogin={handleLogin}
         type={"shelter"}
+        user={user}
       />
     </LoginContainer>
   );

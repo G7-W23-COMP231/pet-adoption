@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -12,21 +13,22 @@ import {
   Flex,
   Show,
   GridItem,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import DogImage from './DogImage';
+import DogImage from "./DogImage";
 
-import { FormInput } from './Inputs';
+import { FormInput } from "./Inputs";
 
 const defaultFormField = {
-  confirmPassword: '',
-  email: '',
-  location: 'ABCD',
-  password: '',
-  animalShelterName: '',
+  confirmPassword: "",
+  email: "",
+  location: "",
+  password: "",
+  animalShelterName: "",
 };
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formField, setFormField] = useState(defaultFormField);
 
   const { password, confirmPassword } = formField;
@@ -35,48 +37,78 @@ const Register = () => {
     setFormField(defaultFormField);
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert('Password do not match');
+      alert("Password do not match");
       return;
     }
 
     //fetch('http://localhost:5000/animalshelter/info', {
-    fetch('http://localhost:5000/animalshelter/register', {  
-      method: 'POST',
+    fetch("http://localhost:5000/animalshelter/register", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formField),
     })
-      .then(res => res.json())
-      .then(data => alert('Registered Succesfully'))
-      .catch(err => alert('Something went wrong', err));
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          //fetchShowpets();
+          navigate("/showpets");
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch((err) => alert("Something went wrong", err));
   };
 
+  // const fetchShowpets = () => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     alert("Access Denied");
+  //     navigate("/login");
+  //   } else {
+  //     fetch("http://localhost:5000/pets/showpets", {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         // handle the data and update the state of your component
+  //       })
+  //       .catch((err) => console.error(err));
+  //   }
+  //};
+
   return (
-    <Grid templateColumns={{ sm: '1fr', md: '1fr 1fr' }}>
-      <Show above='md'>
+    <Grid templateColumns={{ sm: "1fr", md: "1fr 1fr" }}>
+      <Show above="md">
         <GridItem>
           <DogImage />
         </GridItem>
       </Show>
 
       <GridItem>
-        <Center height={'calc(100vh - 60px)'}>
-          <FormControl px={6} maxW='300px'>
-            <Box as='header' mb={8} textAlign='center'>
-              <Heading as='h2' fontSize={{ base: 'sm', md: 'xl' }}>
+        <Center height={"calc(100vh - 60px)"}>
+          <FormControl px={6} maxW="300px">
+            <Box as="header" mb={8} textAlign="center">
+              <Heading as="h2" fontSize={{ base: "sm", md: "xl" }}>
                 I don't have an account
               </Heading>
-              <Box as='span' fontSize='xs'>
+              <Box as="span" fontSize="xs">
                 Sign up with your email and password
               </Box>
             </Box>
@@ -87,62 +119,62 @@ const Register = () => {
               }}
               gap={2}
             >
-              <GridItem area='first'>
+              <GridItem area="first">
                 <FormInput
-                  fontSize={'xs'}
-                  type='text'
-                  name='animalShelterName'
-                  placeholder='shelter name'
+                  fontSize={"xs"}
+                  type="text"
+                  name="animalShelterName"
+                  placeholder="shelter name"
                   onChange={handleChange}
                   required
                   value={formField.animalShelterName}
                 />
               </GridItem>
-              <GridItem area='second'>
+              <GridItem area="second">
                 <FormInput
-                  fontSize={'xs'}
-                  type='email'
-                  name='email'
-                  placeholder='email'
+                  fontSize={"xs"}
+                  type="email"
+                  name="email"
+                  placeholder="email"
                   onChange={handleChange}
                   required
                   value={formField.email}
                 />
               </GridItem>
 
-              <GridItem area='third'>
+              <GridItem area="third">
                 <Select
-                  fontSize={'xs'}
-                  name='location'
+                  fontSize={"xs"}
+                  name="location"
                   onChange={handleChange}
-                  focusBorderColor='teal.400'
+                  focusBorderColor="teal.400"
                   value={formField.location}
                 >
-                  <option value=''>Location</option>
-                  <option value='ABCD'>ABCD</option>
-                  <option value='EFGH'>EFGH</option>
-                  <option value='IJKL'>IJKL</option>
-                  <option value='MNOP'>MNOP</option>
+                  <option value="">Location</option>
+                  <option value="ON">ON</option>
+                  <option value="BC">BC</option>
+                  <option value="AB">AB</option>
+                  <option value="NB">NB</option>
                 </Select>
               </GridItem>
 
-              <GridItem area='fourth'>
+              <GridItem area="fourth">
                 <Flex gap={2}>
                   <FormInput
-                    fontSize={'xs'}
-                    type='password'
-                    name='password'
-                    placeholder='password'
+                    fontSize={"xs"}
+                    type="password"
+                    name="password"
+                    placeholder="password"
                     onChange={handleChange}
                     required
                     value={formField.password}
                   />
 
                   <FormInput
-                    fontSize={'xs'}
-                    type='password'
-                    name='confirmPassword'
-                    placeholder='confirm password'
+                    fontSize={"xs"}
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="confirm password"
                     onChange={handleChange}
                     required
                     value={formField.confirmPassword}
@@ -152,18 +184,18 @@ const Register = () => {
             </Grid>
             <Flex gap={4} mt={4}>
               <Button
-                fontSize={'xs'}
-                width='100%'
-                colorScheme='teal'
+                fontSize={"xs"}
+                width="100%"
+                colorScheme="teal"
                 onClick={handleSubmit}
               >
                 Sign Up
               </Button>
               <Button
-                fontSize={'xs'}
-                width='50%'
-                variant='outline'
-                colorScheme='teal'
+                fontSize={"xs"}
+                width="50%"
+                variant="outline"
+                colorScheme="teal"
                 onClick={resetFormFields}
               >
                 Cancel
