@@ -10,7 +10,7 @@ const defaultFormField = {
 };
 
 // Login for potential pet owner
-function UserLogin() {
+function UserLogin({ setIsUserLogin }) {
   const [formField, setFormField] = useState(defaultFormField);
   console.log(formField);
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ function UserLogin() {
       .then(data => {
         if (data.token) {
           localStorage.setItem('token', data.token);
+          setIsUserLogin(true);
           navigate('/showpets');
         } else {
           alert(data.message);

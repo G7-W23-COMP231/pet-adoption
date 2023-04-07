@@ -18,6 +18,7 @@ const SearchBar = ({ onSearchChange }) => {
         right='0'
         borderRadius='100px'
         aria-label='Search pets'
+        zIndex={1}
         icon={<SearchIcon />}
       />
     </InputGroup>
