@@ -22,7 +22,7 @@ const petSchema = new Schema(
     laidbackPet: Number,
     trainablePet: Number,
     specialNeeds: Number,
-    petPhoto: Buffer,
+    petPhoto: String,
     medHistory: String,
     behaveIssue: String,
     vaccRecord: String,

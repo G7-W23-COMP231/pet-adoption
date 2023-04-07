@@ -11,6 +11,9 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 const app = express();
+/* image upload limit */
+app.use(express.json({ limit: "25mb" }));
+app.use(express.urlencoded({ limit: "25mb" }));
 
 const uploadController = require("../controllers/upload");
 

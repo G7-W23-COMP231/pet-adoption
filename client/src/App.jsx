@@ -10,6 +10,7 @@ import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister';
 import ShowPets from './components/Pets';
 import PetOwnerSurvey from './components/Survey/PetOwnerSurvey';
+import UploadImage from "./components/UploadImage";
 
 function App() {
   {
@@ -20,6 +21,7 @@ function App() {
       <nav>
         <Navbar />
       </nav>
+      {/* <UploadImage /> */}
 
       <Routes>
         <Route exact path='/' element={<h1>Homepage</h1>} />

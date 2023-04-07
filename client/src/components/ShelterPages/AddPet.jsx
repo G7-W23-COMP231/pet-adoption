@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UploadImage from "../UploadImage";
 
 import {
   Button,
@@ -40,7 +41,8 @@ const AddPet = () => {
   const handleSubmit = (event) => {
     const token = localStorage.getItem("token");
     event.preventDefault();
-    console.log(formField);
+    //console.log(formField);
+    console.log(UploadImage.uploadImage);
 
     fetch("http://localhost:5000/pets/addpet", {
       method: "POST",
@@ -89,7 +91,7 @@ const AddPet = () => {
             />
           </Box>
           <Box mb={6}>
-            <FormInput
+            {/* <FormInput
               type="file"
               label="Pet Photo"
               name="petPhoto"
@@ -97,9 +99,9 @@ const AddPet = () => {
               onChange={handleChange}
               style={{ fontSize: ".7rem" }}
               outline="none"
-            />
+            /> */}
+            <UploadImage />
           </Box>
-
           <Grid
             templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
             gap={10}

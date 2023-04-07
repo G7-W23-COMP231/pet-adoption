@@ -9,6 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import UploadImage from "./UploadImage";
 
 const Pet = ({ pet }) => {
   // I will work on the fetching as soon as it is available

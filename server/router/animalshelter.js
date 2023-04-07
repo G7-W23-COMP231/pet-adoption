@@ -35,7 +35,7 @@ router.post("/register", async (req, res) => {
       return res.status(409).json({ message: "user already exist" });
     }
 
-    //create new shelter user
+    //create new  user
     const shelteruser = new shelterUser({
       email,
       password: hashedPassword,
@@ -80,7 +80,7 @@ router.post("/login", async (req, res, next) => {
   })(req, res, next);
 });
 
-//get shelter profile
+//get  profile
 router.get(
   "/profile",
   passport.authenticate("shelterjwtStrategy", { session: false }),
