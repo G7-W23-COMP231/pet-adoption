@@ -24,7 +24,12 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 
-export const Navbar = () => {
+export const Navbar = ({
+  isShelterLogin,
+  setIsShelterLogin,
+  isUserLogin,
+  setIsUserLogin,
+}) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -74,21 +79,41 @@ export const Navbar = () => {
           direction={'row'}
           spacing={6}
         >
-          <Link
-            to='/user/login'
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <Button
-              fontSize={'sm'}
-              fontWeight={400}
-              variant={'link'}
-              _hover={{
-                color: 'teal.500',
-              }}
+          {isShelterLogin || isUserLogin ? (
+            <Link to='/' style={{ display: 'flex', justifyContent: 'center' }}>
+              <Button
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+                _hover={{
+                  color: 'teal.500',
+                }}
+                onClick={() => {
+                  setIsShelterLogin(false);
+                  setIsUserLogin(false);
+                }}
+              >
+                Log out
+              </Button>
+            </Link>
+          ) : (
+            <Link
+              to='/user/login'
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
-              Sign In
-            </Button>
-          </Link>
+              <Button
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+                _hover={{
+                  color: 'teal.500',
+                }}
+              >
+                Sign In
+              </Button>
+            </Link>
+          )}
+
           <Link to='/user/register'>
             <Button
               display={{ base: 'none', md: 'inline-flex' }}
@@ -120,7 +145,7 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
-    <Stack direction={'row'} spacing={20}>
+    <Stack direction={'row'} spacing={20} justifyContent={'center'}>
       {NAV_ITEMS.map(navItem => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>

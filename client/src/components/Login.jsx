@@ -10,7 +10,7 @@ const defaultFormField = {
 };
 
 // Shelter LOGIN
-const Login = () => {
+const Login = ({ setIsShelterLogin }) => {
   const [formField, setFormField] = useState(defaultFormField);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -34,7 +34,9 @@ const Login = () => {
       .then(data => {
         if (data.token) {
           localStorage.setItem('token', data.token);
+          setIsShelterLogin(true);
           //getUserInfo();
+
           navigate('/showpets');
         } else {
           alert(data.message);
