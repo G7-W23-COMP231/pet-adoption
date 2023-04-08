@@ -10,6 +10,7 @@ import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister';
 import Pets from './components/Pets';
 import PetOwnerSurvey from './components/Survey/PetOwnerSurvey';
+import UploadImage from "./components/UploadImage";
 
 function App() {
   const [isShelterLogin, setIsShelterLogin] = useState(false);
@@ -27,6 +28,7 @@ function App() {
           setIsUserLogin={setIsUserLogin}
         />
       </nav>
+      {/* <UploadImage /> */}
 
       <Routes>
         <Route exact path='/' element={<h1>Home</h1>} />
