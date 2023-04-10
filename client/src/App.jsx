@@ -11,6 +11,7 @@ import UserRegister from './components/UserRegister';
 import Pets from './components/Pets';
 import PetOwnerSurvey from './components/Survey/PetOwnerSurvey';
 import UploadImage from "./components/UploadImage";
+import Petdetail from './components/Petdetail';
 
 function App() {
   const [isShelterLogin, setIsShelterLogin] = useState(false);
@@ -51,6 +52,8 @@ function App() {
           }
         />
         <Route exact path='/addpet' element={<AddPet />} />
+        <Route exact path='/petdetail' element={<Petdetail />} />
+
         <Route
           exact
           path='/user/login'
