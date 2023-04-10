@@ -1,4 +1,4 @@
-import { petsData } from "../utils/pets";
+import { petsData } from '../utils/pets';
 import {
   Image,
   FormLabel,
@@ -8,27 +8,33 @@ import {
   HStack,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import UploadImage from "./UploadImage";
+} from '@chakra-ui/react';
+import UploadImage from './UploadImage';
 
 const Pet = ({ pet }) => {
   // I will work on the fetching as soon as it is available
   return (
     <Card
-      width={{ base: "100%" }}
-      borderRadius="lg"
-      overflow="hidden"
-      fontSize="sm"
+      width={{ base: '100%', md: '300px' }}
+      borderRadius='lg'
+      overflow='hidden'
+      fontSize='sm'
     >
-      <a href="/signin">
-        <Image src={pet.petPhoto} alt={pet?.description} />
+      <a href='/signin'>
+        <Image
+          src={pet.petPhoto}
+          alt={pet?.description}
+          height={200}
+          width='100%'
+          objectFit='cover'
+        />
       </a>
       <CardBody>
-        <Heading fontSize="lg" mb={2}>
+        <Heading fontSize='lg' mb={2}>
           {pet.petName}
         </Heading>
 
-        <VStack alignItems="flex-start">
+        <VStack alignItems='flex-start'>
           <Text>Name: {pet?.petName}</Text>
           <Text>Age: {pet?.age} years old</Text>
         </VStack>
