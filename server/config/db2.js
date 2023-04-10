@@ -1,5 +1,5 @@
 module.exports = {
-  url: 'mongodb+srv://petadoption:Welcome123@cluster0.cytkpzs.mongodb.net/',
-  database: 'petadoption',
-  imgBucket: 'photos',
+  url: "mongodb+srv://rdeguzman:ys9Keo6MMTPltnZQ@rdeguzman.aar48eg.mongodb.net/",
+  database: "petadoption",
+  imgBucket: "photos",
 };

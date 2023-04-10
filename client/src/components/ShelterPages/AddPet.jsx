@@ -44,19 +44,24 @@ const AddPet = () => {
     //console.log(formField);
     console.log(UploadImage.uploadImage);
 
-    fetch("http://localhost:5000/pets/addpet", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formField),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Added Succesfully"), navigate("/showpets");
+    if (!token) {
+      navigate("/login");
+    } else {
+      fetch("http://localhost:5000/pets/addpet", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formField),
       })
-      .catch((err) => alert("Something went wrong", err));
+        .then((res) => res.json())
+        .then((data) => {
+          alert("Added Succesfully"), navigate("/showpets");
+        })
+        .catch((err) => alert("Something went wrong", err));
+    }
+    console.log(token);
   };
 
   return (

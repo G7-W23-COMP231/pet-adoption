@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useNavigate } from "react";
 
 import {
   Button,
@@ -29,19 +29,25 @@ const PetOwnerSurvey = () => {
   const handleSubmit = (event) => {
     const token = localStorage.getItem("token");
     event.preventDefault();
-    console.log(formField);
+    const navigate = useNavigate();
+    //console.log(formField);
 
-    fetch("http://localhost:5000/survey/ownersurvey", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formField),
-    })
-      .then((res) => res.json())
-      .then((data) => alert("Added Succesfully"))
-      .catch((err) => alert("Something went wrong", err));
+    if (!token) {
+      //alert("Access Denied");
+      navigate("/login");
+    } else {
+      fetch("http://localhost:5000/survey/ownersurvey", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formField),
+      })
+        .then((res) => res.json())
+        .then((data) => alert("Added Succesfully"))
+        .catch((err) => alert("Something went wrong", err));
+    }
   };
 
   return (

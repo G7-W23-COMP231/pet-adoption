@@ -39,7 +39,7 @@ router.post(
         laidBackPet,
         willingToTrainPet,
         specialNeeds,
-        ownerId,
+        ownerId: req.user.id,
       });
 
       await survey.save();

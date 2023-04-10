@@ -43,6 +43,7 @@ router.post("/register", async (req, res) => {
       location,
       phoneNumber,
       pets,
+      type: "Shelter User",
     });
     await shelteruser.save();
     const token = jwt.sign({ sub: shelteruser._id }, JWT_SECRET);
@@ -94,9 +95,9 @@ router.get(
 );
 
 router.post("/logout", (req, res) => {
-  req.logout(); // if using sessions
+  //req.logout(); // if using sessions
   // or
-  // req.user = null; // if using tokens
+  req.user = null; // if using tokens
   res.json({ message: "Successfully logged out." });
 });
 

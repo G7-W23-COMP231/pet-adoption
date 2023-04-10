@@ -14,10 +14,10 @@ const ownerSchema = new Schema(
     city: String,
     street: String,
     age: Number,
-    existingPetOwner: Number,
+    existingPetOwner: String,
     favorites: Array,
     password: String,
-    survey: { type: mongoose.Schema.Types.ObjectId, ref: "survey" },
+    surveyId: { type: mongoose.Schema.Types.ObjectId, ref: "survey" },
   },
   {
     collection: "owner",
