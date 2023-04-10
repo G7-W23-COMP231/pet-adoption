@@ -13,7 +13,6 @@ router.post(
       petId,
       petName,
       petCategory,
-      shelterId,
       age,
       gwithFirstPetOwner,
       canGetAlongWithOtherPets,
@@ -35,8 +34,6 @@ router.post(
     } = req.body;
 
     try {
-      const petPhotoUrl = await uploadImage(petPhoto); // upload the pet's photo and get the URL
-      //console.log(petPhotoUrl);
       const pet = new Pet({
         petId,
         petName,
@@ -56,7 +53,7 @@ router.post(
         laidbackPet,
         trainablePet,
         specialNeeds,
-        petPhoto: petPhotoUrl,
+        petPhoto,
         medHistory,
         behaveIssue,
         vaccRecord,
@@ -92,16 +89,27 @@ router.get(
 // Get all pets for pet owner entrance
 router.get("/pets", async (req, res) => {
   try {
-    const pets = await Pet.find().populate(
-      "animalShelter",
-      "animalShelterName"
+    const data = await Pet.find(); //add { shelterId: req.user._id } inside find to query based on shelterId
+    res.set(
+      "Authorization",
+      `Bearer ${req.headers.authorization.split(" ")[1]}`
     );
-    res.json(pets);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
+//   try {
+//     const pets = await Pet.find().populate(
+//       "animalShelter",
+//       "animalShelterName"
+//     );
+//     res.json(pets);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Server error");
+//   }
+// });
 
 router.post("/uploadImage", (req, res) => {
   uploadImage(req.body.image)

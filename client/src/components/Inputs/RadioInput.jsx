@@ -13,7 +13,11 @@ export function RadioInput({ label, name, onChange }) {
       <FormLabel as="legend" htmlFor={name} style={{ marginBottom: ".4rem" }}>
         {label}
       </FormLabel>
-      <RadioGroup style={{ marginLeft: "3rem" }} colorScheme="teal">
+      <RadioGroup
+        style={{ marginLeft: "3rem" }}
+        colorScheme="teal"
+        defaultValue="Yes"
+      >
         <Flex>
           <Radio name={name} onChange={onChange} value="Yes">
             {yes}

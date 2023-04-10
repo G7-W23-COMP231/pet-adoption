@@ -112,6 +112,7 @@ router.post("/logout", (req, res) => {
   //req.logout(); // if using sessions
   // or
   req.user = null; // if using tokens
+
   res.json({ message: "Successfully logged out." });
 });
 

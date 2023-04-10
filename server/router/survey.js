@@ -22,7 +22,7 @@ router.post(
         laidBackPet,
         willingToTrainPet,
         specialNeeds,
-        ownerId,
+        //ownerId,
       } = req.body;
 
       const survey = new Survey({
@@ -39,10 +39,12 @@ router.post(
         laidBackPet,
         willingToTrainPet,
         specialNeeds,
-        ownerId: req.user.id,
+        ownerId: req.user._id,
       });
 
       await survey.save();
+      res.json(survey);
+      console.log(survey);
     } catch (error) {
       console.error(error);
     }

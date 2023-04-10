@@ -6,12 +6,17 @@ const SelectInput = ({ label, name, options, onChange }) => {
   return (
     <div style={{ marginBottom: "2rem" }}>
       <FormLabel htmlFor={name}>{label}</FormLabel>
-      <Select id={name} name={name} onChange={onChange}>
+      <Select
+        id={name}
+        name={name}
+        onChange={onChange}
+        defaultValue={options[0]}
+      >
         {options.length <= 0 ? (
           <h1>Something went wrong</h1>
         ) : (
           options.map((option, i) => (
-            <option key={option + i} value={i + option}>
+            <option key={option + i} value={option}>
               {option}
             </option>
           ))

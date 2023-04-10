@@ -10,7 +10,7 @@ const CheckBoxInput = ({ label, choices, name, onChange, style }) => {
   const { first, second, third } = choices;
   return (
     <div>
-      <CheckboxGroup colorScheme="green">
+      <CheckboxGroup colorScheme="green" defaultValue={first}>
         <FormLabel style={{ fontSize: style.fontSize }}>{label}</FormLabel>
         <Stack spacing={[1, 5]} direction={["column", "row"]}>
           <Checkbox name={name} onChange={onChange} value={first}>

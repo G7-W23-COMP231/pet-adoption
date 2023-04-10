@@ -1,4 +1,5 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Button,
@@ -16,6 +17,7 @@ import { selectOptionsPO, radioOptionsPO } from "../../utils";
 
 const PetOwnerSurvey = () => {
   const [formField, setFormField] = useState({});
+  const navigate = useNavigate();
 
   const resetFormFields = () => {
     setFormField(petOwnerSurveyDefaultField);
@@ -29,7 +31,7 @@ const PetOwnerSurvey = () => {
   const handleSubmit = (event) => {
     const token = localStorage.getItem("token");
     event.preventDefault();
-    const navigate = useNavigate();
+
     //console.log(formField);
 
     if (!token) {
