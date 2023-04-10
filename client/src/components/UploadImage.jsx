@@ -1,13 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import assets from "../assets/assets.gif";
-import axios from "axios";
+import React from 'react';
+import { useState } from 'react';
+import assets from '../assets/assets.gif';
+import axios from 'axios';
 
-export default function UploadImage() {
+export default function UploadImage({ url, setUrl }) {
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState("");
 
-  const convertBase64 = (file) => {
+  const convertBase64 = file => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
@@ -16,7 +15,7 @@ export default function UploadImage() {
         resolve(fileReader.result);
       };
 
-      fileReader.onerror = (error) => {
+      fileReader.onerror = error => {
         reject(error);
       };
     });
@@ -25,8 +24,8 @@ export default function UploadImage() {
   function uploadSingleImage(base64) {
     setLoading(true);
     axios
-      .post("http://localhost:5000/pets/uploadImage", { image: base64 })
-      .then((res) => {
+      .post('http://localhost:5000/pets/uploadImage', { image: base64 })
+      .then(res => {
         setUrl(res.data);
         //console.log('hellooo' + res.data)
         //alert("Image uploaded Succesfully");
@@ -47,7 +46,7 @@ export default function UploadImage() {
   //     .catch(console.log);
   // }
 
-  const uploadImage = async (event) => {
+  const uploadImage = async event => {
     const files = event.target.files;
 
     if (files.length === 1) {
@@ -66,15 +65,15 @@ export default function UploadImage() {
 
   function UploadInput() {
     return (
-      <div className="flex items-center justify-center w-full">
-        <label
-          htmlFor="petPhoto"><span> Pet Photo!!</span>
+      <div className='flex items-center justify-center w-full'>
+        <label htmlFor='petPhoto'>
+          <span> Pet Photo!!</span>
           <input
             onChange={uploadImage}
-            type="file"
-            label="Pet Photo"
-            name="petPhoto"
-            id="file"
+            type='file'
+            label='Pet Photo'
+            name='petPhoto'
+            id='file'
           />
         </label>
       </div>
@@ -82,18 +81,23 @@ export default function UploadImage() {
   }
 
   return (
-    <div className="flex justify-center flex-col m-8 ">
+    <div className='flex justify-center flex-col m-8 '>
       <div>
         {url && (
           <div>
-            <img src={url} target="_blank" rel="noopener noreferrer"  width={300}/>
+            <img
+              src={url}
+              target='_blank'
+              rel='noopener noreferrer'
+              width={300}
+            />
           </div>
         )}
       </div>
       <div>
         {loading ? (
-          <div className="flex items-center justify-center">
-            <img src={assets} />{" "}
+          <div className='flex items-center justify-center'>
+            <img src={assets} />{' '}
           </div>
         ) : (
           <UploadInput />
