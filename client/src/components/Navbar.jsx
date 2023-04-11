@@ -95,7 +95,6 @@ export const Navbar = ({
                         "http://localhost:5000/animalshelter/logout",
                         {
                           method: "POST",
-                          credentials: "include",
                         }
                       );
                       if (response.ok) {
@@ -109,11 +108,11 @@ export const Navbar = ({
                         "http://localhost:5000/owner/logout",
                         {
                           method: "POST",
-                          credentials: "include",
                         }
                       );
                       if (response.ok) {
                         setIsUserLogin(false);
+                        alert("log out succesfull");
                       } else {
                         throw new error("Logout failed!!");
                       }

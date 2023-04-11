@@ -99,6 +99,24 @@ router.get("/pets", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+//api to get pet based on pet id
+router.get("/pet/:petid", async (req, res) => {
+  try {
+    const data = await Pet.findOne({ _id: req.params.petid }); //find a pet by its id
+    if (!data) {
+      //if pet not found, send a 404 response
+      return res.status(404).json({ message: "Pet not found" });
+    }
+    // res.set(
+    //   "Authorization",
+    //   `Bearer ${req.headers.authorization.split(" ")[1]}`
+    // );
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 //   try {
 //     const pets = await Pet.find().populate(
 //       "animalShelter",
