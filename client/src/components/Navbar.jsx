@@ -35,86 +35,87 @@ export const Navbar = ({
   return (
     <Box>
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
-        minH={"60px"}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
+        bg={useColorModeValue('white', 'gray.800')}
+        color={useColorModeValue('gray.600', 'white')}
+        minH={'60px'}
+        py={{ base: 4 }}
+        px={{ base: 10 }}
         borderBottom={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
-        align={"center"}
+        borderStyle={'solid'}
+        borderColor={useColorModeValue('gray.200', 'gray.900')}
+        align={'center'}
       >
         <Flex
-          flex={{ base: 1, md: "auto" }}
+          flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
+          display={{ base: 'flex', md: 'none' }}
         >
           <IconButton
             onClick={onToggle}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
             }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
+            variant={'ghost'}
+            aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
+            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+            fontFamily={'heading'}
+            color={useColorModeValue('gray.800', 'white')}
+            marginBottom={0}
           >
             Logo
           </Text>
 
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
           </Flex>
         </Flex>
 
         <Stack
           flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
+          justify={'flex-end'}
+          direction={'row'}
           spacing={6}
         >
           {isShelterLogin || isUserLogin ? (
-            <Link to="/" style={{ display: "flex", justifyContent: "center" }}>
+            <Link to='/' style={{ display: 'flex', justifyContent: 'center' }}>
               <Button
-                fontSize={"sm"}
+                fontSize={'sm'}
                 fontWeight={400}
-                variant={"link"}
+                variant={'link'}
                 _hover={{
-                  color: "teal.500",
+                  color: 'teal.500',
                 }}
                 onClick={async () => {
                   try {
                     if (isShelterLogin) {
                       const response = await fetch(
-                        "http://localhost:5000/animalshelter/logout",
+                        'http://localhost:5000/animalshelter/logout',
                         {
-                          method: "POST",
+                          method: 'POST',
                         }
                       );
                       if (response.ok) {
                         setIsShelterLogin(false);
-                        alert("log out succesfull");
+                        alert('log out succesfull');
                       } else {
-                        throw new error("Shelter logout failed!");
+                        throw new error('Shelter logout failed!');
                       }
                     } else if (isUserLogin) {
                       const response = await fetch(
-                        "http://localhost:5000/owner/logout",
+                        'http://localhost:5000/owner/logout',
                         {
-                          method: "POST",
+                          method: 'POST',
                         }
                       );
                       if (response.ok) {
                         setIsUserLogin(false);
-                        alert("log out succesfull");
+                        alert('log out succesfull');
                       } else {
-                        throw new error("Logout failed!!");
+                        throw new error('Logout failed!!');
                       }
                     } else {
                       return;
@@ -129,15 +130,15 @@ export const Navbar = ({
             </Link>
           ) : (
             <Link
-              to="/user/login"
-              style={{ display: "flex", justifyContent: "center" }}
+              to='/user/login'
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
               <Button
-                fontSize={"sm"}
+                fontSize={'sm'}
                 fontWeight={400}
-                variant={"link"}
+                variant={'link'}
                 _hover={{
-                  color: "teal.500",
+                  color: 'teal.500',
                 }}
               >
                 Sign In
@@ -145,16 +146,16 @@ export const Navbar = ({
             </Link>
           )}
 
-          <Link to="/user/register">
+          <Link to='/user/register'>
             <Button
-              display={{ base: "none", md: "inline-flex" }}
-              fontSize={"sm"}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
               fontWeight={600}
-              color={"white"}
-              bg={"teal.400"}
+              color={'white'}
+              bg={'teal.400'}
               _hover={{
-                bg: "teal.300",
-                color: "white",
+                bg: 'teal.300',
+                color: 'white',
               }}
             >
               Sign Up
