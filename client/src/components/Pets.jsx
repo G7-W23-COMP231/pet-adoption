@@ -18,7 +18,9 @@ const Pets = ({ isUserLogin, isShelterLogin }) => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
 
-  const filteredPets = data.filter((pet) => pet.petName?.includes(searchInput));
+  const filteredPets = data.filter(pet =>
+    pet.petName?.toLowerCase().includes(searchInput.toLowerCase())
+  );
 
   // Just for now, since data fetching is not yet done
   // TODO: Needs to work on
