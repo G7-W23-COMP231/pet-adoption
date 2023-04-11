@@ -79,29 +79,29 @@ const Pets = ({ isUserLogin, isShelterLogin }) => {
 
   return (
     <Grid
-      templateColumns={{ base: "1fr", lg: "200px 1fr" }}
-      minH="calc(100vh - 60px)"
+      templateColumns={{ base: '1fr', lg: '200px 1fr' }}
+      minH='calc(100vh - 60px)'
       gap={2}
     >
-      <Show above="lg">
-        <GridItem padding={5} borderRight="1px solid #f5f7f9">
-          <VStack justifyContent="space-between">
+      <Show above='lg'>
+        <GridItem padding={5} borderRight='1px solid #f5f7f9'>
+          <VStack justifyContent='space-between'>
             <SearchBar onSearchChange={onSearchChange} />
 
             {isUserLogin && (
               <Button
-                width="100%"
+                width='100%'
                 borderRadius={20}
-                onClick={() => navigate("/petownersurvey")}
+                onClick={() => navigate('/petownersurvey')}
               >
                 Survey
               </Button>
             )}
             {isShelterLogin && (
               <Button
-                width="100%"
+                width='100%'
                 borderRadius={20}
-                onClick={() => navigate("/addpet")}
+                onClick={() => navigate('/addpet')}
               >
                 Add Pet
               </Button>
@@ -111,13 +111,13 @@ const Pets = ({ isUserLogin, isShelterLogin }) => {
       </Show>
       <GridItem>
         {filteredPets.length === 0 ? (
-          <Box h="100vh" display="flex" justifyContent="center">
+          <Box h='100vh' display='flex' justifyContent='center'>
             <Heading marginTop={40}>No pets available...</Heading>
           </Box>
         ) : (
           <PetsGrid>
-            {filteredPets.map((pet) => (
-              <Pet key={pet._id} pet={pet} />
+            {filteredPets.map(pet => (
+              <Pet isShelterLogin={isShelterLogin} key={pet._id} pet={pet} />
             ))}
           </PetsGrid>
         )}

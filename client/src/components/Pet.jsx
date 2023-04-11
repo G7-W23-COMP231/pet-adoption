@@ -5,12 +5,13 @@ import {
   Button,
   Heading,
   Text,
+  Box,
   VStack,
 } from '@chakra-ui/react';
 import noImage from '../assets/no-image-placeholder.webp';
 import UploadImage from './UploadImage';
 
-const Pet = ({ pet }) => {
+const Pet = ({ pet, isShelterLogin }) => {
   // I will work on the fetching as soon as it is available
   return (
     <Card
@@ -37,16 +38,22 @@ const Pet = ({ pet }) => {
           <Text margin={0}>Name: {pet?.petName || 'Not Applicable'}</Text>
           <Text>Age: {pet?.age} years old</Text>
         </VStack>
-        <Button
-          borderRadius={100}
-          colorScheme='green'
-          size='sm'
-          position='absolute'
-          right={5}
-          bottom={5}
-        >
-          Adopt
-        </Button>
+        <Box display='flex' justifyContent='flex-end' marginTop={3} gap={2}>
+          {isShelterLogin && (
+            <Button
+              borderRadius={100}
+              colorScheme='green'
+              size='sm'
+              variant='outline'
+            >
+              Edit
+            </Button>
+          )}
+
+          <Button borderRadius={100} colorScheme='green' size='sm'>
+            Adopt
+          </Button>
+        </Box>
       </CardBody>
     </Card>
   );
