@@ -94,21 +94,21 @@ const Register = () => {
   //};
 
   return (
-    <Grid templateColumns={{ sm: "1fr", md: "1fr 1fr" }}>
-      <Show above="md">
+    <Grid templateColumns={{ sm: '1fr', md: '1fr 1fr' }}>
+      <Show above='md'>
         <GridItem>
           <DogImage />
         </GridItem>
       </Show>
 
       <GridItem>
-        <Center height={"calc(100vh - 60px)"}>
-          <FormControl px={6} maxW="300px">
-            <Box as="header" mb={8} textAlign="center">
-              <Heading as="h2" fontSize={{ base: "sm", md: "xl" }}>
+        <Center height={'calc(100vh - 73px)'}>
+          <FormControl px={6} maxW='300px'>
+            <Box as='header' mb={8} textAlign='center'>
+              <Heading as='h2' fontSize={{ base: 'sm', md: 'xl' }}>
                 I don't have an account
               </Heading>
-              <Box as="span" fontSize="xs">
+              <Box as='span' fontSize='xs'>
                 Sign up with your email and password
               </Box>
             </Box>
@@ -119,62 +119,62 @@ const Register = () => {
               }}
               gap={2}
             >
-              <GridItem area="first">
+              <GridItem area='first'>
                 <FormInput
-                  fontSize={"xs"}
-                  type="text"
-                  name="animalShelterName"
-                  placeholder="shelter name"
+                  fontSize={'xs'}
+                  type='text'
+                  name='animalShelterName'
+                  placeholder='shelter name'
                   onChange={handleChange}
                   required
                   value={formField.animalShelterName}
                 />
               </GridItem>
-              <GridItem area="second">
+              <GridItem area='second'>
                 <FormInput
-                  fontSize={"xs"}
-                  type="email"
-                  name="email"
-                  placeholder="email"
+                  fontSize={'xs'}
+                  type='email'
+                  name='email'
+                  placeholder='email'
                   onChange={handleChange}
                   required
                   value={formField.email}
                 />
               </GridItem>
 
-              <GridItem area="third">
+              <GridItem area='third'>
                 <Select
-                  fontSize={"xs"}
-                  name="location"
+                  fontSize={'xs'}
+                  name='location'
                   onChange={handleChange}
-                  focusBorderColor="teal.400"
+                  focusBorderColor='teal.400'
                   value={formField.location}
                 >
-                  <option value="">Location</option>
-                  <option value="ON">ON</option>
-                  <option value="BC">BC</option>
-                  <option value="AB">AB</option>
-                  <option value="NB">NB</option>
+                  <option value=''>Location</option>
+                  <option value='ON'>ON</option>
+                  <option value='BC'>BC</option>
+                  <option value='AB'>AB</option>
+                  <option value='NB'>NB</option>
                 </Select>
               </GridItem>
 
-              <GridItem area="fourth">
+              <GridItem area='fourth'>
                 <Flex gap={2}>
                   <FormInput
-                    fontSize={"xs"}
-                    type="password"
-                    name="password"
-                    placeholder="password"
+                    fontSize={'xs'}
+                    type='password'
+                    name='password'
+                    placeholder='password'
                     onChange={handleChange}
                     required
                     value={formField.password}
                   />
 
                   <FormInput
-                    fontSize={"xs"}
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="confirm password"
+                    fontSize={'xs'}
+                    type='password'
+                    name='confirmPassword'
+                    placeholder='confirm password'
                     onChange={handleChange}
                     required
                     value={formField.confirmPassword}
@@ -184,18 +184,18 @@ const Register = () => {
             </Grid>
             <Flex gap={4} mt={4}>
               <Button
-                fontSize={"xs"}
-                width="100%"
-                colorScheme="teal"
+                fontSize={'xs'}
+                width='100%'
+                colorScheme='teal'
                 onClick={handleSubmit}
               >
                 Sign Up
               </Button>
               <Button
-                fontSize={"xs"}
-                width="50%"
-                variant="outline"
-                colorScheme="teal"
+                fontSize={'xs'}
+                width='50%'
+                variant='outline'
+                colorScheme='teal'
                 onClick={resetFormFields}
               >
                 Cancel

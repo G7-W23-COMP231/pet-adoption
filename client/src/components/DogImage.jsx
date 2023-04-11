@@ -10,6 +10,7 @@ const DogImage = () => {
       objectFit='cover'
       boxSize={'calc(100vh - 60px)'}
       borderRightRadius='10px'
+
     />
   );
 };

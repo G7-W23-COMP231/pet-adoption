@@ -9,7 +9,7 @@ const LoginContainer = ({ children, type }) => {
   return (
     <Center
       minWidth='100vw'
-      height='calc(100vh - 60px)'
+      height='calc(100vh - 73px)'
       backgroundImage={wave}
       bgPosition='bottom'
       bgRepeat='no-repeat'

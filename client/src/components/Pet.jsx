@@ -31,7 +31,7 @@ const Pet = ({ pet, isShelterLogin }) => {
       </a>
       <CardBody position='relative' bg='#fdfcfc'>
         <Heading fontSize='lg' mb={2}>
-          {pet.petName || 'Not Applicable'}
+          {pet?.petName || 'Not Applicable'}
         </Heading>
 
         <VStack alignItems='flex-start'>
@@ -42,7 +42,7 @@ const Pet = ({ pet, isShelterLogin }) => {
           {isShelterLogin && (
             <Button
               borderRadius={100}
-              colorScheme='green'
+              colorScheme='teal'
               size='sm'
               variant='outline'
             >
@@ -50,7 +50,7 @@ const Pet = ({ pet, isShelterLogin }) => {
             </Button>
           )}
 
-          <Button borderRadius={100} colorScheme='green' size='sm'>
+          <Button borderRadius={100} colorScheme='teal' size='sm'>
             Adopt
           </Button>
         </Box>

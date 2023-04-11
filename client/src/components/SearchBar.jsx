@@ -16,9 +16,12 @@ const SearchBar = ({ onSearchChange }) => {
       <IconButton
         position='absolute'
         right='0'
-        borderRadius='100px'
+        borderRadius='full'
         aria-label='Search pets'
+        width='30%'
         zIndex={1}
+        colorScheme='teal'
+        bg='teal.400'
         icon={<SearchIcon />}
       />
     </InputGroup>
