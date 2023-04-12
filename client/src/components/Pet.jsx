@@ -16,11 +16,12 @@ import { useNavigate } from 'react-router-dom';
 const Pet = ({ pet, isShelterLogin, isUserLogin, setPetId }) => {
   const navigate = useNavigate();
 
+
   const link = isShelterLogin
     ? `/pets/${pet._id}`
     : isUserLogin
     ? `/pets/${pet._id}`
-    : '/signin';
+    : '/user/login';
 
   // I will work on the fetching as soon as it is available
   return (
