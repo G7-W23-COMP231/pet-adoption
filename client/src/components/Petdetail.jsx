@@ -1,52 +1,93 @@
-import { petsData } from '../utils/pets';
-import { Image } from '@chakra-ui/react';
-
-export default function Petdetail() {
+import { Box, Button, Image } from '@chakra-ui/react';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { Text } from '@chakra-ui/react';
+export default function Petdetail({ pet }) {
   return (
-    <div className="vh-100" style={{ backgroundColor: '#9de2ff' }}>
-     
-     
-                <div className="d-flex text-black">
-                  <div className="flex-shrink-0">
-                    <Image
-                      style={{ width: '180px', borderRadius: '10px' }}
-                      src='http://res.cloudinary.com/dmkpagj7j/image/upload/v1675859394/tlrbeg59kleshgyasrbd.png'
-                      alt='Generic placeholder image'
-                      fluid />
-                  </div>
-                  <div className="flex-grow-1 ms-3">
-                    <h1>Name: Bella</h1>
-                    <h3>Breed: Siamese</h3>
-                    <h4>Description: Bella is a sweet and loving dog </h4>
-                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
-                      style={{ backgroundColor: '#efefef' }}>
-                      <div>
-                        <p className="small text-muted mb-1">Age:</p>
-                        <p className="mb-0">1</p>
-                      </div>
-                      <div className="px-3">
-                        <p className="small text-muted mb-1">Gender:</p>
-                        <p className="mb-0">Female</p>
-                      </div>
-                      <div>
-                        <p className="small text-muted mb-1">Location:</p>
-                        <p className="mb-0">Los Angeles, CA</p>
-                      </div>
-                      <div>
-                        <p className="small text-muted mb-1">Adoption Fee:</p>
-                        <p className="mb-0">$150</p>
-                      </div>
-                      <div>
-                        <p className="small text-muted mb-1">ID:</p>
-                        <p className="mb-0">2</p>
-                      </div>
-                    </div>
-                    <div className="d-flex pt-1">
-                    
-                    </div>
-                  </div>
-                </div>
-            
-    </div>
+    <Box width={{ base: '80%', md: '50%' }} mx='auto'>
+      <Box
+        display='flex'
+        flexDirection={{ base: 'column', md: 'row' }}
+        marginTop={{ base: 10, md: 20 }}
+        color='#444'
+        gap={{ md: 20 }}
+      >
+        <Image
+          src={pet?.petPhoto}
+          alt={pet?.petName}
+          borderRadius={10}
+          width='100%'
+          height={{ base: '300px', md: '400px' }}
+          objectFit='cover'
+          marginBottom={5}
+        />
+
+        <Box
+          fontSize={16}
+          display='flex'
+          flexDirection={{ base: 'row', md: 'column' }}
+          gap={{ base: 10, md: 2 }}
+        >
+          <Box>
+            <Text>
+              Name:
+              <Text as='span' fontWeight='semibold'>
+                {' '}
+                {pet?.petName}
+              </Text>
+            </Text>
+            <Text>
+              Breed:{' '}
+              <Text as='span' fontWeight='semibold'>
+                {pet?.petBreed}
+              </Text>
+            </Text>
+            <Text>
+              Age:{' '}
+              <Text as='span' fontWeight='semibold' whiteSpace='nowrap'>
+                {pet?.age}
+              </Text>
+            </Text>
+          </Box>
+          <Box>
+            <Text>
+              Size:{' '}
+              <Text as='span' fontWeight='semibold'>
+                N/A
+              </Text>
+            </Text>
+
+            <Text>
+              Gender:{' '}
+              <Text as='span' fontWeight='semibold'>
+                {pet?.petGender}
+              </Text>{' '}
+            </Text>
+            {/* name, breed, age, size, gender, temperament, behaviour, medical history */}
+          </Box>
+        </Box>
+      </Box>
+      <Box display='flex' marginTop={5} gap={4}>
+        <Button borderRadius='full' colorScheme='orange' width='150px'>
+          Select
+        </Button>
+        <Box
+          boxSize={10}
+          bg='#fff'
+          cursor='pointer'
+          outline='1px solid rgb(221, 107, 32)'
+          transition='all 400ms'
+          _hover={{
+            bg: 'rgb(233, 172, 132)',
+            outline: '1px solid transparent',
+          }}
+          borderRadius='full'
+          display='flex'
+          justifyContent='center'
+          alignItems='center'
+        >
+          <AiOutlineHeart size={22} color='rgb(221, 107, 32)' />
+        </Box>
+      </Box>
+    </Box>
   );
 }

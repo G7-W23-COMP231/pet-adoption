@@ -13,9 +13,9 @@ import { PetsGrid, SearchBar, Pet } from "./";
 
 //import { petsData } from '../utils/pets';
 
-const Pets = ({ isUserLogin, isShelterLogin }) => {
+const Pets = ({ isUserLogin, isShelterLogin, setPetId }) => {
   const [data, setItems] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState('');
   const navigate = useNavigate();
 
   const filteredPets = data.filter(pet =>
@@ -25,33 +25,33 @@ const Pets = ({ isUserLogin, isShelterLogin }) => {
   // Just for now, since data fetching is not yet done
   // TODO: Needs to work on
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (!token) {
-      alert("Access Denied");
-      navigate("/login");
+      alert('Access Denied');
+      navigate('/login');
     } else {
-      console.log("Token:", token);
+      console.log('Token:', token);
       const headers = {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       };
-      console.log("Headers:", headers);
-      const endpoints = isShelterLogin ? "showpets" : "pets";
+      console.log('Headers:', headers);
+      const endpoints = isShelterLogin ? 'showpets' : 'pets';
       fetch(`http://localhost:5000/pets/${endpoints}`, {
-        method: "GET",
+        method: 'GET',
         headers: headers,
       })
-        .then((res) => {
+        .then(res => {
           return res.json();
         })
-        .then((data) => {
+        .then(data => {
           setItems(data);
         });
     }
   }, [isShelterLogin, navigate]);
 
   // Implement later
-  const onSearchChange = (event) => {
+  const onSearchChange = event => {
     setSearchInput(event.target.value);
   };
 
@@ -92,6 +92,7 @@ const Pets = ({ isUserLogin, isShelterLogin }) => {
               <Button
                 width='100%'
                 borderRadius={20}
+                colorScheme='teal'
                 onClick={() => navigate('/petownersurvey')}
               >
                 Survey
@@ -101,6 +102,7 @@ const Pets = ({ isUserLogin, isShelterLogin }) => {
               <Button
                 width='100%'
                 borderRadius={20}
+                colorScheme='teal'
                 onClick={() => navigate('/addpet')}
               >
                 Add Pet
@@ -117,7 +119,13 @@ const Pets = ({ isUserLogin, isShelterLogin }) => {
         ) : (
           <PetsGrid>
             {filteredPets.map(pet => (
-              <Pet isShelterLogin={isShelterLogin} key={pet._id} pet={pet} />
+              <Pet
+                isShelterLogin={isShelterLogin}
+                isUserLogin={isUserLogin}
+                key={pet._id}
+                pet={pet}
+                setPetId={setPetId}
+              />
             ))}
           </PetsGrid>
         )}
