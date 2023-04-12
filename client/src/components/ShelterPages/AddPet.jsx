@@ -110,10 +110,10 @@ const AddPet = () => {
             <GridItem margin="10px">
               <FormInput
                 type="text"
-                placeHolder="Pet Age"
-                label="Pet Age"
+                placeHolder="Pet Gender"
+                label="Pet Gender"
                 onChange={handleChange}
-                name={"petAge"}
+                name={"petGender"}
               />
             </GridItem>
           </Grid>

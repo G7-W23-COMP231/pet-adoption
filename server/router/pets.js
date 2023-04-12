@@ -12,7 +12,7 @@ router.post(
     const {
       petId,
       petName,
-      petAge,
+      petGender,
       petBreed,
       petCategory,
       age,
@@ -39,7 +39,7 @@ router.post(
       const pet = new Pet({
         petId,
         petName,
-        petAge,
+        petGender,
         petBreed,
         petCategory,
         shelterId: req.user._id,
