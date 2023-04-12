@@ -6,6 +6,8 @@ const petSchema = new Schema(
   {
     // Define the properties of your petschema here
     petName: String,
+    petAge: String,
+    petBreed: String,
     petCategory: String,
     shelterId: { type: mongoose.Schema.Types.ObjectId, ref: "animalshelter" },
     age: Number,

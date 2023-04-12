@@ -7,7 +7,7 @@ const api_secret = "U0ocHPqN7BjbSiHra9Fv6Q81vZs";
 cloudinary.config({
   cloud_name: "dm053d8mv",
   api_key: "289152382869674",
-  api_secret: "U0ocHPqN7BjbSiHra9Fv6Q81vZs"
+  api_secret: "U0ocHPqN7BjbSiHra9Fv6Q81vZs",
 });
 
 const opts = {

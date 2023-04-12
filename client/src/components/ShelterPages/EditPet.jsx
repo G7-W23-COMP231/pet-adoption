@@ -1,92 +1,117 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import {
-  Button,
-  ButtonGroup,
-  FormControl,
+  Box,
   Container,
+  FormControl,
   Grid,
   GridItem,
-  Box,
-} from '@chakra-ui/react';
-
-import { CheckBoxInput, FormInput } from '../Inputs';
+  Button,
+  ButtonGroup,
+} from "@chakra-ui/react";
 import {
   SelectionFormGroup,
   RadioInputGroup,
   TextAreaInputGroup,
-} from '../InputGroups';
-
-import {
-  addPetDefaultField,
-  selectOptions,
-  radioOptions,
-  textAreaOptions,
-} from '../../utils';
+} from "../InputGroups";
+import { CheckBoxInput, FormInput } from "../Inputs";
+import { selectOptions, radioOptions, textAreaOptions } from "../../utils";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+//import pet from "../Pet";
 
 const EditPet = () => {
-  const [formField, setFormField] = useState(addPetDefaultField);
+  const [formField, setFormField] = useState({});
+  const [url, setUrl] = useState("");
+  //const { _id } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const petId = location.state.petId;
+  console.log(petId);
+  useEffect(() => {
+    // Fetch the pet information by ID
+    const fetchPet = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axios.get(
+          `http://localhost:5000/pets/editpet/${petId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            "Content-Type": "application/json",
+          }
+        );
+        setFormField(res.data.pet);
+        setUrl(res.data.pet.petPhoto);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const resetFormFields = () => {
-    setFormField(addPetDefaultField);
-  };
+    fetchPet();
+  }, [petId]);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    console.log(formField);
+  const data = { ...formField, petPhoto: url };
 
-    fetch('http://localhost:5000/pet/editpet', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formField),
-    })
-      .then(res => res.json())
-      .then(data => alert('Updated Succesfully'))
-      .catch(err => alert('Something went wrong', err));
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(`http://localhost:5000/pets/editpet/${petId}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      alert("Updated Successfully");
+      navigate("/showpets");
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong", error);
+    }
   };
 
   return (
-    <Container maxW='100%' p={10} bg='#fdfdfd'>
+    <Container maxW="100%" p={10} bg="#fdfdfd">
       <Box
         style={{
-          textAlign: 'center',
-          marginBottom: '5rem',
-          fontSize: '2rem',
+          textAlign: "center",
+          marginBottom: "5rem",
+          fontSize: "2rem",
         }}
       >
-        <h2 style={{ fontWeight: 'bold' }}>Welcome</h2>
-        <span style={{ fontSize: '1rem' }}>Please update your pet details</span>
+        <h2 style={{ fontWeight: "bold" }}>Welcome</h2>
+        <span style={{ fontSize: "1rem" }}>Please update your pet details</span>
       </Box>
       <FormControl onSubmit={handleSubmit}>
-        <Box boxShadow='md' p={6} borderRadius={8} bg='#fcfcfc' mb={5}>
+        <Box boxShadow="md" p={6} borderRadius={8} bg="#fcfcfc" mb={5}>
           <Box mb={6}>
             <FormInput
-              type='text'
-              placeHolder='Pet name'
-              label='Pet name'
+              type="text"
+              placeHolder="Pet name"
+              label="Pet name"
               onChange={handleChange}
-              name={'petName'}
-              style={{ fontSize: '.7rem' }}
+              name={"petName"}
+              value={formField.petName}
+              style={{ fontSize: ".7rem" }}
             />
           </Box>
           <Box mb={6}>
             <FormInput
-              type='file'
-              label='Pet Photo'
-              style={{ fontSize: '.7rem' }}
-              outline='none'
+              //type="file"
+              label="Pet Photo"
+              style={{ fontSize: ".7rem" }}
+              outline="none"
+              value={formField.petPhoto}
             />
           </Box>
 
           <Grid
-            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
             gap={10}
           >
             {/* Items in first column */}
@@ -116,13 +141,13 @@ const EditPet = () => {
         </Box>
 
         <Grid
-          templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+          templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
           gap={8}
-          style={{ marginTop: '2rem' }}
-          boxShadow='md'
+          style={{ marginTop: "2rem" }}
+          boxShadow="md"
           p={6}
           borderRadius={8}
-          bg='#fcfcfc'
+          bg="#fcfcfc"
           mb={5}
         >
           <GridItem colSpan={1}>
@@ -132,19 +157,20 @@ const EditPet = () => {
             />
 
             <CheckBoxInput
-              name='canGetWithHumanAge'
+              checked={formField.canGetWithHumanAge}
+              name="canGetWithHumanAge"
               label={
-                'Can get along with humans whose ages are (click all that apply):'
+                "Can get along with humans whose ages are (click all that apply):"
               }
               choices={{
-                first: 'Under 8 years old',
-                second: 'Over 8 years old',
-                third: 'Elderly',
+                first: "Under 8 years old",
+                second: "Over 8 years old",
+                third: "Elderly",
               }}
               style={{
-                marginLeft: '3rem',
-                marginTop: '1rem',
-                fontSize: '.8rem',
+                marginLeft: "3rem",
+                marginTop: "1rem",
+                fontSize: ".8rem",
               }}
               onChange={handleChange}
             />
@@ -152,8 +178,8 @@ const EditPet = () => {
 
           <GridItem
             colSpan={1}
-            paddingLeft={{ base: '0rem', md: '3.6rem' }}
-            style={{ base: '3' }}
+            paddingLeft={{ base: "0rem", md: "3.6rem" }}
+            style={{ base: "3" }}
           >
             <TextAreaInputGroup
               textAreaOptions={textAreaOptions}
@@ -163,19 +189,19 @@ const EditPet = () => {
         </Grid>
         <ButtonGroup>
           <Button
-            colorScheme='teal'
-            variant='solid'
-            width='8rem'
-            type='submit'
+            colorScheme="teal"
+            variant="solid"
+            width="8rem"
+            type="submit"
             onClick={handleSubmit}
           >
             Save
           </Button>
           <Button
-            variant='outline'
-            width='6rem'
-            onClick={resetFormFields}
-            type='reset'
+            variant="outline"
+            width="6rem"
+            onClick="{resetFormFields}"
+            type="reset"
           >
             Cancel
           </Button>

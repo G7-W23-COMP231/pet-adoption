@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import UploadImage from '../UploadImage';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import UploadImage from "../UploadImage";
 
 import {
   Button,
@@ -10,104 +10,118 @@ import {
   Grid,
   GridItem,
   Box,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import { CheckBoxInput, FormInput } from '../Inputs';
+import { CheckBoxInput, FormInput } from "../Inputs";
 import {
   SelectionFormGroup,
   RadioInputGroup,
   TextAreaInputGroup,
-} from '../InputGroups';
+} from "../InputGroups";
 
 import {
   addPetDefaultField,
   selectOptions,
   radioOptions,
   textAreaOptions,
-} from '../../utils';
-import axios from 'axios';
+} from "../../utils";
+import axios from "axios";
 
 const AddPet = () => {
   const [formField, setFormField] = useState(addPetDefaultField);
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
   const navigate = useNavigate();
   const resetFormFields = () => {
     setFormField(addPetDefaultField);
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
   };
   const data = { ...formField, petPhoto: url };
 
-  const handleSubmit = event => {
-    const token = localStorage.getItem('token');
+  const handleSubmit = (event) => {
+    const token = localStorage.getItem("token");
     event.preventDefault();
 
     axios
-      .post('http://localhost:5000/pets/addpet', data, {
+      .post("http://localhost:5000/pets/addpet", data, {
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       })
-      .then(res => console.log(res))
-      .then(data => {
-        alert('Added Succesfully'), navigate('/showpets');
+      .then((res) => console.log(res))
+      .then((data) => {
+        alert("Added Succesfully"), navigate("/showpets");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
 
-        alert('Something went wrong', err);
+        alert("Something went wrong", err);
       });
   };
 
   return (
-    <Container maxW='100%' p={10} bg='#f1f1f1'>
+    <Container maxW="100%" p={10} bg="#f1f1f1">
       <Box
         style={{
-          textAlign: 'center',
-          marginBottom: '5rem',
-          fontSize: '2rem',
+          textAlign: "center",
+          marginBottom: "5rem",
+          fontSize: "2rem",
         }}
       >
-        <h2 style={{ fontWeight: 'bold' }}>Welcome</h2>
-        <span style={{ fontSize: '1rem' }}>Please enter your pet details</span>
+        <h2 style={{ fontWeight: "bold" }}>Welcome</h2>
+        <span style={{ fontSize: "1rem" }}>Please enter your pet details</span>
       </Box>
-      <FormControl onSubmit={handleSubmit} fontSize='1.2rem'>
+      <FormControl onSubmit={handleSubmit} fontSize="1.2rem">
         <Box
-          boxShadow='md'
-          maxW={'7xl'}
-          mx='auto'
+          boxShadow="md"
+          maxW={"7xl"}
+          mx="auto"
           p={16}
           borderRadius={8}
-          bg='#fcfcfc'
+          bg="#fcfcfc"
           mb={5}
         >
           <Box mb={6}>
             <FormInput
-              type='text'
-              placeHolder='Pet name'
-              label='Pet name'
+              type="text"
+              placeHolder="Pet name"
+              label="Pet name"
               onChange={handleChange}
-              name={'petName'}
+              name={"petName"}
             />
           </Box>
+          <Grid
+            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+            gap={10}
+          >
+            <GridItem>
+              <FormInput
+                type="text"
+                placeHolder="Pet Breed"
+                label="Pet Breed"
+                onChange={handleChange}
+                name={"petBreed"}
+              />
+            </GridItem>
+            <GridItem margin="10px">
+              <FormInput
+                type="text"
+                placeHolder="Pet Age"
+                label="Pet Age"
+                onChange={handleChange}
+                name={"petAge"}
+              />
+            </GridItem>
+          </Grid>
           <Box mb={6}>
-            {/* <FormInput
-              type="file"
-              label="Pet Photo"
-              name="petPhoto"
-              id="file"
-              onChange={handleChange}
-              style={{ fontSize: ".7rem" }}
-              outline="none"
-            /> */}
             <UploadImage url={url} setUrl={setUrl} />
           </Box>
           <Grid
-            templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+            templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
             gap={10}
           >
             {/* Items in first column */}
@@ -137,15 +151,15 @@ const AddPet = () => {
         </Box>
 
         <Grid
-          maxW='7xl'
-          mx='auto'
-          templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+          maxW="7xl"
+          mx="auto"
+          templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
           gap={8}
-          style={{ marginTop: '2rem' }}
-          boxShadow='md'
+          style={{ marginTop: "2rem" }}
+          boxShadow="md"
           p={16}
           borderRadius={8}
-          bg='#fcfcfc'
+          bg="#fcfcfc"
           mb={5}
         >
           <GridItem colSpan={1}>
@@ -155,29 +169,29 @@ const AddPet = () => {
             />
 
             <CheckBoxInput
-              name='canGetWithHumanAge'
+              name="canGetWithHumanAge"
               label={
-                'Can get along with humans whose ages are (click all that apply):'
+                "Can get along with humans whose ages are (click all that apply):"
               }
               choices={{
-                first: 'Under 8 years old',
-                second: 'Over 8 years old',
-                third: 'Elderly',
+                first: "Under 8 years old",
+                second: "Over 8 years old",
+                third: "Elderly",
               }}
               style={{
-                marginLeft: '3rem',
-                marginTop: '1rem',
-                fontSize: '.8rem',
+                marginLeft: "3rem",
+                marginTop: "1rem",
+                fontSize: ".8rem",
               }}
               onChange={handleChange}
-              color='teal'
+              color="teal"
             />
           </GridItem>
 
           <GridItem
             colSpan={1}
-            paddingLeft={{ base: '0rem', md: '3.6rem' }}
-            style={{ base: '3' }}
+            paddingLeft={{ base: "0rem", md: "3.6rem" }}
+            style={{ base: "3" }}
           >
             <TextAreaInputGroup
               textAreaOptions={textAreaOptions}
@@ -185,22 +199,22 @@ const AddPet = () => {
             />
           </GridItem>
         </Grid>
-        <Box maxW='7xl' mx='auto'>
+        <Box maxW="7xl" mx="auto">
           <ButtonGroup>
             <Button
-              colorScheme='teal'
-              variant='solid'
-              width='8rem'
-              type='submit'
+              colorScheme="teal"
+              variant="solid"
+              width="8rem"
+              type="submit"
               onClick={handleSubmit}
             >
               Save
             </Button>
             <Button
-              variant='outline'
-              width='6rem'
+              variant="outline"
+              width="6rem"
               onClick={resetFormFields}
-              type='reset'
+              type="reset"
             >
               Cancel
             </Button>
