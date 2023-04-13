@@ -1,7 +1,10 @@
 import { Box, Button, Image } from '@chakra-ui/react';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { IoArrowBack } from 'react-icons/io5';
 import { Text } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 export default function Petdetail({ pet }) {
+  const navigate = useNavigate();
   return (
     <Box width={{ base: '80%', md: '50%' }} mx='auto'>
       <Box
@@ -66,27 +69,38 @@ export default function Petdetail({ pet }) {
           </Box>
         </Box>
       </Box>
-      <Box display='flex' marginTop={5} gap={4}>
-        <Button borderRadius='full' colorScheme='orange' width='150px'>
-          Select
-        </Button>
-        <Box
-          boxSize={10}
-          bg='#fff'
-          cursor='pointer'
-          outline='1px solid rgb(221, 107, 32)'
-          transition='all 400ms'
-          _hover={{
-            bg: 'rgb(233, 172, 132)',
-            outline: '1px solid transparent',
-          }}
-          borderRadius='full'
-          display='flex'
-          justifyContent='center'
-          alignItems='center'
-        >
-          <AiOutlineHeart size={22} color='rgb(221, 107, 32)' />
+      <Box display='flex' justifyContent='space-between' marginTop={5} gap={4}>
+        <Box display='flex' gap={5}>
+          <Button borderRadius='full' colorScheme='orange' width='150px'>
+            Select
+          </Button>
+          <Box
+            boxSize={10}
+            bg='#fff'
+            cursor='pointer'
+            outline='1px solid rgb(221, 107, 32)'
+            transition='all 400ms'
+            _hover={{
+              bg: 'rgb(233, 172, 132)',
+              outline: '1px solid transparent',
+            }}
+            borderRadius='full'
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+          >
+            <AiOutlineHeart size={22} color='rgb(221, 107, 32)' />
+          </Box>
         </Box>
+
+        <Button
+          colorScheme='orange'
+          variant='ghost'
+          borderRadius='full'
+          onClick={() => navigate('/showpets')}
+        >
+          <IoArrowBack size={26} color='rgb(221, 107, 32)' />
+        </Button>
       </Box>
     </Box>
   );
