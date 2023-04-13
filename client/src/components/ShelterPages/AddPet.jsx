@@ -46,7 +46,7 @@ const AddPet = () => {
     event.preventDefault();
 
     axios
-      .post("http://localhost:5000/pets/addpet", data, {
+      .post("https://petadoptionteam.azurewebsites.net/pets/addpet", data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import LoginContainer from './LoginContainer';
-import LoginForm from './LoginForm';
+import LoginContainer from "./LoginContainer";
+import LoginForm from "./LoginForm";
 
 const defaultFormField = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 };
 
 // Login for potential pet owner
@@ -16,31 +16,31 @@ function UserLogin({ setIsUserLogin }) {
   const navigate = useNavigate();
 
   // It will update the state for every input change
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
   };
 
-  const handleLogin = event => {
+  const handleLogin = (event) => {
     event.preventDefault();
 
     //fetch('http://localhost:5000/auth/login', {
-    fetch('http://localhost:5000/owner/userlogin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("https://petadoptionteam.azurewebsites.net/owner/userlogin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formField),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.token) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem("token", data.token);
           setIsUserLogin(true);
-          navigate('/showpets');
+          navigate("/showpets");
         } else {
           alert(data.message);
         }
       })
-      .catch(err => alert('Access Denied'));
+      .catch((err) => alert("Access Denied"));
 
     /*
     .then(res => res.json())
@@ -49,11 +49,11 @@ function UserLogin({ setIsUserLogin }) {
     */
   };
   return (
-    <LoginContainer type='user'>
+    <LoginContainer type="user">
       <LoginForm
         handleChange={handleChange}
         handleLogin={handleLogin}
-        type={'user'}
+        type={"user"}
       />
     </LoginContainer>
   );

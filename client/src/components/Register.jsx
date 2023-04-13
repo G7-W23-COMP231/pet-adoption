@@ -50,8 +50,7 @@ const Register = () => {
       return;
     }
 
-    //fetch('http://localhost:5000/animalshelter/info', {
-    fetch("http://localhost:5000/animalshelter/register", {
+    fetch("https://petadoptionteam.azurewebsites.net/animalshelter/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +61,7 @@ const Register = () => {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
-          //fetchShowpets();
+
           navigate("/showpets");
         } else {
           alert(data.message);
@@ -70,28 +69,6 @@ const Register = () => {
       })
       .catch((err) => alert("Something went wrong", err));
   };
-
-  // const fetchShowpets = () => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     alert("Access Denied");
-  //     navigate("/login");
-  //   } else {
-  //     fetch("http://localhost:5000/pets/showpets", {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         // handle the data and update the state of your component
-  //       })
-  //       .catch((err) => console.error(err));
-  //   }
-  //};
 
   return (
     <Grid templateColumns={{ sm: "1fr", md: "1fr 1fr" }}>

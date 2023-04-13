@@ -9,7 +9,7 @@ const Cats = () => {
   const navigate = useNavigate();
 
   // Just for now, since data fetching is not yet done
-  // TODO: Needs to work on 
+  // TODO: Needs to work on
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -40,28 +40,6 @@ const Cats = () => {
 
   // Implement later
   const onSearchChange = (event) => {};
-
-  // return (
-  //   <table style={{ width: 500, border: 1 }}>
-  //     <tbody>
-  //       <tr>
-  //         <th>Name</th>
-  //         <th>Age</th>
-  //       </tr>
-  //       {data.map((i) => {
-  //         return (
-  //           <tr key={i._id}>
-  //             <td>{i.petName}</td>
-  //             <td>{i.age}</td>
-  //           </tr>
-  //         );
-  //       })}
-  //     </tbody>
-  //     <button>
-  //       <a href="/addpet">Add Pet</a>
-  //     </button>
-  //   </table>
-  // );
 
   return (
     <Grid

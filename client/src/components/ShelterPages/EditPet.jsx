@@ -34,7 +34,7 @@ const EditPet = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:5000/pets/editpet/${petId}`,
+          `https://petadoptionteam.azurewebsites.net/editpet/${petId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
             "Content-Type": "application/json",
@@ -61,12 +61,16 @@ const EditPet = () => {
     event.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/pets/editpet/${petId}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      await axios.put(
+        `https://petadoptionteam.azurewebsites.net/pets/editpet/${petId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       alert("Updated Successfully");
       navigate("/showpets");
     } catch (error) {

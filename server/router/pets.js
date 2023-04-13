@@ -94,10 +94,10 @@ router.get(
 router.get("/pets", async (req, res) => {
   try {
     const data = await Pet.find(); //add { shelterId: req.user._id } inside find to query based on shelterId
-    res.set(
-      "Authorization",
-      `Bearer ${req.headers.authorization.split(" ")[1]}`
-    );
+    // res.set(
+    //   "Authorization",
+    //   `Bearer ${req.headers.authorization.split(" ")[1]}`
+    // );
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });

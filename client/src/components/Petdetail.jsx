@@ -78,7 +78,7 @@ export default function Petdetail({ pet }) {
               </Text>{" "}
             </Text>
             <Text>
-              Vaccination Record Issue:{" "}
+              Vaccination Record:{" "}
               <Text as="span" fontWeight="semibold">
                 {pet?.vaccRecord}
               </Text>{" "}

@@ -38,28 +38,6 @@ const Pets = () => {
   // Implement later
   const onSearchChange = (event) => {};
 
-  // return (
-  //   <table style={{ width: 500, border: 1 }}>
-  //     <tbody>
-  //       <tr>
-  //         <th>Name</th>
-  //         <th>Age</th>
-  //       </tr>
-  //       {data.map((i) => {
-  //         return (
-  //           <tr key={i._id}>
-  //             <td>{i.petName}</td>
-  //             <td>{i.age}</td>
-  //           </tr>
-  //         );
-  //       })}
-  //     </tbody>
-  //     <button>
-  //       <a href="/addpet">Add Pet</a>
-  //     </button>
-  //   </table>
-  // );
-
   return (
     <Grid
       templateColumns={{ base: "1fr", lg: "200px 1fr" }}
