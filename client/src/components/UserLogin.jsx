@@ -24,7 +24,6 @@ function UserLogin({ setIsUserLogin }) {
   const handleLogin = (event) => {
     event.preventDefault();
 
-    //fetch('http://localhost:5000/auth/login', {
     fetch("https://petadoptionteam.azurewebsites.net/owner/userlogin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -41,12 +40,6 @@ function UserLogin({ setIsUserLogin }) {
         }
       })
       .catch((err) => alert("Access Denied"));
-
-    /*
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err));
-    */
   };
   return (
     <LoginContainer type="user">

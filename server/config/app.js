@@ -33,14 +33,14 @@ mongoDB.once("open", () => {
 
 const PORT = process.env.PORT || 5000;
 
-// //access control allow origin
-// const corsOptions = {
-//   origin: "http://localhost:5173",
-//   credentials: true,
-// };
+//access control allow origin
+const corsOptions = {
+  origin: "https://pet-adoption-comp231.netlify.app",
+  //   credentials: true,
+};
 
 //authentication
-app.use(cors());
+app.use(cors(corsOptions));
 
 // allow to access the request body using req.body in routes.
 app.use(bodyParser.json());
