@@ -92,6 +92,7 @@ const AddPet = () => {
               label="Pet name"
               onChange={handleChange}
               name={"petName"}
+              required="required"
             />
           </Box>
           <Grid
@@ -105,6 +106,7 @@ const AddPet = () => {
                 label="Pet Breed"
                 onChange={handleChange}
                 name={"petBreed"}
+                required="required"
               />
             </GridItem>
             <GridItem margin="10px">
@@ -114,6 +116,7 @@ const AddPet = () => {
                 label="Pet Gender"
                 onChange={handleChange}
                 name={"petGender"}
+                required="required"
               />
             </GridItem>
           </Grid>
@@ -129,6 +132,7 @@ const AddPet = () => {
               <SelectionFormGroup
                 selectOptions={selectOptions.slice(0, 3)}
                 onChange={handleChange}
+                required
               />
             </GridItem>
 
@@ -137,6 +141,7 @@ const AddPet = () => {
               <SelectionFormGroup
                 selectOptions={selectOptions.slice(3, 6)}
                 onChange={handleChange}
+                required
               />
             </GridItem>
 
@@ -145,6 +150,7 @@ const AddPet = () => {
               <SelectionFormGroup
                 selectOptions={selectOptions.slice(6)}
                 onChange={handleChange}
+                required
               />
             </GridItem>
           </Grid>
@@ -166,6 +172,7 @@ const AddPet = () => {
             <RadioInputGroup
               radioOptions={radioOptions}
               onChange={handleChange}
+              required
             />
 
             <CheckBoxInput

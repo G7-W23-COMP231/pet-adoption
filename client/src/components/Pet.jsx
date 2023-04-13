@@ -46,7 +46,7 @@ const Pet = ({ pet, isShelterLogin, isUserLogin, setPetId }) => {
 
         <VStack alignItems="flex-start">
           <Text margin={0}>Name: {pet?.petName || "Not Applicable"}</Text>
-          <Text>Age: {pet?.age} years old</Text>
+          <Text>Age: {pet?.age} </Text>
         </VStack>
         <Box display="flex" justifyContent="flex-end" marginTop={3} gap={2}>
           {isShelterLogin && (

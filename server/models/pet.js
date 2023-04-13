@@ -10,7 +10,7 @@ const petSchema = new Schema(
     petBreed: String,
     petCategory: String,
     shelterId: { type: mongoose.Schema.Types.ObjectId, ref: "animalshelter" },
-    age: Number,
+    age: String,
     gwithFirstPetOwner: String,
     canGetAlongWithOtherPets: String,
     canGetWithHumanAge: String,
