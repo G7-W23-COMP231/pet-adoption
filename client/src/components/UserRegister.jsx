@@ -42,8 +42,8 @@ const AddOwner = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formField);
-
-    fetch("https://petadoptionteam.azurewebsites.net/owner/addowner", {
+    //https://petadoptionteam.azurewebsites.net/
+    fetch("http://localhost:5000/owner/addowner", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

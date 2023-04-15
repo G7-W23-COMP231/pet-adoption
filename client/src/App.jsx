@@ -26,10 +26,8 @@ function App() {
 
   useEffect(() => {
     const getPetById = async () => {
-      if (!petId) return;
-      const pet = await axios.get(
-        `https://petadoptionteam.azurewebsites.net/pets/pet/${petId}`
-      );
+      if (!petId) return; //https://petadoptionteam.azurewebsites.net/
+      const pet = await axios.get(`http://localhost:5000/pets/pet/${petId}`);
       setCurrentPet(pet.data);
     };
 

@@ -93,27 +93,29 @@ export const Navbar = ({
                   try {
                     if (isShelterLogin) {
                       const response = await fetch(
-                        "https://petadoptionteam.azurewebsites.net/animalshelter/logout",
+                        //https://petadoptionteam.azurewebsites.net/
+                        "http://localhost:5000/animalshelter/logout",
                         {
                           method: "POST",
                         }
                       );
                       if (response.ok) {
                         setIsShelterLogin(false);
-                        alert("log out succesfull");
+                        alert("log out succesfully");
                       } else {
                         throw new error("Shelter logout failed!");
                       }
                     } else if (isUserLogin) {
                       const response = await fetch(
-                        "https://petadoptionteam.azurewebsites.net/owner/logout",
+                        //https://petadoptionteam.azurewebsites.net/
+                        "http://localhost:5000/owner/logout",
                         {
                           method: "POST",
                         }
                       );
                       if (response.ok) {
                         setIsUserLogin(false);
-                        alert("log out succesfull");
+                        alert("log out succesfully");
                       } else {
                         throw new error("Logout failed!!");
                       }
@@ -354,7 +356,7 @@ const NAV_ITEMS = [
         href: "/pets/cats",
       },
     ],
-    href: "/pets",
+    href: "/showpets",
   },
 
   {

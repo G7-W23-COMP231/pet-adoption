@@ -22,7 +22,6 @@ router.post(
         laidBackPet,
         willingToTrainPet,
         specialNeeds,
-        //ownerId,
       } = req.body;
 
       const survey = new Survey({

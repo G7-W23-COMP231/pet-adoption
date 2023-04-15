@@ -33,6 +33,17 @@ const AddPet = () => {
   const navigate = useNavigate();
   const resetFormFields = () => {
     setFormField(addPetDefaultField);
+    navigate("/");
+  };
+
+  const validateForm = () => {
+    const requiredFields = ["petName", "petBreed", "petGender"];
+    for (const field of requiredFields) {
+      if (!formField[field]) {
+        return false;
+      }
+    }
+    return true;
   };
 
   const handleChange = (event) => {
@@ -43,10 +54,13 @@ const AddPet = () => {
 
   const handleSubmit = (event) => {
     const token = localStorage.getItem("token");
-    event.preventDefault();
-
-    axios
-      .post("https://petadoptionteam.azurewebsites.net/pets/addpet", data, {
+    //event.preventDefault();
+    if (!validateForm()) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+    axios //https://petadoptionteam.azurewebsites.net/pets/addpet
+      .post("http://localhost:5000/pets/addpet", data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -92,7 +106,7 @@ const AddPet = () => {
               label="Pet name"
               onChange={handleChange}
               name={"petName"}
-              required="required"
+              required
             />
           </Box>
           <Grid
@@ -106,7 +120,7 @@ const AddPet = () => {
                 label="Pet Breed"
                 onChange={handleChange}
                 name={"petBreed"}
-                required="required"
+                required
               />
             </GridItem>
             <GridItem margin="10px">
@@ -116,7 +130,7 @@ const AddPet = () => {
                 label="Pet Gender"
                 onChange={handleChange}
                 name={"petGender"}
-                required="required"
+                required="true"
               />
             </GridItem>
           </Grid>

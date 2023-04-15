@@ -23,8 +23,8 @@ function UserLogin({ setIsUserLogin }) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-
-    fetch("https://petadoptionteam.azurewebsites.net/owner/userlogin", {
+    //https://petadoptionteam.azurewebsites.net/
+    fetch("http://localhost:5000/owner/userlogin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formField),

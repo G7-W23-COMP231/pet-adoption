@@ -23,8 +23,8 @@ const Login = ({ setIsShelterLogin }) => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-
-    fetch("https://petadoptionteam.azurewebsites.net/animalshelter/login", {
+    //https://petadoptionteam.azurewebsites.net/
+    fetch("http://localhost:5000/animalshelter/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formField),

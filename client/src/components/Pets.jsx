@@ -11,8 +11,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { PetsGrid, SearchBar, Pet } from "./";
 
-//import { petsData } from '../utils/pets';
-
 const Pets = ({ isUserLogin, isShelterLogin, setPetId }) => {
   const [data, setItems] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -22,8 +20,6 @@ const Pets = ({ isUserLogin, isShelterLogin, setPetId }) => {
     pet.petName?.toLowerCase().includes(searchInput.toLowerCase())
   );
 
-  // Just for now, since data fetching is not yet done
-  // TODO: Needs to work on
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -37,7 +33,8 @@ const Pets = ({ isUserLogin, isShelterLogin, setPetId }) => {
       };
       console.log("Headers:", headers);
       const endpoints = isShelterLogin ? "showpets" : "pets";
-      fetch(`https://petadoptionteam.azurewebsites.net/pets/${endpoints}`, {
+      //https://petadoptionteam.azurewebsites.net/
+      fetch(`http://localhost:5000/pets/${endpoints}`, {
         method: "GET",
         headers: headers,
       })

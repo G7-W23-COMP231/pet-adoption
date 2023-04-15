@@ -20,7 +20,8 @@ const PetOwnerSurvey = () => {
   const navigate = useNavigate();
 
   const resetFormFields = () => {
-    setFormField(petOwnerSurveyDefaultField);
+    setFormField();
+    navigate("/showpets");
   };
 
   const handleChange = (event) => {
@@ -32,12 +33,11 @@ const PetOwnerSurvey = () => {
     const token = localStorage.getItem("token");
     event.preventDefault();
 
-    //console.log(formField);
-
     if (!token) {
       //alert("Access Denied");
       navigate("/login");
     } else {
+      //https://petadoptionteam.azurewebsites.net/
       fetch("http://localhost:5000/survey/ownersurvey", {
         method: "POST",
         headers: {
@@ -47,7 +47,9 @@ const PetOwnerSurvey = () => {
         body: JSON.stringify(formField),
       })
         .then((res) => res.json())
-        .then((data) => alert("Added Succesfully"))
+        .then((data) => {
+          alert("Added Succesfully"), navigate("/showpets");
+        })
         .catch((err) => alert("Something went wrong", err));
     }
   };

@@ -25,6 +25,7 @@ const defaultFormField = {
   location: "",
   password: "",
   animalShelterName: "",
+  phoneNumber: "",
 };
 
 const Register = () => {
@@ -35,6 +36,7 @@ const Register = () => {
 
   const resetFormFields = () => {
     setFormField(defaultFormField);
+    navigate("/");
   };
 
   const handleChange = (event) => {
@@ -45,12 +47,16 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (animalShelterName == "") {
+      alert("Please Enter shelter Name");
+    }
+
     if (password !== confirmPassword) {
       alert("Password do not match");
       return;
     }
-
-    fetch("https://petadoptionteam.azurewebsites.net/animalshelter/register", {
+    //https://petadoptionteam.azurewebsites.net/
+    fetch("http://localhost:5000/animalshelter/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +97,7 @@ const Register = () => {
             </Box>
             <Grid
               templateAreas={{
-                base: `'first' 'second' 'third' 'fourth'`,
+                base: `'first' 'second' 'third' 'fourth',`,
                 md: `'first second' 'third third' 'fourth fourth'`,
               }}
               gap={2}
@@ -122,6 +128,7 @@ const Register = () => {
               <GridItem area="third">
                 <Select
                   fontSize={"xs"}
+                  required
                   name="location"
                   onChange={handleChange}
                   focusBorderColor="teal.400"
@@ -129,13 +136,29 @@ const Register = () => {
                 >
                   <option value="">Location</option>
                   <option value="ON">ON</option>
-                  <option value="BC">BC</option>
-                  <option value="AB">AB</option>
+                  <option value="QC">QC</option>
+                  <option value="NS">NS</option>
                   <option value="NB">NB</option>
+                  <option value="MB">MB</option>
+                  <option value="BC">BC</option>
+                  <option value="PE">PE</option>
+                  <option value="SK">SK</option>
+                  <option value="AB">AB</option>
+                  <option value="NL">NL</option>
                 </Select>
               </GridItem>
-
               <GridItem area="fourth">
+                <FormInput
+                  fontSize={"xs"}
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Phone Number"
+                  onChange={handleChange}
+                  required
+                  value={formField.phoneNumber}
+                />
+              </GridItem>
+              <GridItem>
                 <Flex gap={2}>
                   <FormInput
                     fontSize={"xs"}
