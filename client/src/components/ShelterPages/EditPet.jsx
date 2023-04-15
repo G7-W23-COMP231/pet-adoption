@@ -49,7 +49,7 @@ const EditPet = ({ pet }) => {
   if (!pet) return;
 
   return (
-    <Box width='80%' h='full' mx='auto' mt={10}>
+    <Box width='80%' h='full' mx='auto' my={10}>
       <Image
         src={pet.petPhoto || noImage}
         alt='Pet photo'
