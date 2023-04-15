@@ -2,211 +2,350 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   Box,
-  Container,
-  FormControl,
-  Grid,
-  GridItem,
   Button,
-  ButtonGroup,
-} from "@chakra-ui/react";
-import {
-  SelectionFormGroup,
-  RadioInputGroup,
-  TextAreaInputGroup,
-} from "../InputGroups";
-import { CheckBoxInput, FormInput } from "../Inputs";
-import { selectOptions, radioOptions, textAreaOptions } from "../../utils";
-import axios from "axios";
-import { useLocation } from "react-router-dom";
-//import pet from "../Pet";
+  Image,
+  SimpleGrid,
+  Input,
+  Select,
+  RadioGroup,
+  Radio,
+  FormLabel,
+  HStack,
+  Text,
+} from '@chakra-ui/react';
 
-const EditPet = () => {
-  const [formField, setFormField] = useState({});
-  const [url, setUrl] = useState("");
-  //const { _id } = useParams();
+import axios from 'axios';
+
+import { useForm } from 'react-hook-form';
+import noImage from '../../assets/no-image-placeholder.webp';
+const EditPet = ({ pet }) => {
+  console.log(pet);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
-  const location = useLocation();
-  const petId = location.state.petId;
-  console.log(petId);
-  useEffect(() => {
-    // Fetch the pet information by ID
-    const fetchPet = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        //https://petadoptionteam.azurewebsites.net/
-        const res = await axios.get(`http://localhost/5000/editpet/${petId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-          "Content-Type": "application/json",
-        });
-        setFormField(res.data.pet);
-        setUrl(res.data.pet.petPhoto);
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
-    fetchPet();
-  }, [petId]);
-
-  const handleChange = (event) => {
-    const { value, name } = event.target;
-    setFormField({ ...formField, [name]: value });
-  };
-
-  const data = { ...formField, petPhoto: url };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const onSubmit = async data => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       //https://petadoptionteam.azurewebsites.net/
-      await axios.put(`http://localhost:5000/pets/editpet/${petId}`, data, {
+      await axios.put(`http://localhost:5000/pets/editpet/${pet._id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       });
-      alert("Updated Successfully");
-      navigate("/showpets");
+      alert('Updated Successfully');
+      navigate('/showpets');
     } catch (error) {
       console.error(error);
-      alert("Something went wrong", error);
+      alert('Something went wrong', error);
     }
   };
 
+  if (!pet) return;
+
   return (
-    <Container maxW="100%" p={10} bg="#fdfdfd">
-      <Box
-        style={{
-          textAlign: "center",
-          marginBottom: "5rem",
-          fontSize: "2rem",
-        }}
-      >
-        <h2 style={{ fontWeight: "bold" }}>Welcome</h2>
-        <span style={{ fontSize: "1rem" }}>Please update your pet details</span>
-      </Box>
-      <FormControl onSubmit={handleSubmit}>
-        <Box boxShadow="md" p={6} borderRadius={8} bg="#fcfcfc" mb={5}>
-          <Box mb={6}>
-            <FormInput
-              type="text"
-              placeHolder="Pet name"
-              label="Pet name"
-              onChange={handleChange}
-              name={"petName"}
-              value={formField.petName}
-              style={{ fontSize: ".7rem" }}
+    <Box width='80%' h='full' mx='auto' my={10}>
+      <Image
+        src={pet.petPhoto || noImage}
+        alt='Pet photo'
+        height={180}
+        width={180}
+        mb={5}
+        borderRadius='md'
+      />
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          <Box position='relative'>
+            <FormLabel>Name</FormLabel>
+            <Input
+              defaultValue={pet.petName}
+              {...register('petName', { required: true, minLength: 2 })}
             />
-          </Box>
-          <Box mb={6}>
-            <FormInput
-              //type="file"
-              label="Pet Photo"
-              style={{ fontSize: ".7rem" }}
-              outline="none"
-              value={formField.petPhoto}
-            />
+            {errors.petName?.type === 'required' && (
+              <Text position='absolute' border={-10} color='red'>
+                Name is Required
+              </Text>
+            )}
           </Box>
 
-          <Grid
-            templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
-            gap={10}
-          >
-            {/* Items in first column */}
-            <GridItem colSpan={1}>
-              <SelectionFormGroup
-                selectOptions={selectOptions.slice(0, 3)}
-                onChange={handleChange}
-              />
-            </GridItem>
-
-            {/* Items in second column */}
-            <GridItem colSpan={1}>
-              <SelectionFormGroup
-                selectOptions={selectOptions.slice(3, 6)}
-                onChange={handleChange}
-              />
-            </GridItem>
-
-            {/* Items in third column */}
-            <GridItem colSpan={1}>
-              <SelectionFormGroup
-                selectOptions={selectOptions.slice(6)}
-                onChange={handleChange}
-              />
-            </GridItem>
-          </Grid>
-        </Box>
-
-        <Grid
-          templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
-          gap={8}
-          style={{ marginTop: "2rem" }}
-          boxShadow="md"
-          p={6}
-          borderRadius={8}
-          bg="#fcfcfc"
-          mb={5}
-        >
-          <GridItem colSpan={1}>
-            <RadioInputGroup
-              radioOptions={radioOptions}
-              onChange={handleChange}
+          <Box position='relative'>
+            <FormLabel>Breed</FormLabel>
+            <Input
+              defaultValue={pet.petBreed}
+              {...register('petBreed', { required: true })}
             />
+            {errors.petBreed?.type === 'required' && (
+              <Text position='absolute' border={-10} color='red'>
+                Breed is Required
+              </Text>
+            )}
+          </Box>
 
-            <CheckBoxInput
-              checked={formField.canGetWithHumanAge}
-              name="canGetWithHumanAge"
-              label={
-                "Can get along with humans whose ages are (click all that apply):"
-              }
-              choices={{
-                first: "Under 8 years old",
-                second: "Over 8 years old",
-                third: "Elderly",
-              }}
-              style={{
-                marginLeft: "3rem",
-                marginTop: "1rem",
-                fontSize: ".8rem",
-              }}
-              onChange={handleChange}
+          <Box>
+            <FormLabel>Gender</FormLabel>
+            <Input
+              defaultValue={pet.petGender}
+              {...register('petGender', { required: true })}
             />
-          </GridItem>
+            {errors.petGender?.type === 'required' && (
+              <Text position='absolute' border={-10} color='red'>
+                Gender is Required
+              </Text>
+            )}
+          </Box>
 
-          <GridItem
-            colSpan={1}
-            paddingLeft={{ base: "0rem", md: "3.6rem" }}
-            style={{ base: "3" }}
-          >
-            <TextAreaInputGroup
-              textAreaOptions={textAreaOptions}
-              onChange={handleChange}
-            />
-          </GridItem>
-        </Grid>
-        <ButtonGroup>
-          <Button
-            colorScheme="teal"
-            variant="solid"
-            width="8rem"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Save
-          </Button>
-          <Button
-            variant="outline"
-            width="6rem"
-            onClick="{resetFormFields}"
-            type="reset"
-          >
-            Cancel
-          </Button>
-        </ButtonGroup>
-      </FormControl>
-    </Container>
+          <Box>
+            <FormLabel>Category</FormLabel>
+            <Select defaultValue={pet.petCategory} {...register('petCategory')}>
+              <option value='Canine (dogs)'>Canine (dogs)</option>
+              <option value='Feline (cats)'>Feline (cats)</option>
+              <option value='Other'>Other</option>
+            </Select>
+          </Box>
+
+          <Box>
+            <FormLabel>Age</FormLabel>
+
+            <Select defaultValue={pet.age} {...register('age')}>
+              <option value='0 to 3 months'>0 to 3 months</option>
+              <option value='4 months to 6 months'>4 months to 6 months</option>
+              <option value='7 months to 1 year old'>
+                7 months to 1 year old
+              </option>
+              <option value='1 year old to 2 years old'>
+                1 year old to 2 years old
+              </option>
+              <option value='3 years old to 4 years old'>
+                3 years old to 4 years old
+              </option>
+              <option value='4 years old and above'>
+                4 years old and above
+              </option>
+            </Select>
+          </Box>
+          {/* inddor */}
+          <Box>
+            <FormLabel>Indoor or Outdoor</FormLabel>
+            <Select
+              defaultValue={pet.indoorOutdoor}
+              {...register('indoorOutdoor')}
+            >
+              <option value='Indoor or outdoor'>Indoor or Out door</option>
+              <option value='Outdoor pet'>Outdoor pet</option>
+            </Select>
+          </Box>
+
+          {/* need to stay outside */}
+          <Box>
+            <FormLabel>Needs to stay outdoors for how many hours?</FormLabel>
+            <Select
+              defaultValue={pet.petOutsideHours}
+              {...register('petOutsideHours')}
+            >
+              <option value='0 to 30 minutes'>0 to 30 minutes</option>
+              <option value='30 minutes to 1 hour'>30 minutes to 1 hour</option>
+              <option value='1 hour to 2 hours'>1 hour to 2 hours</option>
+              <option value='2 hours or more'>2 hours or more</option>
+            </Select>
+          </Box>
+
+          <Box>
+            <FormLabel>
+              If owner is not at home, where will the pet be?
+            </FormLabel>
+
+            <Select defaultValue={pet.petStay} {...register('petStay')}>
+              <option value='the garage'>The Garage</option>
+              <option value='in the yard'>In the yard</option>
+              <option value='loose in the house'>Loose in the house</option>
+              <option value='confined to one room in the house'>
+                Confined to one room in the house
+              </option>
+            </Select>
+          </Box>
+
+          <Box>
+            <FormLabel>Is this an enthusiastic pet?</FormLabel>
+            <Select
+              defaultValue={pet.enthusiasticPet}
+              {...register('enthusiasticPet')}
+            >
+              <option value='Not at all'>Not at all</option>
+              <option value='Very enthusiastic'>Very enthusiastic</option>
+              <option value='Somewhat'>Somewhat</option>
+            </Select>
+          </Box>
+
+          <Box>
+            <FormLabel>Is this a playful pet?</FormLabel>
+            <Select defaultValue={pet.playfulPet} {...register('playfulPet')}>
+              <option value=''>Playful?</option>
+              <option value='Not at all'>Not at all</option>
+              <option value='Very enthusiastic'>Very enthusiastic</option>
+              <option value='Somewhat'>Somewhat</option>
+            </Select>
+          </Box>
+
+          <Box>
+            <FormLabel>Is this a playful pet?</FormLabel>
+            <Select defaultValue={pet.laidbackPet} {...register('laidbackPet')}>
+              <option value='Not at all'>Not at all</option>
+              <option value='Very enthusiastic'>Very enthusiastic</option>
+              <option value='Somewhat'>Somewhat</option>
+            </Select>
+          </Box>
+
+          <Box>
+            <FormLabel>How easy is it to train this pet?</FormLabel>
+            <Select
+              defaultValue={pet.trainablePet}
+              {...register('trainablePet')}
+            >
+              <option value='Very easy to train'>Very easy to train</option>
+              <option value='Some challenge is encountered'>
+                Some challenge is encountered
+              </option>
+              <option value='Very challenging to train'>
+                Very challenging to train
+              </option>
+            </Select>
+          </Box>
+          <Box>
+            <FormLabel>Good for first time pet owner?</FormLabel>
+            <RadioGroup
+              colorScheme='teal'
+              defaultValue={pet.gwithFirstPetOwner}
+            >
+              <HStack justifyContent='space-between'>
+                <Radio
+                  {...register('gwithFirstPetOwner')}
+                  name='gwithFirstPetOwner'
+                  value='Yes'
+                >
+                  Yes
+                </Radio>
+                <Radio
+                  {...register('gwithFirstPetOwner')}
+                  name='gwithFirstPetOwner'
+                  value='No'
+                >
+                  No
+                </Radio>
+                <Radio
+                  {...register('gwithFirstPetOwner')}
+                  name='gwithFirstPetOwner'
+                  value='Somewhat'
+                >
+                  Somewhat
+                </Radio>
+              </HStack>
+            </RadioGroup>
+          </Box>
+
+          <Box>
+            <FormLabel>Can get along with other pets?</FormLabel>
+            <RadioGroup
+              colorScheme='teal'
+              defaultValue={pet.canGetAlongWithOtherPets}
+            >
+              <HStack justifyContent='space-between'>
+                <Radio
+                  {...register('canGetAlongWithOtherPets')}
+                  name='canGetAlongWithOtherPets'
+                  value='Yes'
+                >
+                  Yes
+                </Radio>
+                <Radio
+                  {...register('canGetAlongWithOtherPets')}
+                  name='canGetAlongWithOtherPets'
+                  value='No'
+                >
+                  No
+                </Radio>
+                <Radio
+                  {...register('canGetAlongWithOtherPets')}
+                  name='canGetAlongWithOtherPets'
+                  value='Somewhat'
+                >
+                  Somewhat
+                </Radio>
+              </HStack>
+            </RadioGroup>
+          </Box>
+
+          <Box>
+            <FormLabel>Is this pet a service animal?</FormLabel>
+            <RadioGroup colorScheme='teal' defaultValue={pet.serviceAnimal}>
+              <HStack justifyContent='space-between'>
+                <Radio
+                  {...register('serviceAnimal')}
+                  name='serviceAnimal'
+                  value='Yes'
+                >
+                  Yes
+                </Radio>
+                <Radio
+                  {...register('serviceAnimal')}
+                  name='serviceAnimal'
+                  value='No'
+                >
+                  No
+                </Radio>
+                <Radio
+                  {...register('serviceAnimal')}
+                  name='serviceAnimal'
+                  value='Somewhat'
+                >
+                  Somewhat
+                </Radio>
+              </HStack>
+            </RadioGroup>
+          </Box>
+
+          <Box>
+            <FormLabel>
+              Does this pet have special needs (behavioral/mental)?
+            </FormLabel>
+            <RadioGroup colorScheme='teal' defaultValue={pet.specialNeeds}>
+              <HStack justifyContent='space-between'>
+                <Radio
+                  {...register('specialNeeds')}
+                  name='specialNeeds'
+                  value='Yes'
+                >
+                  Yes
+                </Radio>
+                <Radio
+                  {...register('specialNeeds')}
+                  name='specialNeeds'
+                  value='No'
+                >
+                  No
+                </Radio>
+                <Radio
+                  {...register('specialNeeds')}
+                  name='specialNeeds'
+                  value='Somewhat'
+                >
+                  Somewhat
+                </Radio>
+              </HStack>
+            </RadioGroup>
+          </Box>
+        </SimpleGrid>
+
+        <Button mt={10} colorScheme='teal' type='submit'>
+          Submit
+        </Button>
+      </form>
+    </Box>
   );
 };
 

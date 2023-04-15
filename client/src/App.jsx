@@ -14,25 +14,34 @@ import UploadImage from "./components/UploadImage";
 import Petdetail from "./components/Petdetail";
 import EditPet from "./components/ShelterPages/EditPet";
 import axios from "axios";
+import getPetById from './utils/getPetById';
 
 function App() {
   const [isShelterLogin, setIsShelterLogin] = useState(false);
   const [isUserLogin, setIsUserLogin] = useState(false);
-  const [petId, setPetId] = useState("");
+  const [petId, setPetId] = useState('');
   const [currentPet, setCurrentPet] = useState(null);
+  const [editablePetId, setEditablePetId] = useState('');
+  const [editablePet, setEditablePet] = useState(null);
   {
     /* dummy routing to test authentication */
   }
 
   useEffect(() => {
-    const getPetById = async () => {
-      if (!petId) return; //https://petadoptionteam.azurewebsites.net/
-      const pet = await axios.get(`http://localhost:5000/pets/pet/${petId}`);
-      setCurrentPet(pet.data);
-    };
+    // const getPetById = async () => {
+    //   if (!petId) return; //https://petadoptionteam.azurewebsites.net/
+    //   const pet = await axios.get(`http://localhost:5000/pets/pet/${petId}`);
+    //   setCurrentPet(pet.data);
+    // };
 
-    getPetById();
+    getPetById(petId, setCurrentPet);
   }, [petId]);
+
+  useEffect(() => {
+    getPetById(editablePetId, setEditablePet);
+  }, [editablePetId]);
+
+  console.log(editablePet);
 
   return (
     <>
@@ -47,10 +56,10 @@ function App() {
       {/* <UploadImage /> */}
 
       <Routes>
-        <Route exact path="/" element={<h1>Home</h1>} />
+        <Route exact path='/' element={<h1>Home</h1>} />
         <Route
           exact
-          path="/shelter/login"
+          path='/shelter/login'
           element={
             <Login
               setIsShelterLogin={setIsShelterLogin}
@@ -58,29 +67,30 @@ function App() {
             />
           }
         />
-        <Route exact path="/shelter/register" element={<Register />} />
+        <Route exact path='/shelter/register' element={<Register />} />
         <Route
           exact
-          path="/showpets"
+          path='/showpets'
           element={
             <Pets
               isUserLogin={isUserLogin}
               isShelterLogin={isShelterLogin}
               setPetId={setPetId}
+              setEditablePetUrl={setEditablePetId}
             />
           }
         />
-        <Route exact path="/addpet" element={<AddPet />} />
-        <Route exact path="/pets/*" element={<Petdetail pet={currentPet} />} />
+        <Route exact path='/addpet' element={<AddPet />} />
+        <Route exact path='/pets/*' element={<Petdetail pet={currentPet} />} />
 
         <Route
           exact
-          path="/user/login"
+          path='/user/login'
           element={<UserLogin setIsUserLogin={setIsUserLogin} />}
         />
-        <Route exact path="/user/register" element={<UserRegister />} />
-        <Route exact path="/petownersurvey" element={<PetOwnerSurvey />} />
-        <Route exact path="/editpet/" element={<EditPet pet={currentPet} />} />
+        <Route exact path='/user/register' element={<UserRegister />} />
+        <Route exact path='/petownersurvey' element={<PetOwnerSurvey />} />
+        <Route exact path='/editpet' element={<EditPet pet={editablePet} />} />
       </Routes>
     </>
   );
