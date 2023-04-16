@@ -46,6 +46,10 @@ const EditPet = ({ pet }) => {
     }
   };
 
+  const onCancel = e => {
+    navigate('/showpets');
+  };
+
   if (!pet) return;
 
   return (
@@ -341,9 +345,12 @@ const EditPet = ({ pet }) => {
           </Box>
         </SimpleGrid>
 
-        <Button mt={10} colorScheme='teal' type='submit'>
-          Submit
-        </Button>
+        <Box mt={10}>
+          <Button marginRight={3} colorScheme='teal' type='submit'>
+            Submit
+          </Button>
+          <Button onClick={onCancel}>Cancel</Button>
+        </Box>
       </form>
     </Box>
   );
