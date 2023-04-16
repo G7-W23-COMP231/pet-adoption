@@ -12,6 +12,7 @@ import {
   FormLabel,
   HStack,
   Text,
+  Textarea,
 } from '@chakra-ui/react';
 
 import axios from 'axios';
@@ -342,6 +343,32 @@ const EditPet = ({ pet }) => {
                 </Radio>
               </HStack>
             </RadioGroup>
+          </Box>
+          <Box>
+            <FormLabel>Medical History</FormLabel>
+            <Textarea
+              defaultValue={pet.medHistory}
+              {...register('medHistory')}
+              placeholder='Write here...'
+            />
+          </Box>
+
+          <Box>
+            <FormLabel>Any Behavioural issue?</FormLabel>
+            <Textarea
+              defaultValue={pet.behaveIssue}
+              {...register('behaveIssue')}
+              placeholder='Write here...'
+            />
+          </Box>
+
+          <Box>
+            <FormLabel>Vaccination records (if any)?</FormLabel>
+            <Textarea
+              defaultValue={pet.vaccRecord}
+              {...register('vaccRecord')}
+              placeholder='Write here...'
+            />
           </Box>
         </SimpleGrid>
 
