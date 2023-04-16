@@ -7,7 +7,7 @@ import noImage from '../assets/no-image-placeholder.webp';
 export default function Petdetail({ pet }) {
   const navigate = useNavigate();
   return (
-    <Box width={{ base: '80%', md: '50%' }} mx='auto'>
+    <Box width={{ base: '80%' }} mx='auto'>
       <Box
         display='flex'
         flexDirection={{ base: 'column', md: 'row' }}
@@ -19,7 +19,7 @@ export default function Petdetail({ pet }) {
           src={pet?.petPhoto || noImage}
           alt={pet?.petName}
           borderRadius={10}
-          width='100%'
+          width={{ base: '100%', md: '50%' }}
           height={{ base: '300px', md: '400px' }}
           objectFit='cover'
           marginBottom={5}
