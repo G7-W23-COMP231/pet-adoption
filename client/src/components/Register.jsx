@@ -40,7 +40,12 @@ const Register = () => {
   };
 
   const validateForm = () => {
-    const requiredFields = ["animalShelterName", "email", "phoneNumber"];
+    const requiredFields = [
+      "animalShelterName",
+      "email",
+      "phoneNumber",
+      "password",
+    ];
     for (const field of requiredFields) {
       if (!formField[field]) {
         return false;

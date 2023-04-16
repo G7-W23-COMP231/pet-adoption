@@ -44,6 +44,7 @@ const AddOwner = () => {
       "province",
       "email",
       "phoneNumber",
+      "password",
     ];
     for (const field of requiredFields) {
       if (!formField[field]) {
