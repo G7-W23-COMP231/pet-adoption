@@ -82,8 +82,8 @@ const Register = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.token) {
+          alert("Register Added Successfully");
           localStorage.setItem("token", data.token);
-
           navigate("/showpets");
         } else {
           alert(data.message);

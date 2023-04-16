@@ -30,6 +30,7 @@ import {
 const AddOwner = () => {
   const [formField, setFormField] = useState(addOwnerDefaultField);
 
+  const { password, confirmPassword } = formField;
   const resetFormFields = () => {
     setFormField(addOwnerDefaultField);
   };
