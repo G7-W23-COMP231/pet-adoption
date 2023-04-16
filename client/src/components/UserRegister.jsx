@@ -34,6 +34,25 @@ const AddOwner = () => {
     setFormField(addOwnerDefaultField);
   };
 
+  const validateForm = () => {
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "country",
+      "street",
+      "city",
+      "province",
+      "email",
+      "phoneNumber",
+    ];
+    for (const field of requiredFields) {
+      if (!formField[field]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleChange = (event) => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
@@ -42,6 +61,16 @@ const AddOwner = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formField);
+
+    if (!validateForm()) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Password do not match");
+      return;
+    }
     //https://petadoptionteam.azurewebsites.net/
     fetch("http://localhost:5000/owner/addowner", {
       method: "POST",

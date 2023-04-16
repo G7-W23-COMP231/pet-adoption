@@ -39,6 +39,16 @@ const Register = () => {
     navigate("/");
   };
 
+  const validateForm = () => {
+    const requiredFields = ["animalShelterName", "email", "phoneNumber"];
+    for (const field of requiredFields) {
+      if (!formField[field]) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleChange = (event) => {
     const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
@@ -47,8 +57,9 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (animalShelterName == "") {
-      alert("Please Enter shelter Name");
+    if (!validateForm()) {
+      alert("Please fill out all fields.");
+      return;
     }
 
     if (password !== confirmPassword) {
