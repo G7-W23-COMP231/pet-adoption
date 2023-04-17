@@ -71,8 +71,8 @@ const Register = () => {
       alert("Password do not match");
       return;
     }
-    //https://petadoptionteam.azurewebsites.net/
-    fetch("http://localhost:5000/animalshelter/register", {
+
+    fetch("https://petadoptionteam.azurewebsites.net/animalshelter/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

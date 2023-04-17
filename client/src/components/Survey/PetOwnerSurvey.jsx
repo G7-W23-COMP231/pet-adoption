@@ -34,11 +34,9 @@ const PetOwnerSurvey = () => {
     event.preventDefault();
 
     if (!token) {
-      //alert("Access Denied");
       navigate("/login");
     } else {
-      //https://petadoptionteam.azurewebsites.net/
-      fetch("http://localhost:5000/survey/ownersurvey", {
+      fetch("https://petadoptionteam.azurewebsites.net/survey/ownersurvey", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

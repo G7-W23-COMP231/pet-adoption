@@ -93,8 +93,7 @@ export const Navbar = ({
                   try {
                     if (isShelterLogin) {
                       const response = await fetch(
-                        //https://petadoptionteam.azurewebsites.net/
-                        "http://localhost:5000/animalshelter/logout",
+                        "https://petadoptionteam.azurewebsites.net/animalshelter/logout",
                         {
                           method: "POST",
                         }
@@ -107,8 +106,7 @@ export const Navbar = ({
                       }
                     } else if (isUserLogin) {
                       const response = await fetch(
-                        //https://petadoptionteam.azurewebsites.net/
-                        "http://localhost:5000/owner/logout",
+                        "https://petadoptionteam.azurewebsites.net/owner/logout",
                         {
                           method: "POST",
                         }

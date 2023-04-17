@@ -73,8 +73,8 @@ const AddOwner = () => {
       alert("Password do not match");
       return;
     }
-    //https://petadoptionteam.azurewebsites.net/
-    fetch("http://localhost:5000/owner/addowner", {
+    //
+    fetch("https://petadoptionteam.azurewebsites.net/owner/addowner", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

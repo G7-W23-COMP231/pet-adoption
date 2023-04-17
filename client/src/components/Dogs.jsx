@@ -22,7 +22,7 @@ const Pets = () => {
         "Content-Type": "application/json",
       };
       console.log("Headers:", headers);
-      fetch("http://localhost:5000/pets/showpets", {
+      fetch("https://petadoptionteam.azurewebsites.net/pets/showpets", {
         method: "GET",
         headers: headers,
       })

@@ -8,8 +8,6 @@ const Cats = () => {
   const [data, setItems] = useState([]);
   const navigate = useNavigate();
 
-  // Just for now, since data fetching is not yet done
-  // TODO: Needs to work on
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {

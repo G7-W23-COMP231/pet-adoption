@@ -54,13 +54,13 @@ const AddPet = () => {
 
   const handleSubmit = (event) => {
     const token = localStorage.getItem("token");
-    //event.preventDefault();
+    
     if (!validateForm()) {
       alert("Please fill out all required fields.");
       return;
     }
-    axios //https://petadoptionteam.azurewebsites.net/pets/addpet
-      .post("http://localhost:5000/pets/addpet", data, {
+    axios 
+      .post("https://petadoptionteam.azurewebsites.net/pets/addpet", data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

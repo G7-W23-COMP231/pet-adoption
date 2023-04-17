@@ -23,12 +23,12 @@ export default function UploadImage({ url, setUrl }) {
 
   function uploadSingleImage(base64) {
     setLoading(true);
-    axios//https://petadoptionteam.azurewebsites.net/
-      .post("http://localhost:5000/pets/uploadImage", { image: base64 })
+    axios //
+      .post("https://petadoptionteam.azurewebsites.net/pets/uploadImage", {
+        image: base64,
+      })
       .then((res) => {
         setUrl(res.data);
-        //console.log('hellooo' + res.data)
-        //alert("Image uploaded Succesfully");
       })
       .then(() => setLoading(false))
       .catch(console.log);
